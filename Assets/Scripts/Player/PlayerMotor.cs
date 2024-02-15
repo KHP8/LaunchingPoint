@@ -66,7 +66,15 @@ public class PlayerMotor : MonoBehaviour
             if (shooting)
             {
                 Camera cam = GetComponent<PlayerLook>().cam;
-                GameObject proj = Instantiate(bullet, projectileSource.position, bullet.transform.rotation);
+                GameObject proj = Instantiate(
+                    bullet, 
+                    projectileSource.position, 
+                    Quaternion.Euler(
+                        cam.transform.eulerAngles.x + 90,
+                        transform.eulerAngles.y,
+                        0
+                    )
+                );
                 proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
                 proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
                 shootTimer = 0;
