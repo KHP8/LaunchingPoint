@@ -27,9 +27,10 @@ public class PlayerMotor : MonoBehaviour
     public GameObject bullet;
     public float rpm;
     public float bulletSpeed;
+    
     private bool canShoot = true;
     private WaitForSeconds shootDelay;
-    Coroutine shootCoroutine;
+    private Coroutine shootCoroutine;
 
     // Start is called before the first frame update
     void Start()
