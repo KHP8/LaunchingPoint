@@ -22,17 +22,20 @@ public class PlayerMotor : MonoBehaviour
     public float minHeight = -30f;
     public Transform spawnPoint;
 
+    [Header("Shooting")]
     public Transform projectileSource;
     public GameObject bullet;
     public float rpm;
     public float bulletSpeed;
-    private float shootTimer = 0;
-    private bool shooting = false;
+    private bool canShoot = true;
+    private WaitForSeconds shootDelay;
+    Coroutine shootCoroutine;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();   
+        controller = GetComponent<CharacterController>();
+        shootDelay = new WaitForSeconds(60 / rpm);
     }
 
     // Update is called once per frame
@@ -59,30 +62,6 @@ public class PlayerMotor : MonoBehaviour
         if (controller.transform.position[1] < minHeight) {
             Debug.Log(controller.transform.position);
             controller.transform.position = spawnPoint.position;
-        }
-
-        if (shootTimer > (60 / rpm))
-        {
-            if (shooting)
-            {
-                Camera cam = GetComponent<PlayerLook>().cam;
-                GameObject proj = Instantiate(
-                    bullet, 
-                    projectileSource.position, 
-                    Quaternion.Euler(
-                        cam.transform.eulerAngles.x + 90,
-                        transform.eulerAngles.y,
-                        0
-                    )
-                );
-                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
-                proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
-                shootTimer = 0;
-            }
-        }
-        else
-        {
-            shootTimer += Time.deltaTime;
         }
     }
 
@@ -123,8 +102,45 @@ public class PlayerMotor : MonoBehaviour
             speed = 5;
     }
 
-    public void Shoot()
+    public void StartFiring()
     {
-        shooting = !shooting;
+        shootCoroutine = StartCoroutine(Shoot());
+    }
+
+    IEnumerator Shoot()
+    {
+        while (true)
+        {
+            if (canShoot)
+            {
+                canShoot = false;
+                Camera cam = GetComponent<PlayerLook>().cam;
+                GameObject proj = Instantiate(
+                    bullet, 
+                    projectileSource.position, 
+                    Quaternion.Euler(
+                        cam.transform.eulerAngles.x + 90,
+                        transform.eulerAngles.y,
+                        0
+                    )
+                );
+                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
+                proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
+                StartCoroutine(ResetShootCooldown());
+            }
+            yield return null;
+        }
+    }
+
+    public void StopFiring()
+    {
+        if (shootCoroutine != null)
+            StopCoroutine(shootCoroutine);
+    }
+
+    IEnumerator ResetShootCooldown()
+    {
+        yield return shootDelay;
+        canShoot = true;
     }
 }

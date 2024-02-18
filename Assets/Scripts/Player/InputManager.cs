@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,8 @@ public class InputManager : MonoBehaviour
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.Crouch.performed += ctx => motor.Crouch();
         onFoot.Sprint.performed += ctx => motor.Sprint();
-        onFoot.Shoot.performed += ctx => motor.Shoot();
+        onFoot.Shoot.performed += ctx => motor.StartFiring();
+        onFoot.Shoot.canceled += ctx => motor.StopFiring();
     }
 
     // Update is called once per frame
