@@ -28,6 +28,7 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.performed += ctx => motor.Sprint();
         onFoot.Shoot.performed += ctx => motor.StartFiring();
         onFoot.Shoot.canceled += ctx => motor.StopFiring();
+        onFoot.Melee.performed += ctx => motor.Melee();
     }
 
     // Update is called once per frame

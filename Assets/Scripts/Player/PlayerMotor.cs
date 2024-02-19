@@ -32,6 +32,11 @@ public class PlayerMotor : MonoBehaviour
     private WaitForSeconds shootDelay;
     private Coroutine shootCoroutine;
 
+    // Melee Variables
+    public GameObject melee;
+    public bool canAttack = true;
+    public float attackCooldown = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -143,5 +148,23 @@ public class PlayerMotor : MonoBehaviour
     {
         yield return shootDelay;
         canShoot = true;
+    }
+
+    public void Melee()
+    {
+        if (canAttack)
+        {
+            canAttack = false;
+            Animator anim = melee.GetComponent<Animator>();
+            anim.ResetTrigger("Melee");
+            anim.SetTrigger("Melee");
+            StartCoroutine(ResetAttackCooldown());
+        }
+    }
+
+    IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
     }
 }
