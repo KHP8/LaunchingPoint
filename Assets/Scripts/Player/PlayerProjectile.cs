@@ -9,11 +9,15 @@ public class PlayerProjectile : MonoBehaviour
     public int dmg = 10;
 
     private void OnCollisionEnter(Collision other) {
-        Debug.Log("Hit Player");
-        if (other.transform.CompareTag("Player"))
+        //Debug.Log("Hit Player");
+        if (other.transform.CompareTag("Enemy"))
         {
-            Debug.Log("Hit Player");
-            other.transform.GetComponent<PlayerHealth>().TakeDamage(dmg);
+            Debug.Log("Hit Enemy");
+            other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(dmg);
+        }
+        else
+        {
+            Debug.Log("Not an Enemy Hit");
         }
         Destroy(gameObject);
     }

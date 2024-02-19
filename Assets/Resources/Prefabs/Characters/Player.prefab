@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 311428156800894191}
-  lookAtObj: {fileID: 0}
+  lookAtObj: {fileID: 2388243520015649869}
   xSensitivity: 30
   ySensitivity: 30
 --- !u!114 &6127111640411570326
