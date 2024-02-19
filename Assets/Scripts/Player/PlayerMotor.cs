@@ -22,15 +22,7 @@ public class PlayerMotor : MonoBehaviour
     public float minHeight = -30f;
     public Transform spawnPoint;
 
-    [Header("Shooting")]
-    public Transform projectileSource;
-    public GameObject bullet;
-    public float rpm;
-    public float bulletSpeed;
     
-    private bool canShoot = true;
-    private WaitForSeconds shootDelay;
-    private Coroutine shootCoroutine;
 
     // Melee Variables
     public GameObject melee;
@@ -41,7 +33,6 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        shootDelay = new WaitForSeconds(60 / rpm);
     }
 
     // Update is called once per frame
@@ -106,48 +97,6 @@ public class PlayerMotor : MonoBehaviour
             speed = 8;
         else
             speed = 5;
-    }
-
-    public void StartFiring()
-    {
-        shootCoroutine = StartCoroutine(Shoot());
-    }
-
-    IEnumerator Shoot()
-    {
-        while (true)
-        {
-            if (canShoot)
-            {
-                canShoot = false;
-                Camera cam = GetComponent<PlayerLook>().cam;
-                GameObject proj = Instantiate(
-                    bullet, 
-                    projectileSource.position, 
-                    Quaternion.Euler(
-                        cam.transform.eulerAngles.x + 90,
-                        transform.eulerAngles.y,
-                        0
-                    )
-                );
-                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
-                proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
-                StartCoroutine(ResetShootCooldown());
-            }
-            yield return null;
-        }
-    }
-
-    public void StopFiring()
-    {
-        if (shootCoroutine != null)
-            StopCoroutine(shootCoroutine);
-    }
-
-    IEnumerator ResetShootCooldown()
-    {
-        yield return shootDelay;
-        canShoot = true;
     }
 
     public void Melee()

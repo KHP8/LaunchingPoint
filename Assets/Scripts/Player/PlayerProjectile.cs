@@ -19,11 +19,14 @@ public class PlayerProjectile : MonoBehaviour
         {
             Debug.Log("Not an Enemy Hit");
         }
+        
+        // Regardless of what is hit, destroy the projectile
         Destroy(gameObject);
     }
 
     void Update()
     {
+        // If the projectile goes too far AKA off scene, destroy it
         if (Vector3.Distance(startPoint, transform.position) > maxRange)
         {
             Destroy(gameObject);

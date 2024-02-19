@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
 
     private PlayerMotor motor;
     private PlayerLook look;
+    private PlayerShoot shoot;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,12 +23,13 @@ public class InputManager : MonoBehaviour
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        shoot = GetComponent<PlayerShoot>();
 
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.Crouch.performed += ctx => motor.Crouch();
         onFoot.Sprint.performed += ctx => motor.Sprint();
-        onFoot.Shoot.performed += ctx => motor.StartFiring();
-        onFoot.Shoot.canceled += ctx => motor.StopFiring();
+        onFoot.Shoot.performed += ctx => shoot.StartFiring();
+        onFoot.Shoot.canceled += ctx => shoot.StopFiring();
         onFoot.Melee.performed += ctx => motor.Melee();
     }
 
