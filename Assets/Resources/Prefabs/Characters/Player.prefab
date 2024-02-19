@@ -206,7 +206,7 @@ MonoBehaviour:
   bullet: {fileID: 3974220597357036714, guid: cb2eb1f5fa3eb7b45b871c625455b851, type: 3}
   rpm: 600
   bulletSpeed: 40
-  melee: {fileID: 0}
+  melee: {fileID: 1661733538075135339}
   canAttack: 1
   attackCooldown: 1
 --- !u!114 &1519826155541202468
