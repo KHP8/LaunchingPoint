@@ -203,9 +203,9 @@ MonoBehaviour:
   minHeight: -30
   spawnPoint: {fileID: 0}
   projectileSource: {fileID: 8414320993658388362}
-  bullet: {fileID: 0}
-  rpm: 0
-  bulletSpeed: 0
+  bullet: {fileID: 3974220597357036714, guid: cb2eb1f5fa3eb7b45b871c625455b851, type: 3}
+  rpm: 600
+  bulletSpeed: 40
   melee: {fileID: 0}
   canAttack: 1
   attackCooldown: 1
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 311428156800894191}
-  lookAtObj: {fileID: 0}
+  lookAtObj: {fileID: 2388243520015649869}
   xSensitivity: 30
   ySensitivity: 30
 --- !u!114 &6127111640411570326
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e2cbf1a0c8d2945acde1a3dd301328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3
+  distance: 8
   mask:
     serializedVersion: 2
     m_Bits: 64
@@ -259,8 +259,8 @@ MonoBehaviour:
   backHealthBar: {fileID: 0}
   xpBar: {fileID: 0}
   overlay: {fileID: 0}
-  duration: 0
-  fadeSpeed: 0
+  duration: 1.5
+  fadeSpeed: 1.5
 --- !u!114 &1433914194551483187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 311428156800894191}
   - component: {fileID: 5031086386469908193}
   - component: {fileID: 3801249895698440616}
+  - component: {fileID: 4621499312377807859}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -539,6 +540,40 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &4621499312377807859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6960523136843724688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7976215273538693886
 GameObject:
   m_ObjectHideFlags: 0
