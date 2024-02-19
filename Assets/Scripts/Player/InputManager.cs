@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     private PlayerMotor motor;
     private PlayerLook look;
     private PlayerShoot shoot;
+    private PlayerMelee melee;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,7 +31,7 @@ public class InputManager : MonoBehaviour
         onFoot.Sprint.performed += ctx => motor.Sprint();
         onFoot.Shoot.performed += ctx => shoot.StartFiring();
         onFoot.Shoot.canceled += ctx => shoot.StopFiring();
-        onFoot.Melee.performed += ctx => motor.Melee();
+        onFoot.Melee.performed += ctx => melee.Melee();
     }
 
     // Update is called once per frame
