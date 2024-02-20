@@ -20,7 +20,7 @@ public class PlayerLook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -80, 80);
         //apply this to our look at transform
         lookAtObj.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        //rorate player to look left and right
+        //rotate player to look left and right
         transform.Rotate(mouseX * Time.deltaTime * xSensitivity * Vector3.up);
     }
 }
