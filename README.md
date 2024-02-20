@@ -1,0 +1,1 @@
+“Wizard Defense Service” is a co-op wizard roguelike. Play as a party of wizards and work together to slay enemies, challenge bosses, and complete dungeons. Unique spells from different schools of magic ensure that no run is the same. Work with friends to learn from each school, discover new magic, and defeat as many enemies as you can.How far will you make it?
