@@ -9,9 +9,13 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused = false;
     public GameObject pauseMenu;
 
+    public GameObject settingsMenu;
+    public bool settingsOpen = false;
+
     public void Start()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
     }
 
     public void PauseManager()
@@ -34,10 +38,12 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        settingsOpen = false;
+        settingsMenu.SetActive(false);
     }
 
-    // Buttons
-    // -------
+    // Main Buttons
+    // ------------
     public void OnResumeButton()
     {
         UnPause();
@@ -45,7 +51,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OnSettingsButton()
     {
-
+        settingsOpen = true;
+        settingsMenu.SetActive(true);
     }
 
     public void OnSaveButton()
@@ -66,5 +73,34 @@ public class PauseMenu : MonoBehaviour
     public void OnQuitButton()
     {
         Application.Quit();
+    }
+
+    // Settings Banner Buttons
+    // -----------------------
+
+    public void OnDisplayButton()
+    {
+
+    }
+
+    public void OnGraphicsButton()
+    {
+
+    }
+
+    public void OnAudioButton()
+    {
+
+    }
+
+    public void OnGameplayButton()
+    {
+
+    }
+
+    public void OnCloseSettingsButton()
+    {
+        settingsOpen = false;
+        settingsMenu.SetActive(false);
     }
 }
