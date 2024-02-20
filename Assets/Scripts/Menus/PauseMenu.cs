@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
     public void PauseManager()
     {
         if (isPaused)
-            unPause();
+            UnPause();
         else
             Pause();
     }
@@ -29,21 +29,42 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void unPause()
+    public void UnPause()
     {
         isPaused = false;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    // Buttons
+    // -------
+    public void OnResumeButton()
+    {
+        UnPause();
+    }
+
+    public void OnSettingsButton()
+    {
+
+    }
+
+    public void OnSaveButton()
+    {
+
+    }
+
+    public void OnLoadButton()
+    {
+
+    }
+
     public void OnMenuButton()
     {
-        if (isPaused)
-            SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OnQuitButton()
-    {   if (isPaused)
-            Application.Quit();
+    {
+        Application.Quit();
     }
 }
