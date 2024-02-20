@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
+
+    // Spell 1
     public Transform projectileSource;
     public GameObject bullet;
     public float rpm;
@@ -12,6 +14,19 @@ public class PlayerShoot : MonoBehaviour
     private bool canShoot = true;
     private WaitForSeconds shootDelay;
     private Coroutine shootCoroutine;
+
+
+    // Spell 2
+    public GameObject bullet;
+    public float spell2Rpm;
+    public float spell2Speed;
+
+    private bool canCast = true;
+    private WaitForSeconds castDelay;
+    private Coroutine castCoroutine;
+
+    //WORKING ON SPELL 2 RN
+
 
     void Start()
     {
@@ -68,6 +83,46 @@ public class PlayerShoot : MonoBehaviour
     {
         yield return shootDelay;
         canShoot = true;
+    }
+
+
+    public void CastSpell2()
+    {
+        // Start a coroutine which performs shooting
+        shootCoroutine = StartCoroutine(Shoot());
+    }
+
+
+    IEnumerator Spell2()
+    {
+        // Creates a bullet 
+        while (true)
+        {
+            if (canCast) // If timer is done
+            {
+                canCast = false;
+                Camera cam = GetComponent<PlayerLook>().cam;
+
+                // Create a bullet oriented towards camera direction
+                GameObject proj = Instantiate(
+                    bullet,
+                    projectileSource.position,
+                    Quaternion.Euler(
+                        cam.transform.eulerAngles.x + 90,
+                        transform.eulerAngles.y,
+                        0
+                    )
+                );
+
+                // Give bullet physics and movement
+                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
+                proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
+
+                // Begin cooldown between shots
+                StartCoroutine(ResetShootCooldown());
+            }
+            yield return null;
+        }
     }
 
 }

@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class PlayerProjectile : MonoBehaviour
 {
-    private int maxRange = 400;
+    private int maxRange = 25;
     public Vector3 startPoint;
     public int dmg = 10;
 
     private void OnCollisionEnter(Collision other) {
-        //Debug.Log("Hit Player");
-        if (other.transform.CompareTag("Enemy"))
+
+        if (!(other.transform.CompareTag("Player")))
         {
-            Debug.Log("Hit Enemy");
-            other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(dmg);
+            if (other.transform.CompareTag("Enemy"))
+            {
+                Debug.Log("Hit Enemy");
+                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(dmg);
+            }
+            else
+            {
+                Debug.Log("Not an Enemy Hit");
+            }
+
+            // Regardless of what is hit, destroy the projectile
+            Destroy(gameObject);
         }
-        else
+        else if (other.transform.CompareTag("Player"))
         {
-            Debug.Log("Not an Enemy Hit");
+            Debug.Log("Hit Player");
         }
-        
-        // Regardless of what is hit, destroy the projectile
-        Destroy(gameObject);
     }
 
     void Update()
