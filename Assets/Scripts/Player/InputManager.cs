@@ -7,12 +7,14 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    public PlayerInput.OnFootActions onFoot;
+    public PlayerInput.PlayerActions player;
+    public PlayerInput.UIActions ui;
 
     private PlayerMotor motor;
     private PlayerLook look;
     private PlayerShoot shoot;
     private PlayerMelee melee;
+    private PauseMenu pause;
     private PlayerFireball fireball;
 
     // Start is called before the first frame update
@@ -21,39 +23,69 @@ public class InputManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         playerInput = new PlayerInput();
-        onFoot = playerInput.OnFoot;
+        player = playerInput.Player;
+        ui = playerInput.UI;
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
         shoot = GetComponent<PlayerShoot>();
         melee = GetComponent<PlayerMelee>();
+        pause  = GetComponent<PauseMenu>();
         fireball = GetComponent<PlayerFireball>();
+        
+        player.Pause.performed += ctx => pause.PauseManager();
+        ui.Pause.performed += ctx => pause.PauseManager();
 
-        onFoot.Jump.performed += ctx => motor.Jump();
-        onFoot.Crouch.performed += ctx => motor.Crouch();
-        onFoot.Sprint.performed += ctx => motor.Sprint();
-        onFoot.Shoot.performed += ctx => shoot.StartFiring();
-        onFoot.Shoot.canceled += ctx => shoot.StopFiring();
-        onFoot.Melee.performed += ctx => melee.Melee();
-        onFoot.Fireball.performed += ctx => fireball.StartFiring();
-        onFoot.Fireball.canceled += ctx => fireball.StopFiring();
+        player.Jump.performed += ctx => motor.Jump();
+        player.Crouch.performed += ctx => motor.Crouch();
+        player.Sprint.performed += ctx => motor.Sprint();
+        player.Shoot.performed += ctx => shoot.StartFiring();
+        player.Shoot.canceled += ctx => shoot.StopFiring();
+        player.Melee.performed += ctx => melee.Melee();
+        player.Fireball.performed += ctx => fireball.StartFiring();
+        player.Fireball.canceled += ctx => fireball.StopFiring();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        //tell the playermotor to move using the value from our movement action
-        motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        if (pause.isPaused == false)
+            //tell the playermotor to move using the value from our movement action
+            motor.ProcessMove(player.Movement.ReadValue<Vector2>());
     }
     private void LateUpdate() {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        if (pause.isPaused == true)
+        {
+            OnFootDisable();
+            UIEnable();
+        }
+        else
+        {
+            OnFootEnable();
+            UIDisable();
+        }
+
+        if (pause.isPaused == false)
+            look.ProcessLook(player.Look.ReadValue<Vector2>());
     }
-    private void OnEnable() 
+
+    private void OnFootEnable() 
     {
-        onFoot.Enable();
+        player.Enable();
     }
-    private void OnDisable()
+
+    private void OnFootDisable()
     {
-        onFoot.Disable();
+        player.Disable();
+    }
+
+    private void UIEnable()
+    {
+        ui.Enable();
+    }
+
+    private void UIDisable()
+    {
+        ui.Disable();
     }
 }
