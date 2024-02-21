@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
@@ -73,29 +76,6 @@ public class PauseMenu : MonoBehaviour
     public void OnQuitButton()
     {
         Application.Quit();
-    }
-
-    // Settings Banner Buttons
-    // -----------------------
-
-    public void OnDisplayButton()
-    {
-
-    }
-
-    public void OnGraphicsButton()
-    {
-
-    }
-
-    public void OnAudioButton()
-    {
-
-    }
-
-    public void OnGameplayButton()
-    {
-
     }
 
     public void OnCloseSettingsButton()
