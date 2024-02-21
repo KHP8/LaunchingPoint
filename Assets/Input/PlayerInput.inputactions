@@ -78,13 +78,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Spell2",
+                    "name": "Fireball",
                     "type": "Button",
                     "id": "5242d802-9bb5-4ed2-94e2-bacafdc8d367",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -337,7 +337,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Spell2",
+                    "action": "Fireball",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

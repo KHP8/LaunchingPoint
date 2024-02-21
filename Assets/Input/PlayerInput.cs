@@ -100,13 +100,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Spell2"",
+                    ""name"": ""Fireball"",
                     ""type"": ""Button"",
                     ""id"": ""5242d802-9bb5-4ed2-94e2-bacafdc8d367"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -359,7 +359,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Spell2"",
+                    ""action"": ""Fireball"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -894,7 +894,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_OnFoot_Crouch = m_OnFoot.FindAction("Crouch", throwIfNotFound: true);
         m_OnFoot_Shoot = m_OnFoot.FindAction("Shoot", throwIfNotFound: true);
         m_OnFoot_Melee = m_OnFoot.FindAction("Melee", throwIfNotFound: true);
-        m_OnFoot_Spell2 = m_OnFoot.FindAction("Spell2", throwIfNotFound: true);
+        m_OnFoot_Fireball = m_OnFoot.FindAction("Fireball", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -976,7 +976,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Crouch;
     private readonly InputAction m_OnFoot_Shoot;
     private readonly InputAction m_OnFoot_Melee;
-    private readonly InputAction m_OnFoot_Spell2;
+    private readonly InputAction m_OnFoot_Fireball;
     public struct OnFootActions
     {
         private @PlayerInput m_Wrapper;
@@ -989,7 +989,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_OnFoot_Crouch;
         public InputAction @Shoot => m_Wrapper.m_OnFoot_Shoot;
         public InputAction @Melee => m_Wrapper.m_OnFoot_Melee;
-        public InputAction @Spell2 => m_Wrapper.m_OnFoot_Spell2;
+        public InputAction @Fireball => m_Wrapper.m_OnFoot_Fireball;
         public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1023,9 +1023,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Melee.started += instance.OnMelee;
             @Melee.performed += instance.OnMelee;
             @Melee.canceled += instance.OnMelee;
-            @Spell2.started += instance.OnSpell2;
-            @Spell2.performed += instance.OnSpell2;
-            @Spell2.canceled += instance.OnSpell2;
+            @Fireball.started += instance.OnFireball;
+            @Fireball.performed += instance.OnFireball;
+            @Fireball.canceled += instance.OnFireball;
         }
 
         private void UnregisterCallbacks(IOnFootActions instance)
@@ -1054,9 +1054,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Melee.started -= instance.OnMelee;
             @Melee.performed -= instance.OnMelee;
             @Melee.canceled -= instance.OnMelee;
-            @Spell2.started -= instance.OnSpell2;
-            @Spell2.performed -= instance.OnSpell2;
-            @Spell2.canceled -= instance.OnSpell2;
+            @Fireball.started -= instance.OnFireball;
+            @Fireball.performed -= instance.OnFireball;
+            @Fireball.canceled -= instance.OnFireball;
         }
 
         public void RemoveCallbacks(IOnFootActions instance)
@@ -1202,7 +1202,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnMelee(InputAction.CallbackContext context);
-        void OnSpell2(InputAction.CallbackContext context);
+        void OnFireball(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
     private PlayerLook look;
     private PlayerShoot shoot;
     private PlayerMelee melee;
+    private PlayerFireball fireball;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,7 +27,7 @@ public class InputManager : MonoBehaviour
         look = GetComponent<PlayerLook>();
         shoot = GetComponent<PlayerShoot>();
         melee = GetComponent<PlayerMelee>();
-        spell2 = GetComponent<PlayerSpell2>();
+        fireball = GetComponent<PlayerFireball>();
 
         onFoot.Jump.performed += ctx => motor.Jump();
         onFoot.Crouch.performed += ctx => motor.Crouch();
@@ -34,7 +35,8 @@ public class InputManager : MonoBehaviour
         onFoot.Shoot.performed += ctx => shoot.StartFiring();
         onFoot.Shoot.canceled += ctx => shoot.StopFiring();
         onFoot.Melee.performed += ctx => melee.Melee();
-        onFoot.Spell2.performed += ctx => Spell2.CastSpell2();
+        onFoot.Fireball.performed += ctx => fireball.StartFiring();
+        onFoot.Fireball.canceled += ctx => fireball.StopFiring();
     }
 
     // Update is called once per frame

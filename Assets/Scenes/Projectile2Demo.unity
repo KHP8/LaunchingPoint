@@ -251,6 +251,32 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.188852, y: 0.35592455, z: 10.166022}
   m_Center: {x: 0.094414055, y: -0.1779542, z: 0.082994625}
+--- !u!1 &596520012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1346642888391454335, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+  m_PrefabInstance: {fileID: 1778869038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &596520023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596520012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3ba6d76e08efb4db8323a0a7dd770a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSource: {fileID: 1482181956}
+  fireball: {fileID: 3974220597357036714, guid: d247af48b38d159449d40d8bbd1d779d, type: 3}
+  fireballrpm: 50
+  fireballSpeed: 90
+--- !u!4 &1482181956 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8414320993658388362, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+  m_PrefabInstance: {fileID: 1778869038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1597126862
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7359321446981882797, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
       propertyPath: bulletSpeed
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7473591886017135727, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
       propertyPath: m_Enabled
@@ -464,7 +490,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1346642888391454335, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 596520023}
   m_SourcePrefab: {fileID: 100100000, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
 --- !u!1 &1852677925
 GameObject:

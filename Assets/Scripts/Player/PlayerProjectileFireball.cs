@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class PlayerProjectileFireball : MonoBehaviour
 {
-    public int maxRange = 25;
+    private int maxRange = 60;
     public Vector3 startPoint;
-    public int dmg = 10;
+    public int dmg = 50;
 
     private void OnCollisionEnter(Collision other) {
 
