@@ -346,6 +346,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862720317}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &869850689 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8414320993658388362, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+  m_PrefabInstance: {fileID: 1148461177}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &969963238
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +522,10 @@ PrefabInstance:
       propertyPath: m_PixelsPerUnitMultiplier
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1661733538075135339, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2560315649246425768, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
       propertyPath: m_SizeDelta.x
       value: 400
@@ -664,8 +673,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1346642888391454335, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1663720937}
   m_SourcePrefab: {fileID: 100100000, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+--- !u!1 &1663720936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1346642888391454335, guid: ec2199c53dd70f742bc75c8cb5943425, type: 3}
+  m_PrefabInstance: {fileID: 1148461177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1663720937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663720936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3ba6d76e08efb4db8323a0a7dd770a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSource: {fileID: 869850689}
+  fireball: {fileID: 3974220597357036714, guid: d247af48b38d159449d40d8bbd1d779d, type: 3}
+  fireballrpm: 50
+  fireballSpeed: 40
 --- !u!1 &1733538311
 GameObject:
   m_ObjectHideFlags: 0

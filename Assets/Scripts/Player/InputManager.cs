@@ -39,11 +39,11 @@ public class InputManager : MonoBehaviour
         player.Jump.performed += ctx => motor.Jump();
         player.Crouch.performed += ctx => motor.Crouch();
         player.Sprint.performed += ctx => motor.Sprint();
-        player.Shoot.performed += ctx => shoot.StartFiring();
-        player.Shoot.canceled += ctx => shoot.StopFiring();
+        player.LeftClick.performed += ctx => shoot.StartFiring();
+        player.LeftClick.canceled += ctx => shoot.StopFiring();
+        player.RightClick.performed += ctx => fireball.StartFiring();
+        player.RightClick.canceled += ctx => fireball.StopFiring();
         player.Melee.performed += ctx => melee.Melee();
-        player.Fireball.performed += ctx => fireball.StartFiring();
-        player.Fireball.canceled += ctx => fireball.StopFiring();
     }
 
     // Update is called once per frame
