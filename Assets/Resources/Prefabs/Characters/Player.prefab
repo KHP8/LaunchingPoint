@@ -629,6 +629,7 @@ GameObject:
   - component: {fileID: 9157278673766681300}
   - component: {fileID: 1433914194551483187}
   - component: {fileID: 4850221312363731584}
+  - component: {fileID: 2697898179346962206}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -824,6 +825,22 @@ MonoBehaviour:
   pauseMenu: {fileID: 1451193654984829656}
   settingsMenu: {fileID: 5284834008298462847}
   settingsOpen: 0
+--- !u!114 &2697898179346962206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346642888391454335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff3ba6d76e08efb4db8323a0a7dd770a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSource: {fileID: 8414320993658388362}
+  fireball: {fileID: 3974220597357036714, guid: d247af48b38d159449d40d8bbd1d779d, type: 3}
+  fireballrpm: 50
+  fireballSpeed: 40
 --- !u!1 &1451193654984829656
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +900,7 @@ GameObject:
   - component: {fileID: 5433424037147315775}
   m_Layer: 0
   m_Name: Wand
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
