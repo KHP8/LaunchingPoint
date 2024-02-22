@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject newsMenu;
     public GameObject settingsMenu;
+    public GameObject abilityMenu;
 
     //private bool newsMenuOpen;
     public GameObject[] bannerButtons = new GameObject[7];
@@ -16,6 +17,7 @@ public class MainMenu : MonoBehaviour
     {
         newsMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        abilityMenu.SetActive(false);
         //newsMenuOpen = false;
     }
 
@@ -45,7 +47,12 @@ public class MainMenu : MonoBehaviour
 
     public void OnLoadButton()
     {
+        abilityMenu.SetActive(true);
+    }
 
+    public void OnCloseAbilityButton()
+    {
+        abilityMenu.SetActive(false);
     }
 
     public void OnMultiplayerButton()
