@@ -34,7 +34,6 @@ public class PlayerFireball : MonoBehaviour
         {
             if (canCast) // If timer is done
             {
-                Debug.Log("CASTFIRE");
                 canCast = false;
                 Camera cam = GetComponent<PlayerLook>().cam;
 
