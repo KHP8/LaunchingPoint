@@ -41,11 +41,13 @@ public class InputManager : MonoBehaviour
         player.Jump.performed += ctx => motor.Jump();
         player.Crouch.performed += ctx => motor.Crouch();
         player.Sprint.performed += ctx => motor.Sprint();
+        player.Melee.performed += ctx => melee.Melee();
+
         player.LeftClick.performed += ctx => shoot.StartFiring();
         player.LeftClick.canceled += ctx => shoot.StopFiring();
         player.RightClick.performed += ctx => fireball.StartFiring();
         player.RightClick.canceled += ctx => fireball.StopFiring();
-        player.Melee.performed += ctx => melee.Melee();
+        
 
         // FOR FUTURE USE
         // player.LeftClick.performed += ctx => ability.LeftClickAbility();
@@ -54,6 +56,30 @@ public class InputManager : MonoBehaviour
         // player.E.performed += ctx => ability.EAbility();
         // player.X.performed += ctx => ability.UltimateAbility();
         // player.C.performed += ctx => ability.DashAbility();
+    }
+
+    // To be implemented later
+    public void ResetIM()
+    {
+        playerInput = new PlayerInput();
+
+        player = playerInput.Player;
+        ui = playerInput.UI;
+
+        motor = GetComponent<PlayerMotor>();
+        look = GetComponent<PlayerLook>();
+        shoot = GetComponent<PlayerShoot>();
+        melee = GetComponent<PlayerMelee>();
+        pause  = GetComponent<PauseMenu>();
+        fireball = GetComponent<PlayerFireball>();
+
+        player.Pause.performed += ctx => pause.PauseManager();
+        ui.Pause.performed += ctx => pause.PauseManager();
+
+        player.Jump.performed += ctx => motor.Jump();
+        player.Crouch.performed += ctx => motor.Crouch();
+        player.Sprint.performed += ctx => motor.Sprint();
+        player.Melee.performed += ctx => melee.Melee();
     }
 
     // Update is called once per frame
