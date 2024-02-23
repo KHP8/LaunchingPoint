@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
-    public Vector3 startpoint;
+    [HideInInspector] public Vector3 startpoint;
 
     private void OnCollisionEnter(Collision other) 
     {

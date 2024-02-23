@@ -6,8 +6,9 @@ using UnityEngine;
     This script acts as the parent to all projectile scripts. 
     Those scripts should be attached to the player from the AbilitySelect menu.
 
-    The AbilitySelect menu will handle assigning the UseAbility and StopAbilty methods to the 
-    InputManager and will also assign Player to this script.
+    The AbilitySelect menu will handle assigning the UseAbility and StopAbilty methods 
+    to the InputManager (and will assign them properly to primary, secondary, etc) 
+    and will also assign Player to this script.
 
     WeaponStats should be assigned on the Prefab itself.
 
@@ -18,13 +19,10 @@ using UnityEngine;
 
 abstract public class BaseProjectile : MonoBehaviour
 {
-    
-
     // References to locations
-    [Header("References")]
-    [HideInInspector] public GameObject Player; 
+    //[HideInInspector] public GameObject player; 
     [HideInInspector] public Transform projectileSource;
-    public GameObject prefab;
+    [HideInInspector] public GameObject prefab;
     
     // Rate of fire, speed of proj, dmg of proj, how far it can go before being destroyed
     [Header("Weapon Stats")]
