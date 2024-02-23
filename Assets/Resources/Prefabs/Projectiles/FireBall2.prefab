@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2802429702092186640}
   - component: {fileID: 1045150688107647619}
   - component: {fileID: 7024019860448735394}
-  - component: {fileID: -489363398813637203}
   - component: {fileID: 8827634360709998311}
   m_Layer: 0
   m_Name: FireBall2
@@ -135,21 +134,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5000001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-489363398813637203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3974220597357036714}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d8ac7763907704884962c2fb61adb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxRange: 50
-  startPoint: {x: 0, y: 0, z: 0}
-  dmg: 10
 --- !u!114 &8827634360709998311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b188e6944e07c47b9fcb8f0d6eb882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  startpoint: {x: 0, y: 0, z: 0}
