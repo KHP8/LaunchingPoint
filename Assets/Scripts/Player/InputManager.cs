@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     private PlayerMelee melee;
     private PauseMenu pause;
     private PlayerFireball fireball;
+    // private PlayerAbility ability;
 
     // Start is called before the first frame update
     void Awake()
@@ -32,6 +33,7 @@ public class InputManager : MonoBehaviour
         melee = GetComponent<PlayerMelee>();
         pause  = GetComponent<PauseMenu>();
         fireball = GetComponent<PlayerFireball>();
+        // ability = GetComponent<PlayerAbility>;
         
         player.Pause.performed += ctx => pause.PauseManager();
         ui.Pause.performed += ctx => pause.PauseManager();
@@ -44,6 +46,14 @@ public class InputManager : MonoBehaviour
         player.RightClick.performed += ctx => fireball.StartFiring();
         player.RightClick.canceled += ctx => fireball.StopFiring();
         player.Melee.performed += ctx => melee.Melee();
+
+        // FOR FUTURE USE
+        // player.LeftClick.performed += ctx => ability.LeftClickAbility();
+        // player.RightClick.performed += ctx => ability.RightClickAbility();
+        // player.Q.performed += ctx => ability.QAbility();
+        // player.E.performed += ctx => ability.EAbility();
+        // player.X.performed += ctx => ability.UltimateAbility();
+        // player.C.performed += ctx => ability.DashAbility();
     }
 
     // Update is called once per frame
