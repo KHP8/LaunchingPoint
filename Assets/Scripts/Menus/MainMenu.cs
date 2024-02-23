@@ -10,8 +10,12 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject abilityMenu;
 
-    //private bool newsMenuOpen;
+    // private bool newsMenuOpen;
     public GameObject[] bannerButtons = new GameObject[7];
+
+    // To reset ability menu
+    private GameObject[] abilityButtons;
+    public GameObject hotbar;
 
     public void Start()
     {
@@ -19,6 +23,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(false);
         abilityMenu.SetActive(false);
         //newsMenuOpen = false;
+        abilityButtons = hotbar.GetComponent<Hotbar>().abilityButtons;
     }
 
     public void OnNewsButton()
@@ -53,6 +58,8 @@ public class MainMenu : MonoBehaviour
     public void OnCloseAbilityButton()
     {
         abilityMenu.SetActive(false);
+        for (int i = 0; i < abilityButtons.Length; i++)
+            abilityButtons[i].SetActive(true);
     }
 
     public void OnMultiplayerButton()
