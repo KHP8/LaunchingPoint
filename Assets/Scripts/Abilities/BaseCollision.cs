@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    This script acts as the parent to all collision scripts.
+    Those scripts should be pre-attached to the prefabs.
+
+    projectile and startpoint will both be assigned from whatever script creates the prefab.
+
+    OnCollisionEnter handles when the prefab hits anything and deals damage when needed.
+*/
+
 public class BaseCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;

@@ -17,7 +17,7 @@ using UnityEngine;
     All other variables are assigned inside of functions.
 */
 
-abstract public class BaseProjectile : MonoBehaviour
+abstract public class BaseProjectile : BaseAbility
 {
     // References to locations
     //[HideInInspector] public GameObject player; 

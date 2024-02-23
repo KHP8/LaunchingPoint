@@ -7,6 +7,11 @@ public class Fireball : BaseProjectile
 
     void Awake()
     {
+        // BaseAbility fields
+        name = "Fireball";
+        image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+
+        // BaseProjectile fields
         dmg = 10;
         rpm = 50;
         speed = 40;
