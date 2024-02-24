@@ -9,7 +9,7 @@ public class MasterAudioHandler : MonoBehaviour
     public Slider slider;
     public AudioMixer audioMixer;
 
-    private void Start()
+    private void Awake()
     {
         if (PlayerPrefs.HasKey("MasterAudio"))
             slider.value = PlayerPrefs.GetFloat("MasterAudio");
