@@ -18,7 +18,6 @@ public class Fireball : BaseProjectile
         maxRange = 50;
         delay = new WaitForSeconds(60 / rpm);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall2") as GameObject;
-        
     }
 
     public override void ManageCollisionComponents(GameObject obj)
