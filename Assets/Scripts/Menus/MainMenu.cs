@@ -59,7 +59,12 @@ public class MainMenu : MonoBehaviour
     {
         abilityMenu.SetActive(false);
         for (int i = 0; i < abilityButtons.Length; i++)
+        {
             abilityButtons[i].SetActive(true);
+            abilityButtons[i].GetComponent<Button>().enabled = false;
+        }
+
+        hotbar.GetComponent<Hotbar>().DefaultButtons();
     }
 
     public void OnMultiplayerButton()
