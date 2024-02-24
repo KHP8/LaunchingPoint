@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Allows for the ESC functionality in the ability select screen.
+/// - Austin
+/// </summary>
+
 public class MainMenuInputHelper : MonoBehaviour
 {
     private PlayerInput playerInput;
@@ -15,10 +20,7 @@ public class MainMenuInputHelper : MonoBehaviour
         playerInput = new PlayerInput();
         ui = playerInput.UI;
 
-        //hotbar = GetComponent<Hotbar>();
-
-        ui.Cancel.performed
-            += ctx => hotbar.DeselectButtons();
+        ui.Cancel.performed += ctx => hotbar.DeselectButtons();
 
         UIEnable();
     }

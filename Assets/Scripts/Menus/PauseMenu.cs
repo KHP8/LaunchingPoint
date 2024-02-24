@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        Debug.Log(PlayerPrefs.GetString("Primary"));
+        Debug.Log(PlayerPrefs.GetString("Secondary"));
     }
 
     public void PauseManager()

@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles all of the buttons on the main menu and their relevant screens.
+/// - Austin
+/// </summary>
+
 public class MainMenu : MonoBehaviour
 {
     public GameObject newsMenu;

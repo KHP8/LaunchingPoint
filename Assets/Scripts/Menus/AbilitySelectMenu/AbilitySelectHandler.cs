@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This script purely exists to give each of the ability buttons the abilityType field.
+/// I wasn't sure how to do it otherwise, and this works for now.
+/// - Austin
+/// </summary>
+
 public class AbilitySelectHandler : MonoBehaviour
 {
-    public GameObject abilityButton;
-    public GameObject player;
-
-    public void OnClick()
-    {
-        if (abilityButton.name == "Fireball")
-        {
-            Fireball f = player.AddComponent<Fireball>();
-            //player.GetComponent<InputManager>().player.LeftClick.performed -= ctx;
-            player.GetComponent<InputManager>().player.LeftClick.performed += ctx => f.UseAbility();
-        }
-    }
+    public string abilityType;
 }
