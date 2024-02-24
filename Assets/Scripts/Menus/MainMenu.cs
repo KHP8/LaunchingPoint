@@ -4,14 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles all of the buttons on the main menu and their relevant screens.
+/// - Austin
+/// </summary>
+
 public class MainMenu : MonoBehaviour
 {
     public GameObject newsMenu;
     public GameObject settingsMenu;
     public GameObject abilityMenu;
 
-    //private bool newsMenuOpen;
+    // private bool newsMenuOpen;
     public GameObject[] bannerButtons = new GameObject[7];
+
+    // To reset ability menu
+    private GameObject[] abilityButtons;
+    public GameObject hotbar;
 
     public void Start()
     {
@@ -19,6 +28,7 @@ public class MainMenu : MonoBehaviour
         settingsMenu.SetActive(false);
         abilityMenu.SetActive(false);
         //newsMenuOpen = false;
+        abilityButtons = hotbar.GetComponent<Hotbar>().abilityButtons;
     }
 
     public void OnNewsButton()
@@ -53,6 +63,13 @@ public class MainMenu : MonoBehaviour
     public void OnCloseAbilityButton()
     {
         abilityMenu.SetActive(false);
+        for (int i = 0; i < abilityButtons.Length; i++)
+        {
+            abilityButtons[i].SetActive(true);
+            abilityButtons[i].GetComponent<Button>().enabled = false;
+        }
+
+        hotbar.GetComponent<Hotbar>().DefaultButtons();
     }
 
     public void OnMultiplayerButton()
