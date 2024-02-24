@@ -21,8 +21,8 @@ abstract public class BaseProjectile : BaseAbility
 {
     // References to locations
     //[HideInInspector] public GameObject player; 
-    [HideInInspector] public Transform projectileSource;
-    [HideInInspector] public GameObject prefab;
+    public Transform projectileSource;
+    public GameObject prefab;
     
     // Rate of fire, speed of proj, dmg of proj, how far it can go before being destroyed
     [Header("Weapon Stats")]
@@ -32,7 +32,7 @@ abstract public class BaseProjectile : BaseAbility
     public float maxRange;
 
     // Handles cooldowns and actual shooting
-    [HideInInspector] 
+    //[HideInInspector] 
     public bool canShoot = true;
     public WaitForSeconds delay;
     public Coroutine coro; 
@@ -40,8 +40,7 @@ abstract public class BaseProjectile : BaseAbility
     // All children should also use the Awake() method to assign values
     abstract public void ManageCollisionComponents(GameObject obj);
 
-
-    public void UseAbility()
+    public override void UseAbility()
     {
         // Start a coroutine which performs shooting
         coro = StartCoroutine(ShootSpell());
@@ -80,7 +79,7 @@ abstract public class BaseProjectile : BaseAbility
         }
     }
 
-    public void StopAbility()
+    public override void StopAbility()
     {
         // Destroy the coroutine 
         if (coro != null)

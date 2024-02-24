@@ -8,8 +8,8 @@ public class Fireball : BaseProjectile
     void Awake()
     {
         // BaseAbility fields
-        name = "Fireball";
-        image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        abilityName = "Fireball";
+        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
 
         // BaseProjectile fields
         dmg = 10;
@@ -18,6 +18,7 @@ public class Fireball : BaseProjectile
         maxRange = 50;
         delay = new WaitForSeconds(60 / rpm);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall2") as GameObject;
+        
     }
 
     public override void ManageCollisionComponents(GameObject obj)
@@ -27,5 +28,7 @@ public class Fireball : BaseProjectile
         fireballCollision.startpoint = projectileSource.transform.position;
         fireballCollision.projectile = this;
     }
+
+
 
 }

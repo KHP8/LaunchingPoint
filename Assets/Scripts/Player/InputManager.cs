@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,12 +11,16 @@ public class InputManager : MonoBehaviour
     public PlayerInput.PlayerActions player;
     public PlayerInput.UIActions ui;
 
+    public GameObject playerObject;
+
     private PlayerMotor motor;
     private PlayerLook look;
-    private PlayerShoot shoot;
+    //private PlayerShoot shoot;
     private PlayerMelee melee;
     private PauseMenu pause;
-    private PlayerFireball fireball;
+    //private PlayerFireball fireball;
+
+    private BaseAbility primaryAbility;
     // private PlayerAbility ability;
 
     // Start is called before the first frame update
@@ -29,11 +34,11 @@ public class InputManager : MonoBehaviour
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
-        shoot = GetComponent<PlayerShoot>();
+        //shoot = GetComponent<PlayerShoot>();
         melee = GetComponent<PlayerMelee>();
         pause  = GetComponent<PauseMenu>();
-        fireball = GetComponent<PlayerFireball>();
-        // ability = GetComponent<PlayerAbility>;
+
+        AddComponents();
         
         player.Pause.performed += ctx => pause.PauseManager();
         ui.Pause.performed += ctx => pause.PauseManager();
@@ -43,19 +48,24 @@ public class InputManager : MonoBehaviour
         player.Sprint.performed += ctx => motor.Sprint();
         player.Melee.performed += ctx => melee.Melee();
 
-        player.LeftClick.performed += ctx => shoot.StartFiring();
-        player.LeftClick.canceled += ctx => shoot.StopFiring();
-        player.RightClick.performed += ctx => fireball.StartFiring();
-        player.RightClick.canceled += ctx => fireball.StopFiring();
-        
+        //player.LeftClick.performed += ctx => shoot.StartFiring();
+        //player.LeftClick.canceled += ctx => shoot.StopFiring();
+        //player.RightClick.performed += ctx => fireball.StartFiring();
+        //player.RightClick.canceled += ctx => fireball.StopFiring();
 
-        // FOR FUTURE USE
-        // player.LeftClick.performed += ctx => ability.LeftClickAbility();
-        // player.RightClick.performed += ctx => ability.RightClickAbility();
-        // player.Q.performed += ctx => ability.QAbility();
-        // player.E.performed += ctx => ability.EAbility();
-        // player.X.performed += ctx => ability.UltimateAbility();
-        // player.C.performed += ctx => ability.DashAbility();
+        player.RightClick.performed += ctx => primaryAbility.UseAbility();
+        player.RightClick.canceled += ctx => primaryAbility.StopAbility();
+    }
+
+    private void AddComponents()
+    {
+        if (PlayerPrefs.GetString("Primary") == "Fireball")
+        {
+            playerObject.AddComponent<Fireball>();
+            playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("ProjectileSource");
+            primaryAbility = GetComponent<Fireball>();
+        }
+
     }
 
     // To be implemented later
@@ -68,10 +78,10 @@ public class InputManager : MonoBehaviour
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
-        shoot = GetComponent<PlayerShoot>();
+        //shoot = GetComponent<PlayerShoot>();
         melee = GetComponent<PlayerMelee>();
         pause  = GetComponent<PauseMenu>();
-        fireball = GetComponent<PlayerFireball>();
+        //fireball = GetComponent<PlayerFireball>();
 
         player.Pause.performed += ctx => pause.PauseManager();
         ui.Pause.performed += ctx => pause.PauseManager();

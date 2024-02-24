@@ -63,13 +63,6 @@ public class Hotbar : MonoBehaviour
             abilityButtons[i].GetComponent<Button>().enabled = false;
         }
 
-        // Preload already selected abilities into hotbar.
-        if (PlayerPrefs.HasKey("Primary"))
-            hotbarButtons[0].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Primary")];
-        if (PlayerPrefs.HasKey("Secondary"))
-            hotbarButtons[1].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Secondary")];
-        //hotbarButtons[1].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Primary")];
-        //hotbarButtons[1].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Primary")];
 
         DefaultButtons();
     }
@@ -81,7 +74,7 @@ public class Hotbar : MonoBehaviour
         activeButton.GetComponent<Image>().sprite = abilityButton.GetComponent<Image>().sprite;
         DefaultButtons();
 
-        //Debug.Log(abilityButton.GetComponent<AbilitySelectHandler>().abilityType + PlayerPrefs.GetString(abilityButton.GetComponent<AbilitySelectHandler>().abilityType));
+        Debug.Log(abilityButton.GetComponent<AbilitySelectHandler>().abilityType + PlayerPrefs.GetString(abilityButton.GetComponent<AbilitySelectHandler>().abilityType));
     }
 
     private void DisableButtons()
@@ -93,6 +86,15 @@ public class Hotbar : MonoBehaviour
     public void DefaultButtons()
     {
         contentBox.GetComponent<RectTransform>().sizeDelta = new Vector2(0, ((defaultNames.Length / 4) * 250) + 300);
+
+        if (PlayerPrefs.HasKey("Primary"))
+            hotbarButtons[0].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Primary")];
+        else
+            hotbarButtons[0].GetComponent<Image>().sprite = null;
+        if (PlayerPrefs.HasKey("Secondary"))
+            hotbarButtons[1].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Secondary")];
+        else
+            hotbarButtons[1].GetComponent<Image>().sprite = null;
 
         for (int i = 0; i < defaultNames.Length; i++)
         {
@@ -121,11 +123,12 @@ public class Hotbar : MonoBehaviour
         }
     }
 
-    // This is used by the MainMenuInputHelper file. Press ESC to deselect the active hotbar button.
+    // This is used by the MainMenuInputHelper file. Press ESC to deselect the active hotbar button and unequip current ability.
     public void DeselectButtons()
     {
         if (activeButton != null)
         {
+            PlayerPrefs.DeleteKey(activeButton.name);
             activeButton = null;
             DefaultButtons();
         }
