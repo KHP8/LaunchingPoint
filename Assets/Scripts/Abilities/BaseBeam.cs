@@ -6,7 +6,7 @@ using UnityEngine;
 abstract public class BaseBeam : BaseAbility
 {
     // References to locations
-    public Transform projectileSource;
+    public Transform beamSource;
     public GameObject prefab;
     public GameObject thisBeam;
     public Transform parent;
@@ -34,13 +34,18 @@ abstract public class BaseBeam : BaseAbility
             canBeam = false;
             Camera cam = GetComponent<PlayerLook>().cam;
 
+            Vector3 tempScorchPosition = new Vector3(
+                parent.transform.position.x + 2.5f,
+                parent.transform.position.y + 1.65f,
+                parent.transform.position.z + 5f);
+
             // Create a projectile oriented towards camera direction
             GameObject beam = Instantiate(
                 prefab,
-                projectileSource.position,
+                tempScorchPosition,
                 Quaternion.Euler(
-                    cam.transform.eulerAngles.x + 270,
-                    -1.239767f,
+                    90,
+                    parent.transform.rotation.y + 180,
                     0
                 ),
                 parent

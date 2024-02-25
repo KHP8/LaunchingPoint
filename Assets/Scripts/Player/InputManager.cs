@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     public PlayerInput.UIActions ui;
 
     public GameObject playerObject;
+    public Transform playerTransform;
 
     private PlayerMotor motor;
     private PlayerLook look;
@@ -32,6 +33,8 @@ public class InputManager : MonoBehaviour
         playerInput = new PlayerInput();
         player = playerInput.Player;
         ui = playerInput.UI;
+
+        playerTransform = playerObject.transform;
 
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
@@ -74,7 +77,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Scorch added to SpecialQ");
             playerObject.AddComponent<Scorch>();
-            playerObject.GetComponent<Scorch>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            playerObject.GetComponent<Scorch>().beamSource = playerTransform;
             playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialQAbility = GetComponent<Scorch>();
         }
@@ -114,7 +117,8 @@ public class InputManager : MonoBehaviour
             //tell the playermotor to move using the value from our movement action
             motor.ProcessMove(player.Movement.ReadValue<Vector2>());
     }
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         if (pause.isPaused == true)
         {
             OnFootDisable();
@@ -128,6 +132,12 @@ public class InputManager : MonoBehaviour
 
         if (pause.isPaused == false)
             look.ProcessLook(player.Look.ReadValue<Vector2>());
+    }
+
+    private void Update()
+    {
+        //Debug.Log("x: " + playerTransform.transform.position.x + "  z: " + playerTransform.transform.position.z);
+        playerTransform = playerObject.transform;
     }
 
     private void OnFootEnable() 
