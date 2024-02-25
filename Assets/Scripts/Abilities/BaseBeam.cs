@@ -35,17 +35,17 @@ abstract public class BaseBeam : BaseAbility
             Camera cam = GetComponent<PlayerLook>().cam;
 
             Vector3 tempScorchPosition = new Vector3(
-                parent.transform.position.x + 2.5f,
-                parent.transform.position.y + 1.65f,
-                parent.transform.position.z + 5f);
+                parent.transform.position.x,
+                parent.transform.position.y + 1f,
+                parent.transform.position.z);
 
             // Create a projectile oriented towards camera direction
             GameObject beam = Instantiate(
                 prefab,
                 tempScorchPosition,
                 Quaternion.Euler(
-                    90,
-                    parent.transform.rotation.y + 180,
+                    0,
+                    transform.eulerAngles.y,
                     0
                 ),
                 parent
