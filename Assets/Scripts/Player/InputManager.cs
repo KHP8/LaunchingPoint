@@ -68,7 +68,7 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Fireball added to Primary");
             playerObject.AddComponent<Fireball>();
-            playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("ProjectileSource");
+            playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
             primaryAbility = GetComponent<Fireball>();
         }
         
