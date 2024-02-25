@@ -8,7 +8,8 @@ abstract public class BaseBeam : BaseAbility
     // References to locations
     public Transform projectileSource;
     public GameObject prefab;
-    public BaseBeam thisBeam;
+    public GameObject thisBeam;
+    public Transform parent;
 
     [Header("Weapon Stats")]
     public float dmg;
@@ -38,11 +39,14 @@ abstract public class BaseBeam : BaseAbility
                 prefab,
                 projectileSource.position,
                 Quaternion.Euler(
-                    cam.transform.eulerAngles.x + 90,
-                    transform.eulerAngles.y,
+                    cam.transform.eulerAngles.x + 270,
+                    -1.239767f,
                     0
-                )
+                ),
+                parent
             );
+
+            thisBeam = beam;
 
             ManageCollisionComponents(beam);
 

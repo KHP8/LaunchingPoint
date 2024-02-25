@@ -11,17 +11,17 @@ public class Scorch : BaseBeam
         //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
 
         // BaseProjectile fields
-        thisBeam = this;
+        //thisBeam = this;
         dmg = 10;
         //maxRange = 15;
         cooldownTime = new WaitForSeconds(8);
         abilityLength = new WaitForSeconds(3);
-        prefab = Resources.Load("Prefabs/Projectiles/FireBall2") as GameObject;
+        prefab = Resources.Load("Prefabs/Beams/ScorchBeam") as GameObject;
     }
     public override void ManageCollisionComponents(GameObject obj)
     {
-        ScorchCollision scorchCollision;
-        scorchCollision = obj.GetComponent<ScorchCollision>();
+        BaseBeamCollision scorchCollision;
+        scorchCollision = obj.GetComponent<BaseBeamCollision>();
         scorchCollision.beam = this;
     }
 }   

@@ -74,7 +74,8 @@ public class InputManager : MonoBehaviour
         {
             Debug.Log("Scorch added to SpecialQ");
             playerObject.AddComponent<Scorch>();
-            playerObject.GetComponent<Scorch>().projectileSource = playerObject.transform.Find("ProjectileSource");
+            playerObject.GetComponent<Scorch>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialQAbility = GetComponent<Scorch>();
         }
 
