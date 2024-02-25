@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     //private PlayerFireball fireball;
 
     private BaseAbility primaryAbility;
+    private BaseAbility specialQAbility;
     // private PlayerAbility ability;
 
     // Start is called before the first frame update
@@ -55,17 +56,30 @@ public class InputManager : MonoBehaviour
 
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
+        player.Q.performed += ctx => specialQAbility.UseAbility();
     }
 
     private void AddComponents()
     {
         if (PlayerPrefs.GetString("Primary") == "Fireball")
         {
+            Debug.Log("Fireball added to Primary");
             playerObject.AddComponent<Fireball>();
             playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("ProjectileSource");
             primaryAbility = GetComponent<Fireball>();
         }
+        
+        // Special Abilities
+        if (PlayerPrefs.GetString("SpecialQ") == "Scorch")
+        {
+            Debug.Log("Scorch added to SpecialQ");
+            playerObject.AddComponent<Scorch>();
+            playerObject.GetComponent<Scorch>().projectileSource = playerObject.transform.Find("ProjectileSource");
+            specialQAbility = GetComponent<Scorch>();
+        }
 
+        Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
+        Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
     }
 
     // To be implemented later

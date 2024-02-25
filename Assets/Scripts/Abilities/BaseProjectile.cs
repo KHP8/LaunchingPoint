@@ -48,7 +48,7 @@ abstract public class BaseProjectile : BaseAbility
 
     IEnumerator ShootSpell()
     {
-        // Creates a fireball 
+        // Creates a projectile 
         while (true)
         {
             if (canShoot) // If timer is done
@@ -57,7 +57,7 @@ abstract public class BaseProjectile : BaseAbility
                 canShoot = false;
                 Camera cam = GetComponent<PlayerLook>().cam;
 
-                // Create a ball oriented towards camera direction
+                // Create a projectile oriented towards camera direction
                 GameObject proj = Instantiate(
                     prefab,
                     projectileSource.position,

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fireball : BaseProjectile
 {
-
     void Awake()
     {
         // BaseAbility fields
@@ -27,7 +26,4 @@ public class Fireball : BaseProjectile
         fireballCollision.startpoint = projectileSource.transform.position;
         fireballCollision.projectile = this;
     }
-
-
-
 }
