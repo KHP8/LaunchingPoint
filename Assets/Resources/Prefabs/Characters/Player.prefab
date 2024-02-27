@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 996028821597646953}
   serializedVersion: 2
   m_LocalRotation: {x: 0.021398146, y: 0.017131383, z: -0.00036671764, w: 0.9996242}
-  m_LocalPosition: {x: 1.6061852, y: -1.2397671, z: -4.8569703}
+  m_LocalPosition: {x: 1.6061856, y: -1.2397671, z: -4.8569713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -630,13 +630,11 @@ GameObject:
   - component: {fileID: 5885534651017920760}
   - component: {fileID: 8504163094138381388}
   - component: {fileID: 1519826155541202468}
-  - component: {fileID: 7359321446981882797}
   - component: {fileID: 1445237995971270337}
   - component: {fileID: 6127111640411570326}
   - component: {fileID: 9157278673766681300}
   - component: {fileID: 1433914194551483187}
   - component: {fileID: 4850221312363731584}
-  - component: {fileID: 2697898179346962206}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -700,7 +698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee348d4d11882b42a4ec724fec3ef36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 1346642888391454335}
+  playerTransform: {fileID: 0}
 --- !u!114 &8504163094138381388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,22 +733,6 @@ MonoBehaviour:
   lookAtObj: {fileID: 2388243520015649869}
   xSensitivity: 30
   ySensitivity: 30
---- !u!114 &7359321446981882797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346642888391454335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b828368782c4c6438e2edb74a3a2ab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileSource: {fileID: 8414320993658388362}
-  bullet: {fileID: 3974220597357036714, guid: cb2eb1f5fa3eb7b45b871c625455b851, type: 3}
-  rpm: 360
-  bulletSpeed: 40
 --- !u!114 &1445237995971270337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,22 +814,6 @@ MonoBehaviour:
   pauseMenu: {fileID: 1451193654984829656}
   settingsMenu: {fileID: 5284834008298462847}
   settingsOpen: 0
---- !u!114 &2697898179346962206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346642888391454335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff3ba6d76e08efb4db8323a0a7dd770a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileSource: {fileID: 8414320993658388362}
-  fireball: {fileID: 3974220597357036714, guid: d247af48b38d159449d40d8bbd1d779d, type: 3}
-  fireballrpm: 50
-  fireballSpeed: 40
 --- !u!1 &1451193654984829656
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,9 +1649,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5650706891351225148}
+  - component: {fileID: 8430862544495818903}
   m_Layer: 0
   m_Name: PlayerBody
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1707,6 +1675,33 @@ Transform:
   - {fileID: 8414320993658388362}
   m_Father: {fileID: 6155405403084511423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &8430862544495818903
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3402489401593286244}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3786241646022171239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2469,7 @@ Transform:
   m_GameObject: {fileID: 6960523136843724688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6061852, y: -1.2397671, z: -4.8569703}
+  m_LocalPosition: {x: 1.6061856, y: -1.2397671, z: -4.8569713}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3133,7 +3128,7 @@ GameObject:
   - component: {fileID: 8414320993658388362}
   m_Layer: 0
   m_Name: ProjectileSource
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3236,7 +3231,7 @@ GameObject:
   - component: {fileID: 5259708806593962160}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
