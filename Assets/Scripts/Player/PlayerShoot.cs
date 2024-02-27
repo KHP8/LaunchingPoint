@@ -51,7 +51,7 @@ public class PlayerShoot : MonoBehaviour
 
                 // Give bullet physics and movement
                 proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * bulletSpeed;
-                proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
+                //proj.GetComponent<PlayerProjectile>().startPoint = projectileSource.position;
 
                 // Begin cooldown between shots
                 StartCoroutine(ResetShootCooldown());

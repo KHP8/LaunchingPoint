@@ -6,15 +6,15 @@ using UnityEngine;
 abstract public class BaseBeam : BaseAbility
 {
     // References to locations
-    public Vector3 beamSource;
-    public GameObject prefab;
-    public GameObject thisBeam;
-    public Transform parent;
+    [HideInInspector] public Vector3 beamSource;
+    [HideInInspector] public GameObject prefab;
+    [HideInInspector] public GameObject thisBeam;
+    [HideInInspector] public Transform parent;
 
     [Header("Weapon Stats")]
     public float dmg;
-    public float maxRange;
 
+    [Header("Cooldown")]
     public bool canBeam = true;
     public WaitForSeconds cooldownTime;
     public WaitForSeconds abilityLength;
