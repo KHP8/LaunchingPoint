@@ -10,7 +10,7 @@ public class PlayerProjectile : MonoBehaviour
     public int dmg = 10;
     public Animator animator;
     public float TimeBeforeDestroy = 2;
-    public float TimeBeforeAnimation = 1;
+    public float TimeBeforeAnimation = .3f;
 
 
 

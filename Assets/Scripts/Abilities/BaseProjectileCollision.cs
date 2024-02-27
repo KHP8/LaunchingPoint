@@ -11,40 +11,18 @@ using UnityEngine;
     OnCollisionEnter handles when the prefab hits anything and deals damage when needed.
 */
 
-public class BaseProjectileCollision : MonoBehaviour
+abstract public class BaseProjectileCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
     [HideInInspector] public Vector3 startpoint;
 
-    private void OnCollisionEnter(Collision other) 
-    {
-        if (!other.transform.CompareTag("Player"))
-        {
-            if (other.transform.CompareTag("Enemy"))
-            {
-                Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
-            }
-            else
-            {
-                Debug.Log("Not an Enemy Hit");
-            }
+    public Animator animator;
+    public float timeBeforeDestroy;
+    public float timeBeforeAnimation;
 
-            // Regardless of what is hit, destroy the projectile
-            Destroy(gameObject);
-        }
-        else if (other.transform.CompareTag("Player"))
-        {
-            Debug.Log("Hit Player");
-        }
-    }
+    abstract public void OnCollisionEnter(Collision other);
 
-    void Update()
-    {
-        // If the projectile goes too far AKA off scene, destroy it
-        if (Vector3.Distance(startpoint, transform.position) > projectile.maxRange)
-        {
-            Destroy(gameObject);
-        }
-    }
+    abstract public void AnimationCollisionStart();
+
+    abstract public void Update();
 }

@@ -16,7 +16,7 @@ public class Fireball : BaseProjectile
         speed = 40;
         maxRange = 50;
         delay = new WaitForSeconds(60 / rpm);
-        prefab = Resources.Load("Prefabs/Projectiles/FireBall2") as GameObject;
+        prefab = Resources.Load("Prefabs/Projectiles/FireBall") as GameObject;
     }
 
     public override void ManageCollisionComponents(GameObject obj)
