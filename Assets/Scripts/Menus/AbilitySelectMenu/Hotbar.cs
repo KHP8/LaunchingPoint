@@ -56,13 +56,11 @@ public class Hotbar : MonoBehaviour
         for (int i = 0; i < UabilNames.Length; i++)
             abilityImageMap.Add(UabilNames[i], uAbilImage[i]);
 
-
         for (int i = 0; i < abilityButtons.Length; i++)
         {
             abilityButtons[i].SetActive(true);
             abilityButtons[i].GetComponent<Button>().enabled = false;
         }
-
 
         DefaultButtons();
     }
@@ -96,6 +94,14 @@ public class Hotbar : MonoBehaviour
             hotbarButtons[1].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Secondary")];
         else
             hotbarButtons[1].GetComponent<Image>().sprite = null;
+        if (PlayerPrefs.HasKey("SpecialQ"))
+            hotbarButtons[2].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("SpecialQ")];
+        else
+            hotbarButtons[2].GetComponent<Image>().sprite = null;
+        if (PlayerPrefs.HasKey("SpecialE"))
+            hotbarButtons[3].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("SpecialE")];
+        else
+            hotbarButtons[3].GetComponent<Image>().sprite = null;
 
         for (int i = 0; i < defaultNames.Length; i++)
         {
@@ -149,9 +155,16 @@ public class Hotbar : MonoBehaviour
         activeButton = selectedButton;
     }
 
-    public void OnSpecialButton(GameObject selectedButton)
+    public void OnSpecialQButton(GameObject selectedButton)
     {
         DisableButtons();
+        FilterButtons(spAbilNames, spAbilImage, specialDesc, "SpecialQ");
+        activeButton = selectedButton;
+    }
+    public void OnSpecialEButton(GameObject selectedButton)
+    {
+        DisableButtons();
+        FilterButtons(spAbilNames, spAbilImage, specialDesc, "SpecialE");
         activeButton = selectedButton;
     }
 
