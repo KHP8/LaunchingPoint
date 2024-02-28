@@ -97,7 +97,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -113,7 +113,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!135 &7024019860448735394
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -130,10 +130,10 @@ SphereCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &7914055029300102923
 Animator:
@@ -171,5 +171,5 @@ MonoBehaviour:
   projectile: {fileID: 0}
   startpoint: {x: 0, y: 0, z: 0}
   animator: {fileID: 7914055029300102923}
-  timeBeforeDestroy: 0.1
-  timeBeforeAnimation: 0.3
+  timeBeforeDestroy: 0.05
+  timeBeforeAnimation: 0.01
