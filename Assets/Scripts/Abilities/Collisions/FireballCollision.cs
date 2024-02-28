@@ -10,7 +10,6 @@ public class FireballCollision : BaseProjectileCollision
 {
     public void Awake()
     {
-        timeBeforeAnimation = .05f;
         timeBeforeDestroy = .5f;
     }
 
@@ -28,7 +27,7 @@ public class FireballCollision : BaseProjectileCollision
                 Debug.Log("Not an Enemy Hit");
             }
 
-            Invoke("AnimationCollisionStart", timeBeforeAnimation);
+            AnimationCollisionStart();
             // Regardless of what is hit, destroy the projectile
             Destroy(gameObject, timeBeforeDestroy);
         }
@@ -40,9 +39,9 @@ public class FireballCollision : BaseProjectileCollision
 
     public override void AnimationCollisionStart()
     {
+        
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         animator.SetTrigger("CollisionDetected");
-        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
 
     public override void Update()
