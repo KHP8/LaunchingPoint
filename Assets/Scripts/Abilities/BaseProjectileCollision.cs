@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /*
-    This script acts as the parent to all collision scripts.
+    This script acts as the parent to all projectile collision scripts.
     Those scripts should be pre-attached to the prefabs.
 
     projectile and startpoint will both be assigned from whatever script creates the prefab.

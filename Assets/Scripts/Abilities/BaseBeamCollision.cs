@@ -1,6 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+/*
+    This script acts as the parent to all beam collision scripts.
+    Those scripts should be pre-attached to the prefabs.
+
+    beam will be assigned from whatever script creates the prefab.
+
+    OnTriggerStay handles when the prefab hits anything and deals damage when needed.
+*/
 
 public class BaseBeamCollision : MonoBehaviour
 {

@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : BaseProjectile
 {
-    void Awake()
+    public override void Awake()
     {
         // BaseAbility fields
         abilityName = "Fireball";
@@ -15,7 +13,7 @@ public class Fireball : BaseProjectile
         rpm = 50;
         speed = 40;
         maxRange = 50;
-        delay = new WaitForSeconds(60 / rpm);
+        cooldown = new WaitForSeconds(60 / rpm);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall") as GameObject;
     }
 

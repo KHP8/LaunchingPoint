@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Scorch : BaseBeam
 {
-    private void Awake()
+    public override void Awake()
     {
         // BaseAbility fields
         abilityName = "Scorch";
         //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
 
-        // BaseProjectile fields
-        //thisBeam = this;
+        // BaseBeam fields
         dmg = 1;
-        //maxRange = 15;
-        cooldownTime = new WaitForSeconds(8);
+        cooldown = new WaitForSeconds(8);
         abilityLength = new WaitForSeconds(3);
         prefab = Resources.Load("Prefabs/Beams/ScorchBeam") as GameObject;
     }

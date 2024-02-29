@@ -1,7 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
+/*
+    This script acts as the parent to all beam scripts. 
+    Those scripts should be attached to the player from the AbilitySelect menu.
+
+    The AbilitySelect menu will handle assigning the UseAbility and StopAbilty methods 
+    to the InputManager (and will assign them properly to primary, secondary, etc).
+
+    The prefab, delay, and all weapon stats should be assigned on the child script.
+
+    All other variables are assigned inside of functions.
+
+    All children should use the Awake function to assign values.
+*/
 
 abstract public class BaseBeam : BaseAbility
 {
@@ -14,24 +26,23 @@ abstract public class BaseBeam : BaseAbility
     [Header("Weapon Stats")]
     public float dmg; // Per 1/10 second
 
-    [Header("Cooldown")]
-    public bool canBeam = true;
-    public WaitForSeconds cooldownTime;
     public WaitForSeconds abilityLength;
 
-    abstract public void ManageCollisionComponents(GameObject obj);
 
     public override void UseAbility()
     {
         ShootSpell();
     }
 
+    /// <summary>
+    /// Internal which handles creating and managing beams
+    /// </summary>
     private void ShootSpell()
     {
-        if (canBeam) // If ability is not on cooldown
+        if (canCast) // If ability is not on cooldown
         {
             Debug.Log("CASTBEAM");
-            canBeam = false;
+            canCast = false;
 
             // Create a projectile oriented towards camera direction
             GameObject beam = Instantiate(
@@ -59,18 +70,17 @@ abstract public class BaseBeam : BaseAbility
 
     public override void StopAbility()
     {
-        ;
+        
     }
 
+    /// <summary>
+    /// Destroys the beam after the beam's duration
+    /// </summary>
+    /// <returns></returns>
     IEnumerator DeleteAbiltiyAfterTime()
     {
         yield return abilityLength;
         Destroy(thisBeam);
     }
 
-    IEnumerator ResetCastCooldown()
-    {
-        yield return cooldownTime;
-        canBeam = true;
-    }
 }

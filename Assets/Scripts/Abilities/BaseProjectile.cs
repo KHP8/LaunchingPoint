@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -7,20 +6,18 @@ using UnityEngine;
     Those scripts should be attached to the player from the AbilitySelect menu.
 
     The AbilitySelect menu will handle assigning the UseAbility and StopAbilty methods 
-    to the InputManager (and will assign them properly to primary, secondary, etc) 
-    and will also assign Player to this script.
-
-    WeaponStats should be assigned on the Prefab itself.
+    to the InputManager (and will assign them properly to primary, secondary, etc).
 
     The prefab, delay, and all weapon stats should be assigned on the child script.
 
     All other variables are assigned inside of functions.
+
+    All children should use the Awake function to assign values.
 */
 
 abstract public class BaseProjectile : BaseAbility
 {
     // References to locations
-    //[HideInInspector] public GameObject player; 
     public Transform projectileSource;
     public GameObject prefab;
     
@@ -31,14 +28,7 @@ abstract public class BaseProjectile : BaseAbility
     public float dmg;
     public float maxRange;
 
-    // Handles cooldowns and actual shooting
-    //[HideInInspector] 
-    public bool canShoot = true;
-    public WaitForSeconds delay;
     public Coroutine coro; 
-
-    // All children should also use the Awake() method to assign values
-    abstract public void ManageCollisionComponents(GameObject obj);
 
     public override void UseAbility()
     {
@@ -46,15 +36,18 @@ abstract public class BaseProjectile : BaseAbility
         coro = StartCoroutine(ShootSpell());
     }
 
+    /// <summary>
+    /// Internal which handles creating and managing projectiles
+    /// </summary>
     IEnumerator ShootSpell()
     {
         // Creates a projectile 
         while (true)
         {
-            if (canShoot) // If timer is done
+            if (canCast) // If timer is done
             {
                 Debug.Log("CASTFIRE");
-                canShoot = false;
+                canCast = false;
                 Camera cam = GetComponent<PlayerLook>().cam;
 
                 // Create a projectile oriented towards camera direction
@@ -68,8 +61,21 @@ abstract public class BaseProjectile : BaseAbility
                     )
                 );
 
+                // Raycast to find where the reticle is aiming, then set proper velocity
+                RaycastHit hitInfo;
+                Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+                Debug.DrawRay(ray.origin, ray.direction); // For debugging purposes
+                if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+                {
+                    Debug.Log(hitInfo.transform.name);
+                    proj.GetComponent<Rigidbody>().velocity = (hitInfo.point - projectileSource.position).normalized * speed;
+                }
+                else
+                {
+                    proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * speed;
+                }
+
                 // Give bullet physics and movement. Then manage collision script - unique data
-                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * speed;   
                 ManageCollisionComponents(proj);
 
                 // Begin cooldown between shots
@@ -86,9 +92,4 @@ abstract public class BaseProjectile : BaseAbility
             StopCoroutine(coro);
     }
 
-    IEnumerator ResetCastCooldown()
-    {
-        yield return delay;
-        canShoot = true;
-    }
 }
