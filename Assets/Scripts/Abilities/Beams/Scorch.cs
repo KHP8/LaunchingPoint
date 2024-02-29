@@ -12,7 +12,7 @@ public class Scorch : BaseBeam
 
         // BaseProjectile fields
         //thisBeam = this;
-        dmg = 10;
+        dmg = 1;
         //maxRange = 15;
         cooldownTime = new WaitForSeconds(8);
         abilityLength = new WaitForSeconds(3);
@@ -21,7 +21,7 @@ public class Scorch : BaseBeam
     public override void ManageCollisionComponents(GameObject obj)
     {
         ScorchCollision scorchCollision;
-        scorchCollision = obj.GetComponent<ScorchCollision>();
-        scorchCollision.beam = obj.GetComponent<Scorch>(); ;
+        scorchCollision = obj.GetComponentInChildren<ScorchCollision>();
+        scorchCollision.beam = obj.GetComponentInChildren<Scorch>();
     }
 }   
