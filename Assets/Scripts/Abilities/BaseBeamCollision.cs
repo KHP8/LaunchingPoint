@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class BaseBeamCollision : MonoBehaviour
 {
-    [HideInInspector] public BaseBeam beam;
+    public BaseBeam beam;
+    private bool tickDmg = true;
+    private WaitForSeconds dmgTimer = new WaitForSeconds(.1f);
 
-    private void OnCollisionStay (Collision other)
+    private void OnTriggerStay(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg);
+                if (tickDmg)
+                {
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg);
+                    tickDmg = false;
+                    StartCoroutine(DamageTimer());
+                }
             }
             else
             {
@@ -24,5 +31,11 @@ public class BaseBeamCollision : MonoBehaviour
         {
             Debug.Log("Hit Player");
         }
+    }
+
+    IEnumerator DamageTimer()
+    {
+        yield return dmgTimer;
+        tickDmg = true;
     }
 }

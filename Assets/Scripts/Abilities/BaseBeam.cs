@@ -12,7 +12,7 @@ abstract public class BaseBeam : BaseAbility
     [HideInInspector] public Transform parent;
 
     [Header("Weapon Stats")]
-    public float dmg;
+    public float dmg; // Per 1/10 second
 
     [Header("Cooldown")]
     public bool canBeam = true;
