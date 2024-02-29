@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4314996384219107405}
-  - component: {fileID: 5002617576461730059}
   m_Layer: 0
   m_Name: ScorchBeam
   m_TagString: Untagged
@@ -33,19 +32,6 @@ Transform:
   - {fileID: 3641504664334553540}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5002617576461730059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589475343092714272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f343cfe87f8eaf499bdbfe0523be01b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beam: {fileID: 0}
 --- !u!1 &7835308228468452919
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +46,8 @@ GameObject:
   - component: {fileID: 3450973850806338559}
   - component: {fileID: 835662875235428965}
   - component: {fileID: 1412438021652820946}
+  - component: {fileID: 370149172283409786}
+  - component: {fileID: 2928477500755305967}
   m_Layer: 0
   m_Name: ScorchBeamOld
   m_TagString: Untagged
@@ -1069,3 +1057,36 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &370149172283409786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835308228468452919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f343cfe87f8eaf499bdbfe0523be01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beam: {fileID: 0}
+--- !u!114 &2928477500755305967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835308228468452919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82979232b2e841045963ce5f88646595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityName: 
+  image: {fileID: 0}
+  beamSource: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 0}
+  thisBeam: {fileID: 0}
+  parent: {fileID: 0}
+  dmg: 0
+  canBeam: 1

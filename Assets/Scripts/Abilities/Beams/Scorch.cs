@@ -20,8 +20,8 @@ public class Scorch : BaseBeam
     }
     public override void ManageCollisionComponents(GameObject obj)
     {
-        BaseBeamCollision scorchCollision;
-        scorchCollision = obj.GetComponent<BaseBeamCollision>();
-        scorchCollision.beam = this;
+        ScorchCollision scorchCollision;
+        scorchCollision = obj.GetComponent<ScorchCollision>();
+        scorchCollision.beam = obj.GetComponent<Scorch>(); ;
     }
 }   

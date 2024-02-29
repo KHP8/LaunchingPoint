@@ -6,7 +6,7 @@ public class BaseBeamCollision : MonoBehaviour
 {
     [HideInInspector] public BaseBeam beam;
 
-    private void OnCollisionStay (Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {
