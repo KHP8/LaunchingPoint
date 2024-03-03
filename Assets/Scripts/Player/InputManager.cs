@@ -99,7 +99,7 @@ public class InputManager : MonoBehaviour
     //}
 
     // Update is called once per frame
-    void FixedUpdate()
+    void FixedUpdate() //this runs once per physics frame, not in game frames
     {
         if (pause.isPaused == false)
             //tell the playermotor to move using the value from our movement action

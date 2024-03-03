@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerMotor : MonoBehaviour
     private float crouchTimer = 1;
     private bool lerpCrouch = false;
     private bool sprinting = false;
+    private float lastxInput;
+    private float lastzInput;
 
     [Header("Respawn")]
     public float minHeight = -30f;
@@ -50,6 +53,7 @@ public class PlayerMotor : MonoBehaviour
             }
         }
 
+
         // check if needs to be respawned
         if (controller.transform.position[1] < minHeight) {
             Debug.Log(controller.transform.position);
@@ -58,7 +62,7 @@ public class PlayerMotor : MonoBehaviour
     }
 
     // Receive the inputs for our InputManager.cs and apply them to our character controller.
-    public void ProcessMove( Vector2 input )
+    public void ProcessMoveOld( Vector2 input )
     {
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
@@ -66,6 +70,20 @@ public class PlayerMotor : MonoBehaviour
         controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
         playerVelocity.y += gravity * Time.deltaTime;
         if(isGrounded && playerVelocity.y < 0)
+            playerVelocity.y = -2f;
+        controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    public void ProcessMove( Vector2 input) // bugs: one input stops all movement when jumping, but not two inputs? momentum is carried through based on player rotation. A fixed global position would be better
+    {
+        Vector3 moveDirection = Vector3.zero;
+        moveDirection.x = (!controller.isGrounded && input.x == 0) ? 0.8f * Mathf.Sqrt(Mathf.Abs(lastxInput)) * (lastxInput/Mathf.Abs(lastxInput)) : input.x; //if the player is in the air and not inputting any directions, slow them down to keep momentum
+        moveDirection.z = (!controller.isGrounded && input.y == 0) ? 0.8f * Mathf.Sqrt(Mathf.Abs(lastzInput)) * (lastzInput/Mathf.Abs(lastzInput)) : input.y;
+        lastxInput = moveDirection.x;
+        lastzInput = moveDirection.z;
+        controller.Move(transform.TransformDirection(moveDirection) * speed * Time.deltaTime);
+        playerVelocity.y += gravity * Time.deltaTime;
+        if (isGrounded && playerVelocity.y < 0)
             playerVelocity.y = -2f;
         controller.Move(playerVelocity * Time.deltaTime);
     }
