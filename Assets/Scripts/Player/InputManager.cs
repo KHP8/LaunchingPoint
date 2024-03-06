@@ -101,7 +101,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (pause.isPaused == false)
+        //if (pause.isPaused == false)
             //tell the playermotor to move using the value from our movement action
             motor.ProcessMove(player.Movement.ReadValue<Vector2>());
     }
