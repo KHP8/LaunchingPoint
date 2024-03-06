@@ -67,9 +67,11 @@ public class Hotbar : MonoBehaviour
 
     public void OnAbilitySelect(GameObject abilityButton)
     {
-        PlayerPrefs.SetString(abilityButton.GetComponent<AbilitySelectHandler>().abilityType, abilityButton.name);
+        PlayerPrefs.SetString(abilityButton.GetComponent<AbilitySelectHandler>()
+            .abilityType, abilityButton.name);
 
-        activeButton.GetComponent<Image>().sprite = abilityButton.GetComponent<Image>().sprite;
+        activeButton.GetComponent<Image>().sprite = 
+            abilityButton.GetComponent<Image>().sprite;
         activeButton = null;
         DefaultButtons();
 

@@ -732,6 +732,7 @@ MonoBehaviour:
   - Emerald
   spAbilNames:
   - Scorch
+  - FireWave
   UabilNames: []
   pAbilImage:
   - {fileID: 21300000, guid: 70e92df91699f664ab5bad7bf4723022, type: 3}
@@ -739,6 +740,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3281e91e074a48d4eb5d6a1fdd332a36, type: 3}
   spAbilImage:
   - {fileID: 21300000, guid: a30e9a59a4ffb884489afda27a4945c3, type: 3}
+  - {fileID: 21300000, guid: 7b3876a2b72c44540a4bbd5aaba9e506, type: 3}
   uAbilImage: []
   primaryDesc:
   - {fileID: 1083569988}
@@ -746,12 +748,13 @@ MonoBehaviour:
   - {fileID: 304373837}
   specialDesc:
   - {fileID: 1862057647}
+  - {fileID: 256428765}
   ultimateDesc: []
   defaultNames:
   - Fireball
   - Emerald
   - Scorch
-  - T3
+  - FireWave
   - T4
   - T5
   - T6
@@ -764,7 +767,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70e92df91699f664ab5bad7bf4723022, type: 3}
   - {fileID: 21300000, guid: 3281e91e074a48d4eb5d6a1fdd332a36, type: 3}
   - {fileID: 21300000, guid: a30e9a59a4ffb884489afda27a4945c3, type: 3}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 7b3876a2b72c44540a4bbd5aaba9e506, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -777,7 +780,7 @@ MonoBehaviour:
   - {fileID: 1083569988}
   - {fileID: 304373837}
   - {fileID: 1862057647}
-  - {fileID: 13903298}
+  - {fileID: 256428765}
   - {fileID: 13903298}
   - {fileID: 13903298}
   - {fileID: 13903298}
@@ -1139,6 +1142,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218127015}
   m_CullTransparentMesh: 1
+--- !u!1 &256428765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256428766}
+  m_Layer: 5
+  m_Name: FireWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &256428766
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256428765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1140864426}
+  - {fileID: 2100657701}
+  m_Father: {fileID: 1911848618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &304373837
 GameObject:
   m_ObjectHideFlags: 0
@@ -1590,6 +1630,7 @@ GameObject:
   - component: {fileID: 354487022}
   - component: {fileID: 354487021}
   - component: {fileID: 354487024}
+  - component: {fileID: 354487025}
   m_Layer: 5
   m_Name: TempAbility (4)
   m_TagString: Untagged
@@ -1659,7 +1700,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 354487022}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 354487019}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &354487022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,6 +1766,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &354487025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354487019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &363498595
 GameObject:
   m_ObjectHideFlags: 0
@@ -2599,6 +2665,7 @@ GameObject:
   - component: {fileID: 614839675}
   - component: {fileID: 614839674}
   - component: {fileID: 614839677}
+  - component: {fileID: 614839678}
   m_Layer: 5
   m_Name: TempAbility (3)
   m_TagString: Untagged
@@ -2668,7 +2735,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 614839675}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 614839672}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &614839675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2722,6 +2801,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &614839678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614839672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &634673981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,6 +2902,7 @@ GameObject:
   - component: {fileID: 645812727}
   - component: {fileID: 645812726}
   - component: {fileID: 645812729}
+  - component: {fileID: 645812730}
   m_Layer: 5
   m_Name: TempAbility (5)
   m_TagString: Untagged
@@ -2879,7 +2972,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 645812727}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 645812724}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &645812727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,6 +3038,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &645812730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645812724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &674540145
 GameObject:
   m_ObjectHideFlags: 0
@@ -8722,6 +8840,7 @@ GameObject:
   - component: {fileID: 910098119}
   - component: {fileID: 910098118}
   - component: {fileID: 910098121}
+  - component: {fileID: 910098122}
   m_Layer: 5
   m_Name: TempAbility (1)
   m_TagString: Untagged
@@ -8791,7 +8910,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 910098119}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 910098116}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &910098119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8845,6 +8976,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &910098122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910098116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &933288529
 GameObject:
   m_ObjectHideFlags: 0
@@ -14047,6 +14191,7 @@ GameObject:
   - component: {fileID: 1002662728}
   - component: {fileID: 1002662727}
   - component: {fileID: 1002662730}
+  - component: {fileID: 1002662731}
   m_Layer: 5
   m_Name: TempAbility (6)
   m_TagString: Untagged
@@ -14116,7 +14261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1002662728}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1002662725}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1002662728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14170,6 +14327,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1002662731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002662725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1045073072
 GameObject:
   m_ObjectHideFlags: 0
@@ -14783,6 +14953,140 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127353706}
+  m_CullTransparentMesh: 1
+--- !u!1 &1140864425
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1140864426}
+  - component: {fileID: 1140864428}
+  - component: {fileID: 1140864427}
+  m_Layer: 5
+  m_Name: FireWaveDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1140864426
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140864425}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 256428766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 860, y: 700}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1140864427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140864425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TEST FIREWAVE DESCRIPTION
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 3d2b57f507ae3124ebe67b5d1333aecf, type: 2}
+  m_sharedMaterial: {fileID: 4889348218734769895, guid: 3d2b57f507ae3124ebe67b5d1333aecf, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 60
+  m_fontSizeBase: 60
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1140864428
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140864425}
   m_CullTransparentMesh: 1
 --- !u!1 &1164033011
 GameObject:
@@ -15749,6 +16053,7 @@ GameObject:
   - component: {fileID: 1243054917}
   - component: {fileID: 1243054916}
   - component: {fileID: 1243054919}
+  - component: {fileID: 1243054920}
   m_Layer: 5
   m_Name: TempAbility (2)
   m_TagString: Untagged
@@ -15818,7 +16123,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1243054917}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1243054914}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1243054917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15872,6 +16189,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1243054920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243054914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1245589228
 GameObject:
   m_ObjectHideFlags: 0
@@ -16791,6 +17121,7 @@ GameObject:
   - component: {fileID: 1549349138}
   - component: {fileID: 1549349137}
   - component: {fileID: 1549349140}
+  - component: {fileID: 1549349141}
   m_Layer: 5
   m_Name: TempAbility (7)
   m_TagString: Untagged
@@ -16860,7 +17191,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1549349138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1549349135}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1549349138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16914,6 +17257,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1549349141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549349135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1562009699
 GameObject:
   m_ObjectHideFlags: 0
@@ -17511,6 +17867,7 @@ GameObject:
   - component: {fileID: 1723255797}
   - component: {fileID: 1723255796}
   - component: {fileID: 1723255799}
+  - component: {fileID: 1723255800}
   m_Layer: 5
   m_Name: TempAbility (9)
   m_TagString: Untagged
@@ -17634,6 +17991,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1723255800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723255794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1755179925
 GameObject:
   m_ObjectHideFlags: 0
@@ -17647,6 +18017,7 @@ GameObject:
   - component: {fileID: 1755179928}
   - component: {fileID: 1755179927}
   - component: {fileID: 1755179930}
+  - component: {fileID: 1755179931}
   m_Layer: 5
   m_Name: TempAbility (8)
   m_TagString: Untagged
@@ -17770,6 +18141,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1755179931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755179925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1795185429
 GameObject:
   m_ObjectHideFlags: 0
@@ -18899,6 +19283,7 @@ RectTransform:
   - {fileID: 1083569989}
   - {fileID: 304373838}
   - {fileID: 1862057648}
+  - {fileID: 256428766}
   - {fileID: 13903299}
   m_Father: {fileID: 933288530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19041,6 +19426,7 @@ GameObject:
   - component: {fileID: 1919119323}
   - component: {fileID: 1919119322}
   - component: {fileID: 1919119325}
+  - component: {fileID: 1919119326}
   m_Layer: 5
   m_Name: TempAbility
   m_TagString: Untagged
@@ -19110,7 +19496,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1919119323}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 124867754}
+        m_TargetAssemblyTypeName: Hotbar, Assembly-CSharp
+        m_MethodName: OnAbilitySelect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1919119320}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1919119323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19164,6 +19562,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1919119326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919119320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &1924647715
 GameObject:
   m_ObjectHideFlags: 0
@@ -19429,6 +19840,7 @@ GameObject:
   - component: {fileID: 1950384714}
   - component: {fileID: 1950384713}
   - component: {fileID: 1950384716}
+  - component: {fileID: 1950384717}
   m_Layer: 5
   m_Name: TempAbility (10)
   m_TagString: Untagged
@@ -19552,6 +19964,19 @@ MonoBehaviour:
   setting: {fileID: 0}
   description: {fileID: 0}
   UI: {fileID: 1795185433}
+--- !u!114 &1950384717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950384711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2184e574470ca64489ca5d86c9f81f46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityType: 
 --- !u!1 &2092775212
 GameObject:
   m_ObjectHideFlags: 0
@@ -19685,6 +20110,115 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2092775212}
+  m_CullTransparentMesh: 1
+--- !u!1 &2100657700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2100657701}
+  - component: {fileID: 2100657704}
+  - component: {fileID: 2100657703}
+  - component: {fileID: 2100657702}
+  m_Layer: 5
+  m_Name: FireWaveVideo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2100657701
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100657700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 256428766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 633.6, y: 356.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!328 &2100657702
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100657700}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 04061629819a1194e99a717834b5a717, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: d320f25f2be3bde4bbc8f4b681dbf5ab, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!114 &2100657703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100657700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: d320f25f2be3bde4bbc8f4b681dbf5ab, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+--- !u!222 &2100657704
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100657700}
   m_CullTransparentMesh: 1
 --- !u!1 &2124769276
 GameObject:

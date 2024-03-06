@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
 
     private BaseAbility primaryAbility;
     private BaseAbility specialQAbility;
+    private BaseAbility specialEAbility;
 
     // Start is called before the first frame update
     void Awake()
@@ -62,8 +63,8 @@ public class InputManager : MonoBehaviour
             playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
             primaryAbility = GetComponent<Fireball>();
         }
-        
-        // Special Abilities
+
+        // SpecialQ Abilities
         if (PlayerPrefs.GetString("SpecialQ") == "Scorch")
         {
             Debug.Log("Scorch added to SpecialQ");
@@ -71,9 +72,27 @@ public class InputManager : MonoBehaviour
             playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialQAbility = GetComponent<Scorch>();
         }
+        else if (PlayerPrefs.GetString("SpecialQ") == "FireWave")
+        {
+
+        }
+
+        // SpecialE Abilities
+        if (PlayerPrefs.GetString("SpecialE") == "Scorch")
+        {
+            Debug.Log("Scorch added to SpecialQ");
+            playerObject.AddComponent<Scorch>();
+            playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
+            specialEAbility = GetComponent<Scorch>();
+        }
+        else if (PlayerPrefs.GetString("SpecialE") == "FireWave")
+        {
+
+        }
 
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
+        Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
     }
 
     // To be implemented later
