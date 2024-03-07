@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockThrow : MonoBehaviour
+public class RockThrow : BaseProjectile
 {
     // Start is called before the first frame update
-    void Start()
+    public override void Awake()
     {
         
     }
 
     // Update is called once per frame
-    void Update()
+    public override void ManageCollisionComponents(GameObject obj)
     {
         
     }
