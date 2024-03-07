@@ -357,9 +357,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 766094610514992147}
-  - component: {fileID: 1274092203203257589}
-  - component: {fileID: 1912413746341855906}
   - component: {fileID: 6759064028797091087}
+  - component: {fileID: 7964486265882124652}
+  - component: {fileID: 5887724107145142105}
+  - component: {fileID: 6080379600966768639}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -384,37 +385,6 @@ Transform:
   - {fileID: 2270542410677560821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1274092203203257589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443387808126312804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4e1436a809349a4396d3b04d874024b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: {fileID: 0}
-  sightDistance: 20
-  fieldOfView: 85
-  eyeHeight: 0.6
-  gunBarrel: {fileID: 2270542410677560821}
-  fireRate: 1.3
-  currentState: 
---- !u!114 &1912413746341855906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4443387808126312804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71ab8e07a741b9941ab2fe757ac64083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &6759064028797091087
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -437,6 +407,57 @@ NavMeshAgent:
   m_BaseOffset: 1.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7964486265882124652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443387808126312804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a833f86e020d04f876ab8971fcd112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5887724107145142105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443387808126312804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f901035f918c16249a9f05ff60fd452f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 6759064028797091087}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lastKnownPos: {x: 0, y: 0, z: 0}
+  sightDistance: 20
+  fieldOfView: 85
+  eyeHeight: 0.6
+  gunBarrel: {fileID: 2270542410677560821}
+  fireRate: 0
+  currentState: 
+--- !u!114 &6080379600966768639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443387808126312804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aacfd8008a49f694397074ab664b4388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 100
 --- !u!1 &4543440108864611000
 GameObject:
   m_ObjectHideFlags: 0

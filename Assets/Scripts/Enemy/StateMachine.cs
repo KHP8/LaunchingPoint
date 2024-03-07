@@ -42,7 +42,8 @@ public class StateMachine : MonoBehaviour
         {
             //setup new state
             activeState.stateMachine = this;
-            activeState.enemy = GetComponent<Enemy>();
+            activeState.enemy = GetComponent<BaseEnemy>();
+            Debug.Log(activeState.enemy);
             activeState.Enter();
         }
     }

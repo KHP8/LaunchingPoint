@@ -9,14 +9,14 @@ public class PatrolState : BaseState
 
     public override void Enter()
     {
-        waypointIndex = FindClosestWaypoint();
-        enemy.Agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
+        //waypointIndex = FindClosestWaypoint();
+        //enemy.agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
     }
 
     public override void Perform()
     {
-        PatrolCycle();
-        if (enemy.CanSeePlayer())
+        //PatrolCycle();
+        if (enemy.CanSeePlayer(0))
         {
             stateMachine.ChangeState(new AttackState());
         }
@@ -27,10 +27,11 @@ public class PatrolState : BaseState
 
     }
 
+    /*
     public void PatrolCycle() 
     {
         // implement patrol logic
-        if (enemy.Agent.remainingDistance < 0.2f)
+        if (enemy.agent.remainingDistance < 0.2f)
         {
             waitTimer += Time.deltaTime;
             if (waitTimer > 3)
@@ -40,7 +41,7 @@ public class PatrolState : BaseState
                 else
                     waypointIndex = 0;
                 
-                enemy.Agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
+                enemy.agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
                 Debug.Log(enemy.path.waypoints[waypointIndex].position);
                 waitTimer = 0;
             }
@@ -53,12 +54,13 @@ public class PatrolState : BaseState
         int closest = 0;
         for (int i = 1; i < enemy.path.waypoints.Count; i++)
         {
-            if (Vector3.Distance(enemy.path.waypoints[i].position, enemy.Agent.transform.position) < 
-                Vector3.Distance(enemy.path.waypoints[closest].position, enemy.Agent.transform.position))
+            if (Vector3.Distance(enemy.path.waypoints[i].position, enemy.agent.transform.position) < 
+                Vector3.Distance(enemy.path.waypoints[closest].position, enemy.agent.transform.position))
             {
                 closest = i;
             }
         }
         return closest;
     }   
+    */
 }

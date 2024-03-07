@@ -1,21 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+/// <summary>
+/// This code serves as the base for all enemies
+/// 
+/// </summary>
+
+abstract public class BaseEnemy : MonoBehaviour
 {
     private StateMachine stateMachine;
-    private NavMeshAgent agent;
-    private GameObject player;
-    private Vector3 lastKnownPos;
 
-    public NavMeshAgent Agent { get => agent; }
-    public GameObject Player { get => player; }
-    public Vector3 LastKnownPos { get => lastKnownPos; set => lastKnownPos = value; }
+    public NavMeshAgent agent;
+    public GameObject [] players = new GameObject[4];
+    public Vector3 lastKnownPos;
     
     [Header("Sight Values")]
-    public Path path;
+    //public Path path;
     public float sightDistance = 20f;
     public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
@@ -24,29 +24,27 @@ public class Enemy : MonoBehaviour
     public Transform gunBarrel;
     [Range(0.1f, 10)] public float fireRate;
 
-    //just for debugging purposes
+    //just for debugging purposes, so we can see what state it is in
     [SerializeField] private string currentState;
 
-    // Start is called before the first frame update
     void Start()
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        players[0] = GameObject.Find("Capsule"); // Should be some (empty maybe) game object at the center of the player
         stateMachine.Initialise();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CanSeePlayer();
         currentState = stateMachine.activeState.ToString(); 
     }
 
-    public bool CanSeePlayer()
-    {
-        if (player != null)
-        {
+    public bool CanSeePlayer(int index)
+    {   
+        if (players != null)
+        {   
+            GameObject player = players[index];
             // is the player close enough to be seen
             if (Vector3.Distance(transform.position, player.transform.position) < sightDistance) 
             {
@@ -58,7 +56,7 @@ public class Enemy : MonoBehaviour
                     RaycastHit hitInfo = new RaycastHit();
                     if (Physics.Raycast(ray, out hitInfo, sightDistance))
                     {
-                        if (hitInfo.transform.gameObject == player)
+                        if (hitInfo.transform.tag == "Player")
                         {
                             Debug.DrawRay(ray.origin, ray.direction * sightDistance);
                             return true;
