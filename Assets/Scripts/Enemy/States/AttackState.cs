@@ -23,7 +23,7 @@ public class AttackState : BaseState
 
     public override void Perform()
     {
-        if (enemy.CanSeePlayer(0)) // player can be seen
+        if (enemy.CanSee(enemy.players[0])) // player can be seen
         {
             // lock the lose player timer and increment the move and shot timers
             losePlayerTimer = 0;
@@ -32,9 +32,9 @@ public class AttackState : BaseState
             enemy.transform.LookAt(enemy.players[0].transform);
             
             // 
-            if (shotTimer > enemy.fireRate)
+            if (shotTimer > enemy.rpm)
             {
-                Shoot();
+                enemy.Shoot();
             }
 
             // move the enemy to a random position after a random time
@@ -60,22 +60,5 @@ public class AttackState : BaseState
             enemy.transform.LookAt(enemy.players[0].transform);
         }
     }
-
-    public void Shoot()
-    {
-        //store a reference to the gun barrel
-        Transform gunBarrel = enemy.gunBarrel;
-        //instantiate a new bullet
-        GameObject bullet = GameObject.Instantiate(Resources.Load("Prefabs/EnemyProjectiles/TestEnemyBullet") 
-            as GameObject, gunBarrel.position, enemy.transform.rotation);
-        //calculate direction to player
-        Vector3 shootDirection = (enemy.players[0].transform.position - gunBarrel.transform.position).normalized;
-        //add force rigidbody of the bullet
-        bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-1f, 1f) , Vector3.up) * shootDirection * 40; // 40 = bullet speed
-
-        Debug.Log("Shooting");
-        shotTimer = 0;
-    }
-
 
 }

@@ -21,7 +21,7 @@ public class SearchState : BaseState
     {
         for (int i = 0; i < enemy.players.Length; i++)
             {
-            if (enemy.CanSeePlayer(i))
+            if (enemy.CanSee(enemy.players[i]))
                 stateMachine.ChangeState(new AttackState());
 
             if (enemy.agent.remainingDistance < enemy.agent.stoppingDistance)

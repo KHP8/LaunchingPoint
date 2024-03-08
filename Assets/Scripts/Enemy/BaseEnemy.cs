@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,28 +11,60 @@ abstract public class BaseEnemy : MonoBehaviour
 {
     private StateMachine stateMachine;
 
+    [Header("References")]
     public NavMeshAgent agent;
     public GameObject [] players = new GameObject[4];
-    public Vector3 lastKnownPos;
+    public Transform projectileSource;
+    public GameObject prefab;
+    [HideInInspector] public GameObject target; 
     
     [Header("Sight Values")]
     //public Path path;
-    public float sightDistance = 20f;
-    public float fieldOfView = 85f;
+    //public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
+    [HideInInspector] public Vector3 lastKnownPos;
 
     [Header("Weapon Values")]
-    public Transform gunBarrel;
-    [Range(0.1f, 10)] public float fireRate;
+    public float rpm;
+    public float dmg;
+    [HideInInspector] public bool canCast = true;
+    public WaitForSeconds cooldown;
+    public Coroutine coro;
 
     //just for debugging purposes, so we can see what state it is in
     [SerializeField] private string currentState;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    abstract public void Awake();
+
+    /// <summary>
+    /// Handles the detailed usage of the enemy ability. May instantiate projectiles, create beams, etc.
+    /// </summary>
+    abstract public IEnumerator Shoot();
+
+    /// <summary>
+    /// Ends the ability.
+    /// </summary>
+    /// <remarks>
+    /// This method should only be called on exiting the attack state.
+    /// </remarks>
+    abstract public void StopAbility();
+    
+    /// <summary>
+    /// Assigns values to the prefab's collision component.
+    /// </summary>
+    /// <param name="obj">The prefab of the ability being cast.</param>
+    abstract public void ManageCollisionComponents(GameObject obj);
+
 
     void Start()
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
         players[0] = GameObject.Find("Capsule"); // Should be some (empty maybe) game object at the center of the player
+        cooldown = new(60 / rpm);
         stateMachine.Initialise();
     }
 
@@ -40,32 +73,39 @@ abstract public class BaseEnemy : MonoBehaviour
         currentState = stateMachine.activeState.ToString(); 
     }
 
-    public bool CanSeePlayer(int index)
+    /// <summary>
+    /// Determines if the enemy can see the passed target
+    /// </summary>
+    /// <param name="obj">Object that you want to see</param>
+    /// <returns>True if in LOS, otherwise False</returns>
+    public bool CanSee(GameObject obj)
     {   
-        if (players != null)
-        {   
-            GameObject player = players[index];
-            // is the player close enough to be seen
-            if (Vector3.Distance(transform.position, player.transform.position) < sightDistance) 
+        Vector3 v1 = transform.TransformDirection(Vector3.forward);
+        Vector3 v2 = obj.transform.position - transform.position;
+        if (Vector3.Dot(v1, v2) > 0)
+        {
+            Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
+            RaycastHit hitInfo = new RaycastHit();
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
             {
-                Vector3 targetDirection = player.transform.position - transform.position - (Vector3.up * eyeHeight);
-                float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
-                if (angleToPlayer >= -fieldOfView && angleToPlayer <= fieldOfView)
+                if (hitInfo.transform.tag == "Player")
                 {
-                    Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), targetDirection);
-                    RaycastHit hitInfo = new RaycastHit();
-                    if (Physics.Raycast(ray, out hitInfo, sightDistance))
-                    {
-                        if (hitInfo.transform.tag == "Player")
-                        {
-                            Debug.DrawRay(ray.origin, ray.direction * sightDistance);
-                            return true;
-                        }
-                    }
+                    Debug.DrawRay(ray.origin, ray.direction);
+                    return true;
                 }
             }
         }
         return false;
+    }
 
+    public void UseAbility() 
+    {
+        coro = StartCoroutine(Shoot());
+    }
+
+    public IEnumerator ResetCastCooldown()
+    {
+        yield return cooldown;
+        canCast = true;
     }
 }

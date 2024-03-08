@@ -437,12 +437,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  lastKnownPos: {x: 0, y: 0, z: 0}
-  sightDistance: 20
-  fieldOfView: 85
+  projectileSource: {fileID: 2270542410677560821}
+  prefab: {fileID: 3974220597357036714, guid: 2e0638b84391410448cbcd372f9e4d35, type: 3}
+  target: {fileID: 0}
   eyeHeight: 0.6
-  gunBarrel: {fileID: 2270542410677560821}
-  fireRate: 2
+  lastKnownPos: {x: 0, y: 0, z: 0}
+  rpm: 60
+  dmg: 10
+  canCast: 1
   currentState: 
 --- !u!114 &6080379600966768639
 MonoBehaviour:
