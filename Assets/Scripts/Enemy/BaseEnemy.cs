@@ -7,6 +7,17 @@ using UnityEngine.AI;
 /// 
 /// </summary>
 
+/*
+    Todos
+        CanSee - Avoid projectiles, do more than just 1 raycast (spherecast?)
+        LastKnownPos - All files
+        TestEnemy - Shoot
+        SearchState - See sticky note
+        AttackState - See sticky note
+        AttackState - Look at
+        PatrolState - Pathing?
+*/
+
 abstract public class BaseEnemy : MonoBehaviour
 {
     private StateMachine stateMachine;
