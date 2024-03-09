@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
         health = maxHealth;
     }
 
-    private void Update()
+    void Update()
     {
         health = Mathf.Clamp(health, 0, maxHealth);
     }
@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        //lerpTimer = 0f;
-        //durationTimer = 0
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

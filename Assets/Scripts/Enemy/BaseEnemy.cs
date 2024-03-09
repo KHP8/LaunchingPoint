@@ -27,6 +27,7 @@ abstract public class BaseEnemy : MonoBehaviour
     public GameObject [] players = new GameObject[4];
     public Transform projectileSource;
     public GameObject prefab;
+    public Transform [] waypoints = new Transform[4];
     [HideInInspector] public GameObject target; 
     
     [Header("Sight Values")]
@@ -74,6 +75,11 @@ abstract public class BaseEnemy : MonoBehaviour
         players[0] = GameObject.Find("Capsule"); // Should be some (empty maybe) game object at the center of the player
         cooldown = new WaitForSeconds(60 / rpm);
         stateMachine.Initialise();
+        GameObject poi = GameObject.Find("POIs");
+        for (int i = 0; i < poi.transform.childCount && i < 4; i++) // (i < 4) b/c list is hard set to 4
+        {
+            waypoints[i] = poi.transform.GetChild(i);
+        }
     }
 
     void Update()

@@ -439,6 +439,11 @@ MonoBehaviour:
   - {fileID: 0}
   projectileSource: {fileID: 2270542410677560821}
   prefab: {fileID: 3974220597357036714, guid: 2e0638b84391410448cbcd372f9e4d35, type: 3}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   target: {fileID: 0}
   eyeHeight: 0.6
   lastKnownPos: {x: 0, y: 0, z: 0}
