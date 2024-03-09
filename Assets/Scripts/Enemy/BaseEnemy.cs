@@ -9,13 +9,13 @@ using UnityEngine.AI;
 
 /*
     Todos
-        CanSee - Avoid projectiles, do more than just 1 raycast (spherecast?)
         LastKnownPos - All files
         TestEnemy - Shoot
         SearchState - See sticky note
         AttackState - See sticky note
         AttackState - Look at
         PatrolState - Pathing?
+        CanSee - Avoid projectiles (do more than just 1 raycast) (spherecast?) (layermask)
 */
 
 abstract public class BaseEnemy : MonoBehaviour
@@ -38,17 +38,14 @@ abstract public class BaseEnemy : MonoBehaviour
     [Header("Weapon Values")]
     public float rpm;
     public float dmg;
+    public float vel;
+    public float maxRange;
     [HideInInspector] public bool canCast = true;
     public WaitForSeconds cooldown;
     public Coroutine coro;
 
     //just for debugging purposes, so we can see what state it is in
     [SerializeField] private string currentState;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    abstract public void Awake();
 
     /// <summary>
     /// Handles the detailed usage of the enemy ability. May instantiate projectiles, create beams, etc.
@@ -75,7 +72,7 @@ abstract public class BaseEnemy : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
         players[0] = GameObject.Find("Capsule"); // Should be some (empty maybe) game object at the center of the player
-        cooldown = new(60 / rpm);
+        cooldown = new WaitForSeconds(60 / rpm);
         stateMachine.Initialise();
     }
 
@@ -93,7 +90,7 @@ abstract public class BaseEnemy : MonoBehaviour
     {   
         Vector3 v1 = transform.TransformDirection(Vector3.forward);
         Vector3 v2 = obj.transform.position - transform.position;
-        if (Vector3.Dot(v1, v2) > 0)
+        if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
         {
             Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
             RaycastHit hitInfo = new RaycastHit();

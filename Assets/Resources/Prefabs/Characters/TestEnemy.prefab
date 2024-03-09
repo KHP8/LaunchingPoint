@@ -444,6 +444,8 @@ MonoBehaviour:
   lastKnownPos: {x: 0, y: 0, z: 0}
   rpm: 60
   dmg: 10
+  vel: 60
+  maxRange: 500
   canCast: 1
   currentState: 
 --- !u!114 &6080379600966768639

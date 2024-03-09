@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class TestEnemy : BaseEnemy
 {
-    public override void Awake()
-    {
-        
-    }
 
     public override void ManageCollisionComponents(GameObject obj)
     {
-        
+        BaseEnemyCollision bec = obj.GetComponent<BaseEnemyCollision>();
+        bec.startpoint = projectileSource.position;
+        //calculate direction to player
+        Vector3 shootDirection = (target.transform.position - projectileSource.position).normalized;
+        //add force rigidbody of the bullet
+        obj.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-1f, 1f) , Vector3.up) * shootDirection * vel;
+        bec.baseEnemy = this;
     }
 
     public override IEnumerator Shoot()
@@ -21,16 +23,20 @@ public class TestEnemy : BaseEnemy
         {
             if (canCast) // If timer is done
             {
+                canCast = false;
                 //store a reference to the gun barrel
                 Transform gunBarrel = projectileSource;
                 //instantiate a new bullet
-                GameObject bullet = Instantiate(prefab, gunBarrel.position, transform.rotation);
-                //calculate direction to player
-                Vector3 shootDirection = (target.transform.position - gunBarrel.transform.position).normalized;
-                //add force rigidbody of the bullet
-                bullet.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-.1f, .1f) , Vector3.up) * shootDirection * 40; // 40 = bullet speed
-
-                Debug.Log("Shooting");
+                GameObject bullet = Instantiate(
+                    prefab, 
+                    gunBarrel.position, 
+                    Quaternion.Euler(
+                        transform.eulerAngles.x + 90,
+                        transform.eulerAngles.y,
+                        0
+                    )
+                    //transform.rotation
+                );
 
                 ManageCollisionComponents(bullet);
 
@@ -42,7 +48,9 @@ public class TestEnemy : BaseEnemy
 
     public override void StopAbility()
     {
-        
+        // Destroy the coroutine 
+        if (coro != null)
+            StopCoroutine(coro);
     }
 
 }
