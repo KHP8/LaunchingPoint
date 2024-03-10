@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,7 +11,6 @@ using UnityEngine.AI;
 /*
     Todos
         LastKnownPos - All files
-        TestEnemy - Shoot
         SearchState - See sticky note
         AttackState - See sticky note
         AttackState - Look at
@@ -24,10 +24,10 @@ abstract public class BaseEnemy : MonoBehaviour
 
     [Header("References")]
     public NavMeshAgent agent;
-    public GameObject [] players = new GameObject[4];
+    public List<GameObject> players = new();
     public Transform projectileSource;
     public GameObject prefab;
-    public Transform [] waypoints = new Transform[4];
+    public List<Transform> waypoints = new();
     [HideInInspector] public GameObject target; 
     
     [Header("Sight Values")]
@@ -72,13 +72,13 @@ abstract public class BaseEnemy : MonoBehaviour
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        players[0] = GameObject.Find("Capsule"); // Should be some (empty maybe) game object at the center of the player
+        players.Add(GameObject.Find("Capsule")); // Should be some (empty maybe) game object at the center of the player
         cooldown = new WaitForSeconds(60 / rpm);
         stateMachine.Initialise();
         GameObject poi = GameObject.Find("POIs");
         for (int i = 0; i < poi.transform.childCount && i < 4; i++) // (i < 4) b/c list is hard set to 4
         {
-            waypoints[i] = poi.transform.GetChild(i);
+            waypoints.Add(poi.transform.GetChild(i));
         }
     }
 
@@ -99,8 +99,9 @@ abstract public class BaseEnemy : MonoBehaviour
         if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
         {
             Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
+            LayerMask layerMask = ~(1 << 8);
             RaycastHit hitInfo = new RaycastHit();
-            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
             {
                 if (hitInfo.transform.tag == "Player")
                 {

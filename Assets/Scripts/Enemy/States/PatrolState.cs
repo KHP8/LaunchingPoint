@@ -6,9 +6,16 @@ public class PatrolState : BaseState
 {
     public int waypointIndex;
     public float waitTimer;
+    private Vector3 destination;
 
     public override void Enter()
     {
+        while (enemy.target == null)
+        {
+            enemy.target = enemy.players[Random.Range(0, enemy.players.Count-1)];
+        }
+        destination = GetDestination(enemy.target);
+        enemy.agent.SetDestination(destination);
         //waypointIndex = FindClosestWaypoint();
         //enemy.agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
     }
@@ -16,10 +23,21 @@ public class PatrolState : BaseState
     public override void Perform()
     {
         //PatrolCycle();
-        if (enemy.CanSee(enemy.players[0]))
+        foreach (GameObject player in enemy.players)
         {
-            enemy.target = enemy.players[0];
-            stateMachine.ChangeState(new AttackState());
+            if (player == null) continue;
+
+            if (enemy.CanSee(player))
+            {
+                enemy.target = player;
+                stateMachine.ChangeState(new AttackState());
+            }
+        }
+
+        if (!WouldSee(enemy.target, destination))
+        {
+            destination = GetDestination(enemy.target);
+            enemy.agent.SetDestination(destination);
         }
     }
 
@@ -27,6 +45,52 @@ public class PatrolState : BaseState
     {
 
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="obj">Object that you want to see</param>
+    /// <returns></returns>
+    public Vector3 GetDestination(GameObject obj)
+    {
+        Vector3 destination;
+        int runs = 4;
+        while (runs > 0) 
+        {
+            destination = Random.insideUnitSphere * 10;
+            if (WouldSee(obj, enemy.target.transform.position + destination))
+                return enemy.target.transform.position + destination;
+            runs--;
+        }
+
+        return enemy.target.transform.position;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="target">Object that you want to see</param>
+    /// <param name="pos">The location you want to check</param>
+    /// <returns></returns>
+    public bool WouldSee(GameObject target, Vector3 pos)
+    {   
+        Vector3 vector = target.transform.position - pos;
+
+        Ray ray = new Ray(pos + (Vector3.up * enemy.eyeHeight), vector - (Vector3.up * enemy.eyeHeight));
+        LayerMask layerMask = ~(1 << 8);
+        RaycastHit hitInfo = new RaycastHit();
+        if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+        {
+            if (hitInfo.transform.tag == "Player")
+            {
+                Debug.DrawRay(ray.origin, ray.direction);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     /*
     public void PatrolCycle() 

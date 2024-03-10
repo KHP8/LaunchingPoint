@@ -53,7 +53,7 @@ public class AttackState : BaseState
 
         if (enemy.lastKnownPos != null)
         {
-            enemy.transform.LookAt(enemy.players[0].transform);
+            enemy.transform.LookAt(enemy.lastKnownPos);
         }
     }
 

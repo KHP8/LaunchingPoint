@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 9157278673766681300}
   - component: {fileID: 1433914194551483187}
   - component: {fileID: 4850221312363731584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -871,7 +871,7 @@ GameObject:
   - component: {fileID: 6090638527803823314}
   - component: {fileID: 7473591886017135727}
   - component: {fileID: 5433424037147315775}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1650,7 +1650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5650706891351225148}
   - component: {fileID: 8430862544495818903}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerBody
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3126,7 +3126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8414320993658388362}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ProjectileSource
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3229,7 +3229,7 @@ GameObject:
   - component: {fileID: 6272149672059816798}
   - component: {fileID: 1885680825283643256}
   - component: {fileID: 5259708806593962160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Player
   m_Icon: {fileID: 0}

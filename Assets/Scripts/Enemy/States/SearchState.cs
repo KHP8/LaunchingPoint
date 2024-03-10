@@ -21,7 +21,7 @@ public class SearchState : BaseState
 
     public override void Perform()
     {
-        for (int i = 0; i < enemy.players.Length; i++)
+        for (int i = 0; i < enemy.players.Count-1; i++)
         {
             if (enemy.players[i] == null)    
                 continue;
