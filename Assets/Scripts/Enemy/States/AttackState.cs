@@ -14,7 +14,7 @@ public class AttackState : BaseState
     public override void Enter()
     {
         enemy.UseAbility();
-        enemy.agent.SetDestination(enemy.agent.transform.position);
+        //enemy.agent.SetDestination(enemy.agent.transform.position); // stop moving
         waitToMove = Random.Range(5, 10);
     }
 
@@ -35,7 +35,7 @@ public class AttackState : BaseState
             // move the enemy to a random position after a random time
             if (moveTimer > waitToMove)
             {
-                enemy.agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 10));
+                enemy.agent.SetDestination(enemy.GetDestination(enemy.target, enemy.transform.position));
                 moveTimer = 0;
                 waitToMove = Random.Range(5, 10);
             }

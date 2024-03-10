@@ -113,6 +113,74 @@ abstract public class BaseEnemy : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Returns the Vector3 position that the NavMeshAgent should move to.
+    /// Performs 4 runs to see if some area around the target is a good fit
+    /// If it is, returns that. Otherwise, return the target's position
+    /// </summary>
+    /// <param name="obj">Object that you want to see</param>
+    /// <returns>A Vector3 of a point around the target</returns>
+    public Vector3 GetDestination(GameObject target)
+    {
+        Vector3 destination;
+        int runs = 4;
+        while (runs > 0) 
+        {
+            destination = Random.insideUnitSphere * 10;
+            if (WouldSee(target, target.transform.position + destination))
+                return target.transform.position + destination;
+            runs--;
+        }
+
+        return target.transform.position;
+    }
+
+    /// <summary>
+    /// Returns the Vector3 position that the NavMeshAgent should move to.
+    /// Performs 4 runs to see if some area around the target is a good fit
+    /// If it is, returns that. Otherwise, return the current position
+    /// </summary>
+    /// <param name="obj">Object that you want to see</param>
+    /// <returns>A Vector3 of a point around the pos</returns>
+    public Vector3 GetDestination(GameObject target, Vector3 pos)
+    {
+        Vector3 destination;
+        int runs = 4;
+        while (runs > 0) 
+        {
+            destination = Random.insideUnitSphere * 10;
+            if (WouldSee(target, pos + destination))
+                return pos + destination;
+            runs--;
+        }
+
+        return pos;
+    }
+
+    /// <summary>
+    /// Returns a bool if the target can be seen from the pos
+    /// </summary>
+    /// <param name="target">Object that you want to see</param>
+    /// <param name="pos">The location you want to check</param>
+    /// <returns>True if would see the target. Otherwise False</returns>
+    public bool WouldSee(GameObject target, Vector3 pos)
+    {   
+        Vector3 vector = target.transform.position - pos;
+
+        Ray ray = new Ray(pos + (Vector3.up * eyeHeight), vector - (Vector3.up * eyeHeight));
+        LayerMask layerMask = ~(1 << 8);
+        RaycastHit hitInfo = new RaycastHit();
+        if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+        {
+            if (hitInfo.transform.tag == "Player")
+            {
+                Debug.DrawRay(ray.origin, ray.direction);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void UseAbility() 
     {
         coro = StartCoroutine(Shoot());
