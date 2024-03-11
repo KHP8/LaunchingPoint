@@ -35,10 +35,6 @@ public class PlayerMotor : MonoBehaviour
     private float lastxInput;
     private float lastzInput;
 
-    [Header("Respawn")]
-    public float minHeight = -30f;
-    public Transform spawnPoint;
-
     
 
     // Start is called before the first frame update
@@ -66,30 +62,6 @@ public class PlayerMotor : MonoBehaviour
 
         //limit speed
         SpeedControl();
-
-        /*isGrounded = controller.isGrounded;
-        if (lerpCrouch)
-        {
-            crouchTimer += Time.deltaTime;
-            float p = crouchTimer * crouchTimer;
-            if (crouching)
-                controller.height = Mathf.Lerp(controller.height, 1, p);
-            else
-                controller.height = Mathf.Lerp(controller.height, 2, p);
-
-            if (p > 1)
-            {
-                lerpCrouch = false;
-                crouchTimer = 0f;
-            }
-        }
-
-
-        // check if needs to be respawned
-        if (controller.transform.position[1] < minHeight) {
-            UnityEngine.Debug.Log(controller.transform.position);
-            controller.transform.position = spawnPoint.position;
-        }*/
     }
 
 
