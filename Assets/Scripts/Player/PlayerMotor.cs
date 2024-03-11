@@ -17,10 +17,11 @@ public class PlayerMotor : MonoBehaviour
     public bool isGrounded;
 
     [Header("Constants")]
-    public float speed = 5f;
+    public float speed = 15f;
     public float gravity = -9.8f;
     public float jumpHeight = 0.75f;
     public float groundDrag = 0.5f;
+    public float airDrag = 1;
     public float jumpCooldown = 0.2f;
     public float airMultiplier = 0.25f;
     public bool readyToJump;
@@ -54,11 +55,14 @@ public class PlayerMotor : MonoBehaviour
         // Grounded Check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
+        //increase gravity
+        playerRigidbody.AddForce(Vector3.down * (-1*gravity-9.8f), ForceMode.Force);
+
         // Apply ground drag
         if (isGrounded)
             playerRigidbody.drag = groundDrag;
         else
-            playerRigidbody.drag = 0;
+            playerRigidbody.drag = airDrag;
 
         //limit speed
         SpeedControl();
@@ -95,10 +99,10 @@ public class PlayerMotor : MonoBehaviour
         
         //grounded
         if(isGrounded)
-            playerRigidbody.AddForce(moveDirection.normalized * speed, ForceMode.Force);
+            playerRigidbody.AddForce(moveDirection.normalized * speed * 10f, ForceMode.Force);
         //in air
         else if(!isGrounded)
-            playerRigidbody.AddForce(moveDirection.normalized * speed * airMultiplier, ForceMode.Force);
+            playerRigidbody.AddForce(moveDirection.normalized * speed * airMultiplier * 10f, ForceMode.Force);
 
     }
 
@@ -106,11 +110,12 @@ public class PlayerMotor : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(playerRigidbody.velocity.x, 0f, playerRigidbody.velocity.z);
         speedDisplay = flatVel.magnitude;
+
         //limit velocity
         if(flatVel.magnitude > speed)
         {
             Vector3 limitedVel = flatVel.normalized * speed;
-            playerRigidbody.velocity = new Vector3(limitedVel.x, playerRigidbody.velocity.y, limitedVel.x);
+            playerRigidbody.velocity = new Vector3(limitedVel.x, playerRigidbody.velocity.y, limitedVel.z);
         }
     }
 
@@ -140,9 +145,9 @@ public class PlayerMotor : MonoBehaviour
     public void Sprint()
     {
         sprinting = !sprinting;
-        if (sprinting)
-            speed = 13f;
+        if (!sprinting)
+            speed = speed * (2f/3f);
         else
-            speed = 10f;
+            speed += speed/2f;
     }
 }
