@@ -35,7 +35,6 @@ public class TestEnemy : BaseEnemy
                         transform.eulerAngles.y,
                         0
                     )
-                    //transform.rotation
                 );
 
                 ManageCollisionComponents(bullet);

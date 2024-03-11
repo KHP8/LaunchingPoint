@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3319167058719488278}
   - component: {fileID: 4516970837872187950}
   - component: {fileID: 2518393646605681516}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Arms
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 782389295606583329}
   - component: {fileID: 3415628535142787068}
   - component: {fileID: 541949207668885735}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Grip (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7483300430166803456}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Gun
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 839019995883065451}
   - component: {fileID: 5255715248613531377}
   - component: {fileID: 2260377852476583462}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Arms
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 7964486265882124652}
   - component: {fileID: 5887724107145142105}
   - component: {fileID: 6080379600966768639}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: TestEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -394,7 +394,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4443387808126312804}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.86
+  m_Radius: 2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 3432627704107627803}
   - component: {fileID: 55023926590879735}
   - component: {fileID: 587924385940455726}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Eyes
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -581,7 +581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328137231386163039}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Meshes
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 3120329407405058268}
   - component: {fileID: 4881381281592462752}
   - component: {fileID: 8114410390335678469}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Eyes
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 3368263216311416744}
   - component: {fileID: 4718226577756309338}
   - component: {fileID: 6726034579834059813}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Body
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 5926952229123638840}
   - component: {fileID: 8842248899118194338}
   - component: {fileID: 6020996073663189576}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Grip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -933,7 +933,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2270542410677560821}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ProjectileSource
   m_TagString: Enemy
   m_Icon: {fileID: 0}

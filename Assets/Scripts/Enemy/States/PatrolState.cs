@@ -6,7 +6,6 @@ public class PatrolState : BaseState
 {
     public int waypointIndex;
     public float waitTimer;
-    private Vector3 destination;
 
     public override void Enter()
     {
@@ -14,8 +13,7 @@ public class PatrolState : BaseState
         {
             enemy.target = enemy.players[Random.Range(0, enemy.players.Count-1)];
         }
-        destination = enemy.GetDestination(enemy.target);
-        enemy.agent.SetDestination(destination);
+        enemy.agent.SetDestination(enemy.GetDestination(enemy.target));
         //waypointIndex = FindClosestWaypoint();
         //enemy.agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
     }
@@ -41,10 +39,9 @@ public class PatrolState : BaseState
         }
 
         // If the target would not be seen by the new destination, make a new destination
-        if (!enemy.WouldSee(enemy.target, destination))
+        if (!enemy.WouldSee(enemy.target, enemy.agent.destination))
         {
-            destination = enemy.GetDestination(enemy.target);
-            enemy.agent.SetDestination(destination);
+            enemy.agent.SetDestination(enemy.GetDestination(enemy.target));
         }
     }
 

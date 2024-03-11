@@ -158,7 +158,8 @@ abstract public class BaseEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Returns a bool if the target can be seen from the pos
+    /// Returns a bool if the target can be seen from the pos. 
+    /// Does not consider direction, only if a LOS can be present
     /// </summary>
     /// <param name="target">Object that you want to see</param>
     /// <param name="pos">The location you want to check</param>
