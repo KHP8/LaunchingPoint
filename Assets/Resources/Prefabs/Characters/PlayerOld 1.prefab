@@ -712,11 +712,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de55edb5369e5f47852bfc570eacff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orientation: {fileID: 0}
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
   speed: 5
   gravity: -9.8
   jumpHeight: 0.75
-  minHeight: -30
-  spawnPoint: {fileID: 0}
+  groundDrag: 0.5
+  airDrag: 1
+  jumpCooldown: 0.2
+  airMultiplier: 0.25
+  readyToJump: 0
+  speedDisplay: 0
 --- !u!114 &1519826155541202468
 MonoBehaviour:
   m_ObjectHideFlags: 0

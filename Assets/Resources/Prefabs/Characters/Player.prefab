@@ -718,13 +718,16 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
-  isGrounded: 0
+  isGrounded: 1
   speed: 7
-  gravity: -9.8
-  jumpHeight: 0.75
+  gravity: -13
+  jumpHeight: 1.1
   groundDrag: 5
-  minHeight: -30
-  spawnPoint: {fileID: 0}
+  airDrag: 1
+  jumpCooldown: 0.2
+  airMultiplier: 0.8
+  readyToJump: 0
+  speedDisplay: 0
 --- !u!114 &1519826155541202468
 MonoBehaviour:
   m_ObjectHideFlags: 0
