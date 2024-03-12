@@ -9,7 +9,7 @@ abstract public class BaseEnemyCollision : MonoBehaviour
     public float timeBeforeDestroy;
     public float timeBeforeAnimation;
 
-    abstract public void OnCollisionEnter(Collision other);
+    abstract public void OnTriggerEnter(Collider other);
 
     abstract public void AnimationCollisionStart();
 

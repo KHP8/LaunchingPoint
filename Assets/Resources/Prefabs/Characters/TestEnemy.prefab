@@ -394,7 +394,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4443387808126312804}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 2
+  m_Radius: 0.8
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -432,18 +432,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6759064028797091087}
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  players: []
   projectileSource: {fileID: 2270542410677560821}
   prefab: {fileID: 3974220597357036714, guid: 2e0638b84391410448cbcd372f9e4d35, type: 3}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   target: {fileID: 0}
   eyeHeight: 0.6
   lastKnownPos: {x: 0, y: 0, z: 0}

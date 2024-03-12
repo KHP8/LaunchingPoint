@@ -21,13 +21,16 @@ public class SearchState : BaseState
 
     public override void Perform()
     {
-        for (int i = 0; i < enemy.players.Count-1; i++)
+        foreach (GameObject player in enemy.players)
         {
-            if (enemy.players[i] == null)    
-                continue;
+            if (player == null) continue;
 
-            if (enemy.CanSee(enemy.players[i]))
+            if (enemy.CanSee(player))
+            {
+                enemy.target = player;
                 stateMachine.ChangeState(new AttackState());
+                break;
+            }
         }
 
         if (enemy.agent.remainingDistance < enemy.agent.stoppingDistance)

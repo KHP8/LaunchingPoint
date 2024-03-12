@@ -45,6 +45,8 @@ abstract public class BaseEnemy : MonoBehaviour
     public WaitForSeconds cooldown;
     public Coroutine coro;
 
+    private int enemyLayer;
+
     //just for debugging purposes, so we can see what state it is in
     [SerializeField] private string currentState;
 
@@ -80,37 +82,12 @@ abstract public class BaseEnemy : MonoBehaviour
         {
             waypoints.Add(poi.transform.GetChild(i));
         }
+        enemyLayer = gameObject.layer;
     }
 
     void Update()
     {
         currentState = stateMachine.activeState.ToString(); 
-    }
-
-    /// <summary>
-    /// Determines if the enemy can see the passed target
-    /// </summary>
-    /// <param name="obj">Object that you want to see</param>
-    /// <returns>True if in LOS, otherwise False</returns>
-    public bool CanSee(GameObject obj)
-    {   
-        Vector3 v1 = transform.TransformDirection(Vector3.forward);
-        Vector3 v2 = obj.transform.position - transform.position;
-        if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
-        {
-            Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
-            LayerMask layerMask = ~(1 << 8);
-            RaycastHit hitInfo = new RaycastHit();
-            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
-            {
-                if (hitInfo.transform.tag == "Player")
-                {
-                    Debug.DrawRay(ray.origin, ray.direction);
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     /// <summary>
@@ -158,6 +135,32 @@ abstract public class BaseEnemy : MonoBehaviour
     }
 
     /// <summary>
+    /// Determines if the enemy can see the passed target
+    /// </summary>
+    /// <param name="obj">Object that you want to see</param>
+    /// <returns>True if in LOS, otherwise False</returns>
+    public bool CanSee(GameObject obj)
+    {   
+        Vector3 v1 = transform.TransformDirection(Vector3.forward);
+        Vector3 v2 = obj.transform.position - transform.position;
+        if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
+        {
+            Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
+            LayerMask layerMask = ~(1 << enemyLayer);
+            RaycastHit hitInfo = new RaycastHit();
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
+            {
+                if (hitInfo.transform.tag == "Player")
+                {
+                    Debug.DrawRay(ray.origin, ray.direction);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /// <summary>
     /// Returns a bool if the target can be seen from the pos. 
     /// Does not consider direction, only if a LOS can be present
     /// </summary>
@@ -169,7 +172,7 @@ abstract public class BaseEnemy : MonoBehaviour
         Vector3 vector = target.transform.position - pos;
 
         Ray ray = new Ray(pos + (Vector3.up * eyeHeight), vector - (Vector3.up * eyeHeight));
-        LayerMask layerMask = ~(1 << 8);
+        LayerMask layerMask = ~(1 << enemyLayer);
         RaycastHit hitInfo = new RaycastHit();
         if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {

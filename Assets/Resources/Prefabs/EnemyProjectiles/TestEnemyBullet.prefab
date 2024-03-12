@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6719117048199823609}
   - component: {fileID: 1045150688107647619}
   - component: {fileID: 6325184378455667774}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: TestEnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,8 +101,8 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

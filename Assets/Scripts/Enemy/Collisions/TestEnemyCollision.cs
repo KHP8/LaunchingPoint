@@ -3,7 +3,7 @@ using UnityEngine;
 public class TestEnemyCollision : BaseEnemyCollision
 {
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Enemy"))
         {

@@ -19,8 +19,8 @@ TagManager:
   - whatIsGround
   - Player
   - Enemy
-  - 
-  - 
+  - AbilityNonBlocking
+  - AbilityBlocking
   - 
   - 
   - 

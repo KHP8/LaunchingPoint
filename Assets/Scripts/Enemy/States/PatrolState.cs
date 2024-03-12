@@ -9,11 +9,29 @@ public class PatrolState : BaseState
 
     public override void Enter()
     {
-        while (enemy.target == null)
+        // First, see if a player is in range. If there is, that is the target.
+        // Otherwise, choose one at random to seek to.
+        bool flag = true;
+        foreach (GameObject player in enemy.players)
         {
-            enemy.target = enemy.players[Random.Range(0, enemy.players.Count-1)];
+            if (player != null)
+            {
+                if (enemy.CanSee(player))
+                {
+                    flag = false;
+                    enemy.target = player;
+                    break;
+                }
+            }
         }
-        enemy.agent.SetDestination(enemy.GetDestination(enemy.target));
+        if (flag)
+        {
+            while (enemy.target == null && enemy.players.Count != 0)
+            {
+                enemy.target = enemy.players[Random.Range(0, enemy.players.Count-1)];
+            }
+            enemy.agent.SetDestination(enemy.GetDestination(enemy.target));
+        }
         //waypointIndex = FindClosestWaypoint();
         //enemy.agent.SetDestination(enemy.path.waypoints[waypointIndex].position);
     }
