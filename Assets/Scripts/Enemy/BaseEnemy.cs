@@ -34,6 +34,7 @@ abstract public class BaseEnemy : MonoBehaviour
     //public Path path;
     //public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
+    public float localMoveRadius = 10f;
     [HideInInspector] public Vector3 lastKnownPos;
 
     [Header("Weapon Values")]
@@ -74,7 +75,7 @@ abstract public class BaseEnemy : MonoBehaviour
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        players.Add(GameObject.Find("Capsule")); // Should be some (empty maybe) game object at the center of the player
+        players.Add(GameObject.Find("Player")); // Should be some (empty maybe) game object at the center of the player
         cooldown = new WaitForSeconds(60 / rpm);
         stateMachine.Initialise();
         GameObject poi = GameObject.Find("POIs");
@@ -90,6 +91,17 @@ abstract public class BaseEnemy : MonoBehaviour
         currentState = stateMachine.activeState.ToString(); 
     }
 
+    public void UseAbility() 
+    {
+        coro = StartCoroutine(Shoot());
+    }
+
+    public IEnumerator ResetCastCooldown()
+    {
+        yield return cooldown;
+        canCast = true;
+    }
+
     /// <summary>
     /// Returns the Vector3 position that the NavMeshAgent should move to.
     /// Performs 4 runs to see if some area around the target is a good fit
@@ -103,7 +115,7 @@ abstract public class BaseEnemy : MonoBehaviour
         int runs = 4;
         while (runs > 0) 
         {
-            destination = Random.insideUnitSphere * 10;
+            destination = Random.insideUnitSphere * localMoveRadius;
             if (WouldSee(target, target.transform.position + destination))
                 return target.transform.position + destination;
             runs--;
@@ -125,7 +137,7 @@ abstract public class BaseEnemy : MonoBehaviour
         int runs = 4;
         while (runs > 0) 
         {
-            destination = Random.insideUnitSphere * 10;
+            destination = Random.insideUnitSphere * localMoveRadius;
             if (WouldSee(target, pos + destination))
                 return pos + destination;
             runs--;
@@ -135,14 +147,39 @@ abstract public class BaseEnemy : MonoBehaviour
     }
 
     /// <summary>
+    /// Moves the enemy to an area around the target where they would see it, or directly to the target
+    /// </summary>
+    public void SetDestination()
+    {
+        agent.SetDestination(GetDestination(target));
+    }
+
+    /// <summary>
+    /// Moves the enemy to the given position
+    /// </summary>
+    /// <param name="pos">Vector3 position to move to</param>
+    public void SetDestination(Vector3 pos)
+    {
+        agent.SetDestination(pos);
+    }
+
+    /// <summary>
+    /// Stops the NavMesh
+    /// </summary>
+    public void StopMoving()
+    {
+        agent.SetDestination(transform.position);
+    }
+
+    /// <summary>
     /// Determines if the enemy can see the passed target
     /// </summary>
-    /// <param name="obj">Object that you want to see</param>
+    /// <param name="target">Object that you want to see</param>
     /// <returns>True if in LOS, otherwise False</returns>
-    public bool CanSee(GameObject obj)
+    public bool CanSee(GameObject target)
     {   
         Vector3 v1 = transform.TransformDirection(Vector3.forward);
-        Vector3 v2 = obj.transform.position - transform.position;
+        Vector3 v2 = target.transform.position - transform.position;
         if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
         {
             Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
@@ -150,7 +187,7 @@ abstract public class BaseEnemy : MonoBehaviour
             RaycastHit hitInfo = new RaycastHit();
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
             {
-                if (hitInfo.transform.tag == "Player")
+                if (hitInfo.transform.gameObject == target)
                 {
                     Debug.DrawRay(ray.origin, ray.direction);
                     return true;
@@ -176,7 +213,7 @@ abstract public class BaseEnemy : MonoBehaviour
         RaycastHit hitInfo = new RaycastHit();
         if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {
-            if (hitInfo.transform.tag == "Player")
+            if (hitInfo.transform.gameObject == target)
             {
                 Debug.DrawRay(ray.origin, ray.direction);
                 return true;
@@ -185,14 +222,4 @@ abstract public class BaseEnemy : MonoBehaviour
         return false;
     }
 
-    public void UseAbility() 
-    {
-        coro = StartCoroutine(Shoot());
-    }
-
-    public IEnumerator ResetCastCooldown()
-    {
-        yield return cooldown;
-        canCast = true;
-    }
 }

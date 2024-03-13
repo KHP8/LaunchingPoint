@@ -438,6 +438,7 @@ MonoBehaviour:
   waypoints: []
   target: {fileID: 0}
   eyeHeight: 0.6
+  localMoveRadius: 10
   lastKnownPos: {x: 0, y: 0, z: 0}
   rpm: 60
   dmg: 10

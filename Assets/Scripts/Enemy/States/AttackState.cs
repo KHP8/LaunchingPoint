@@ -16,6 +16,10 @@ public class AttackState : BaseState
         enemy.UseAbility();
         //enemy.agent.SetDestination(enemy.agent.transform.position); // stop moving
         waitToMove = Random.Range(5, 10);
+        if (!enemy.WouldSee(enemy.target, enemy.agent.destination)) // if they can't see the target from their current destination
+        {
+            enemy.SetDestination();
+        }
     }
 
     public override void Exit()

@@ -11,7 +11,7 @@ public class SearchState : BaseState
 
     public override void Enter()
     {
-        enemy.agent.SetDestination(enemy.lastKnownPos);
+        enemy.SetDestination(enemy.lastKnownPos);
     }
 
     public override void Exit()
@@ -33,20 +33,22 @@ public class SearchState : BaseState
             }
         }
 
-        if (enemy.agent.remainingDistance < enemy.agent.stoppingDistance)
+
+        searchTimer += Time.deltaTime;
+
+        if (enemy.agent.velocity.magnitude < 1)
         {
-
-            searchTimer += Time.deltaTime;
+            Debug.Log("Stopped");
             moveTimer += Time.deltaTime;
-
-            if (moveTimer > Random.Range(3,5))
-            {
-                enemy.agent.SetDestination(enemy.transform.position + (Random.insideUnitSphere * 10));
-                moveTimer = 0;
-            }
-
-            if (searchTimer > 10)
-                stateMachine.ChangeState(new PatrolState());
         }
+
+        if (moveTimer > Random.Range(3,5))
+        {
+            enemy.SetDestination(enemy.transform.position + (Random.insideUnitSphere * enemy.localMoveRadius));
+            moveTimer = 0;
+        }
+
+        if (searchTimer > 10)
+            stateMachine.ChangeState(new PatrolState());
     }
 }
