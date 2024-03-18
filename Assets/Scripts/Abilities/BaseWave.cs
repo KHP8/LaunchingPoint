@@ -46,14 +46,14 @@ abstract public class BaseWave : BaseAbility
                     prefab,
                     projectileSource.position,
                     Quaternion.Euler(
-                        0,//cam.transform.eulerAngles.x + 90,
+                        0, //transform.eulerAngles.x + 90,
                         transform.eulerAngles.y,
                         0
                     )
                 );
 
                 // Give bullet physics and movement. Then manage collision script - unique data
-                proj.GetComponent<Rigidbody>().velocity = transform.forward * speed;
+                proj.GetComponent<Rigidbody>();
                 ManageCollisionComponents(proj);
 
                 // Begin cooldown between shots

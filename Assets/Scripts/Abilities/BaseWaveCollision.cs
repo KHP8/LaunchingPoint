@@ -9,7 +9,7 @@ abstract public class BaseWaveCollision : MonoBehaviour
 
     public float timeBeforeDestroy;
 
-    abstract public void OnCollisionEnter(Collision other);
+    abstract public void OnTriggerEnter(Collider other);
 
 
     abstract public void Update();

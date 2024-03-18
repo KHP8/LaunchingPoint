@@ -12,7 +12,7 @@ public class FireWave : BaseWave
 
         // BaseProjectile fields
         dmg = 10;
-        rpm = 10;
+        rpm = 40;
         speed = 10;
         maxRange = 50;
         delay = new WaitForSeconds(60 / rpm);

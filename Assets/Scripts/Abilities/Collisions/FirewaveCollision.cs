@@ -6,10 +6,10 @@ public class FirewaveCollision : BaseWaveCollision
 {
     public void Awake()
     {
-        timeBeforeDestroy = .5f;
+        timeBeforeDestroy = .9f;
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {
@@ -34,9 +34,6 @@ public class FirewaveCollision : BaseWaveCollision
     public override void Update()
     {
         // If the projectile goes too far AKA off scene, destroy it
-        if (Vector3.Distance(startpoint, transform.position) > projectile.maxRange)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, timeBeforeDestroy);
     }
 }
