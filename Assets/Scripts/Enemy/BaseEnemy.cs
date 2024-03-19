@@ -35,6 +35,7 @@ abstract public class BaseEnemy : MonoBehaviour
     //public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
     public float localMoveRadius = 10f;
+    LayerMask layerMask;
     [HideInInspector] public Vector3 lastKnownPos;
 
     [Header("Weapon Values")]
@@ -42,6 +43,7 @@ abstract public class BaseEnemy : MonoBehaviour
     public float dmg;
     public float vel;
     public float maxRange;
+    public float accuracyRadius;
     [HideInInspector] public bool canCast = true;
     public WaitForSeconds cooldown;
     public Coroutine coro;
@@ -70,20 +72,27 @@ abstract public class BaseEnemy : MonoBehaviour
     /// <param name="obj">The prefab of the ability being cast.</param>
     abstract public void ManageCollisionComponents(GameObject obj);
 
-
     void Start()
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
+
         players.Add(GameObject.Find("Player")); // Should be some (empty maybe) game object at the center of the player
+        //for (int i = 1; i < 4; i++)
+        //    players.Add(GameObject.Find("Player (" + i.ToString() + ")"));
+
         cooldown = new WaitForSeconds(60 / rpm);
-        stateMachine.Initialise();
-        GameObject poi = GameObject.Find("POIs");
-        for (int i = 0; i < poi.transform.childCount && i < 4; i++) // (i < 4) b/c list is hard set to 4
-        {
-            waypoints.Add(poi.transform.GetChild(i));
-        }
+
+        //GameObject poi = GameObject.Find("POIs");
+        //for (int i = 0; i < poi.transform.childCount; i++) 
+        //{
+        //    waypoints.Add(poi.transform.GetChild(i));
+        //}
+
         enemyLayer = gameObject.layer;
+        layerMask = ~(1 << enemyLayer);
+
+        stateMachine.Initialise();
     }
 
     void Update()
@@ -183,7 +192,6 @@ abstract public class BaseEnemy : MonoBehaviour
         if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
         {
             Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
-            LayerMask layerMask = ~(1 << enemyLayer);
             RaycastHit hitInfo = new RaycastHit();
             if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
             {
@@ -209,7 +217,6 @@ abstract public class BaseEnemy : MonoBehaviour
         Vector3 vector = target.transform.position - pos;
 
         Ray ray = new Ray(pos + (Vector3.up * eyeHeight), vector - (Vector3.up * eyeHeight));
-        LayerMask layerMask = ~(1 << enemyLayer);
         RaycastHit hitInfo = new RaycastHit();
         if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
         {

@@ -12,7 +12,8 @@ public class TestEnemy : BaseEnemy
         //calculate direction to player
         Vector3 shootDirection = (target.transform.position - projectileSource.position).normalized;
         //add force rigidbody of the bullet
-        obj.GetComponent<Rigidbody>().velocity = Quaternion.AngleAxis(Random.Range(-1f, 1f) , Vector3.up) * shootDirection * vel;
+        obj.GetComponent<Rigidbody>().velocity = 
+            Quaternion.AngleAxis(Random.Range(-accuracyRadius, accuracyRadius) , Vector3.up) * shootDirection * vel;
         bec.baseEnemy = this;
     }
 
@@ -24,12 +25,10 @@ public class TestEnemy : BaseEnemy
             if (canCast) // If timer is done
             {
                 canCast = false;
-                //store a reference to the gun barrel
-                Transform gunBarrel = projectileSource;
                 //instantiate a new bullet
                 GameObject bullet = Instantiate(
                     prefab, 
-                    gunBarrel.position, 
+                    projectileSource.position, 
                     Quaternion.Euler(
                         transform.eulerAngles.x + 90,
                         transform.eulerAngles.y,

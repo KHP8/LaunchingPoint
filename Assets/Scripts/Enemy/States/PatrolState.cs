@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PatrolState : BaseState
 {
-    public int waypointIndex;
-    public float waitTimer;
+    //public int waypointIndex;
+    //public float waitTimer;
 
     public override void Enter()
     {
@@ -20,6 +20,7 @@ public class PatrolState : BaseState
                 {
                     playerVisible = true;
                     enemy.target = player;
+                    stateMachine.ChangeState(new AttackState());
                     break;
                 }
             }
@@ -28,7 +29,7 @@ public class PatrolState : BaseState
         {
             while (enemy.target == null && enemy.players.Count != 0)
             {
-                enemy.target = enemy.players[Random.Range(0, enemy.players.Count-1)];
+                enemy.target = enemy.players[Random.Range(0, enemy.players.Count)];
             }
             enemy.SetDestination();
         }

@@ -21,6 +21,6 @@ public class EnemyHealth : MonoBehaviour
     {
         health -= damage;
         if (health <= 0)
-            Destroy(gameObject);
+            Destroy(gameObject); // do death animation
     }
 }

@@ -11,13 +11,6 @@ public class StateMachine : MonoBehaviour
         ChangeState(new PatrolState());
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +36,6 @@ public class StateMachine : MonoBehaviour
             //setup new state
             activeState.stateMachine = this;
             activeState.enemy = GetComponent<BaseEnemy>();
-            Debug.Log(activeState.enemy);
             activeState.Enter();
         }
     }

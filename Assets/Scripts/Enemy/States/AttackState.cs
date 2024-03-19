@@ -29,6 +29,12 @@ public class AttackState : BaseState
 
     public override void Perform()
     {
+
+        if (enemy.target.GetComponent<PlayerHealth>().health <= 0)
+        {
+            stateMachine.ChangeState(new PatrolState());
+        }
+
         if (enemy.CanSee(enemy.target)) // player can be seen
         {
             // lock the lose player timer and increment the move and shot timers
@@ -57,7 +63,7 @@ public class AttackState : BaseState
 
         if (enemy.lastKnownPos != null)
         {
-            enemy.transform.LookAt(enemy.lastKnownPos);
+            enemy.transform.LookAt(enemy.lastKnownPos + Vector3.up * enemy.eyeHeight);
         }
     }
 
