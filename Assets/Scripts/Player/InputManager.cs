@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour
     private BaseAbility primaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
+    private BaseAbility ultimateAbility;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,6 +53,8 @@ public class InputManager : MonoBehaviour
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
         player.Q.performed += ctx => specialQAbility.UseAbility();
+
+
     }
 
     private void AddComponents()
@@ -90,9 +93,20 @@ public class InputManager : MonoBehaviour
 
         }
 
+
+        // Ultimate Abilities
+        if (PlayerPrefs.GetString("Ultimate") == "FireNuke")
+        {
+            Debug.Log("FireNuke added to Ultimate");
+            playerObject.AddComponent<Scorch>();
+            playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
+            ultimateAbility = GetComponent<Scorch>();
+        }
+
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
         Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
+        Debug.Log("Ultimate: " + PlayerPrefs.GetString("Ultimate"));
     }
 
     // To be implemented later
