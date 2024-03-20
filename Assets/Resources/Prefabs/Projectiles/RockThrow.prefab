@@ -146,3 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc12c5c288f4b409f811acdccf0730a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectile: {fileID: 0}
+  startpoint: {x: 0, y: 0, z: 0}
+  animator: {fileID: 0}
+  timeBeforeDestroy: 0
+  timeBeforeAnimation: 0

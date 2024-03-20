@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     private PauseMenu pause;
 
     private BaseAbility primaryAbility;
+    private BaseAbility secondaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
 
@@ -51,7 +52,10 @@ public class InputManager : MonoBehaviour
 
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
+        player.LeftClick.performed += ctx => secondaryAbility.UseAbility();
+        player.LeftClick.canceled += ctx => secondaryAbility.StopAbility();
         player.Q.performed += ctx => specialQAbility.UseAbility();
+        player.E.performed += ctx => specialEAbility.UseAbility();
     }
 
     private void AddComponents()
@@ -62,6 +66,14 @@ public class InputManager : MonoBehaviour
             playerObject.AddComponent<Fireball>();
             playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
             primaryAbility = GetComponent<Fireball>();
+        }
+
+        if (PlayerPrefs.GetString("Secondary") == "RockThrow")
+        {
+            Debug.Log("Rock Throw added to Secondary");
+            playerObject.AddComponent<RockThrow>();
+            playerObject.GetComponent<RockThrow>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            secondaryAbility = GetComponent<RockThrow>();
         }
 
         // SpecialQ Abilities
