@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     private PauseMenu pause;
 
     private BaseAbility primaryAbility;
+    private BaseAbility secondaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
     private BaseAbility ultimateAbility;
@@ -53,6 +54,8 @@ public class InputManager : MonoBehaviour
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
         player.Q.performed += ctx => specialQAbility.UseAbility();
+        player.E.performed += ctx => specialEAbility.UseAbility();
+        player.C.performed += ctx => ultimateAbility.UseAbility();
 
 
     }
@@ -104,6 +107,7 @@ public class InputManager : MonoBehaviour
         }
 
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
+        Debug.Log("Secondary: " + PlayerPrefs.GetString("Secondary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
         Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
         Debug.Log("Ultimate: " + PlayerPrefs.GetString("Ultimate"));
