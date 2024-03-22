@@ -101,9 +101,9 @@ public class InputManager : MonoBehaviour
         if (PlayerPrefs.GetString("Ultimate") == "FireNuke")
         {
             Debug.Log("FireNuke added to Ultimate");
-            playerObject.AddComponent<Scorch>();
-            playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
-            ultimateAbility = GetComponent<Scorch>();
+            playerObject.AddComponent<FireNuke>();
+            playerObject.GetComponent<FireNuke>().parent = playerObject.transform.Find("PlayerBody");
+            ultimateAbility = GetComponent<FireNuke>();
         }
 
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
