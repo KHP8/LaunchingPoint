@@ -8,7 +8,7 @@ public class AttackState : BaseState
     private float moveTimer; 
     private float waitToMove; // how long enemy stays in one place
     private float losePlayerTimer; 
-    private float waitBeforeSearchTime = 3f; //how long enemy remains in attack state before they search
+    private readonly float waitBeforeSearchTime = 3f; //how long enemy remains in attack state before they search
     
 
     public override void Enter()

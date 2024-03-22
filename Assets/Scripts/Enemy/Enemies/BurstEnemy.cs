@@ -7,8 +7,8 @@ public class BurstEnemy : BaseEnemy
 
     private bool canBurst = true;
     private int bulletCount = 0;
-    private int maxBulletCount = 3;
-    private float burstMidpoint = .33f;
+    private readonly int maxBulletCount = 3;
+    private readonly float burstMidpoint = .33f;
     private WaitForSeconds burstCooldown;
 
     public override void ManageCollisionComponents(GameObject obj)
@@ -49,14 +49,14 @@ public class BurstEnemy : BaseEnemy
             {
                 canBurst = false; // not putting this acts like a shotgun
                 bulletCount++;
-                StartCoroutine(Shot());
+                Shot();
                 StartCoroutine(ResetBurstCooldown());
             }
             yield return null;
         }
     }
 
-    public IEnumerator Shot()
+    public void Shot()
     {
         GameObject bullet = Instantiate(
             prefab, 
@@ -70,7 +70,6 @@ public class BurstEnemy : BaseEnemy
 
         ManageCollisionComponents(bullet);
 
-        yield return null;
     }
 
     public override void StopAbility()
