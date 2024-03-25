@@ -358,6 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 766094610514992147}
   - component: {fileID: 6759064028797091087}
+  - component: {fileID: 4395882097003404642}
   - component: {fileID: 7964486265882124652}
   - component: {fileID: 6080379600966768639}
   - component: {fileID: 6155295172962138558}
@@ -407,6 +408,33 @@ NavMeshAgent:
   m_BaseOffset: 1.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &4395882097003404642
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443387808126312804}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!114 &7964486265882124652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +477,6 @@ MonoBehaviour:
   players: []
   projectileSource: {fileID: 2270542410677560821}
   prefab: {fileID: 3974220597357036714, guid: 2e0638b84391410448cbcd372f9e4d35, type: 3}
-  waypoints: []
   target: {fileID: 0}
   eyeHeight: 0.6
   localMoveRadius: 10
