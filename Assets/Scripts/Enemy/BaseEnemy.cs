@@ -23,7 +23,7 @@ abstract public class BaseEnemy : MonoBehaviour
     public List<GameObject> players = new();
     public Transform projectileSource;
     public GameObject prefab;
-    public Rigidbody enemyRigidBody;
+    [HideInInspector] public Rigidbody enemyRigidBody;
     [HideInInspector] public GameObject target; 
     //public List<Transform> waypoints = new();
 
@@ -40,16 +40,20 @@ abstract public class BaseEnemy : MonoBehaviour
     public float maxRange;
     public float accuracyRadius;
 
+    [Header("Physics")]
+    bool isGrounded;
+    public LayerMask whatIsGround;
+
     [HideInInspector] public bool canCast = true;
     public WaitForSeconds cooldown;
     public Coroutine coro;
 
-    private int enemyLayer;
+    int enemyLayer;
     // or use this, and set in inspector:
     // public List<int> ignoreLayers;
 
     //just for debugging purposes, so we can see what state it is in
-    [SerializeField] private string currentState;
+    [SerializeField] string currentState;
 
     /// <summary>
     /// Handles the detailed usage of the enemy ability. May instantiate projectiles, create beams, etc.
@@ -103,9 +107,9 @@ abstract public class BaseEnemy : MonoBehaviour
     {
         if (agent.enabled == false)
         {
-            Debug.Log(enemyRigidBody.velocity.magnitude);
-            // close enough to zero; toggle NavMesh back on
-            if (enemyRigidBody.velocity.magnitude < 1f && enemyRigidBody.velocity.magnitude != 0)
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, agent.height * 0.5f + 0.4f, whatIsGround);
+            // if close enough to zero, toggle NavMesh back on
+            if (isGrounded && enemyRigidBody.velocity.magnitude < 1f && enemyRigidBody.velocity.magnitude != 0)
             {
                 agent.enabled = true;
                 enemyRigidBody.isKinematic = true;
@@ -114,13 +118,22 @@ abstract public class BaseEnemy : MonoBehaviour
         }
     }
 
-    public void Knockback(Vector3 force)
+    /// <summary>
+    /// Applies knockback to the enemy. Disables the NavMesh to apply it
+    /// </summary>
+    /// <param name="pos">Transform.position of the colliding object</param>
+    /// <param name="mod">Modifier of how strong the knockback should be</param>
+    public void Knockback(Vector3 pos, float mod)
     {
         agent.enabled = false;
         enemyRigidBody.isKinematic = false;
         enemyRigidBody.useGravity = true;
 
-        enemyRigidBody.AddForce(force.x, force.y, force.z, ForceMode.Force); 
+        Vector3 dist = transform.position - pos;
+
+        dist = new(1/dist.x, 1/dist.y, 1/dist.z);
+
+        enemyRigidBody.AddForce(dist * mod, ForceMode.Force);
     }
 
     public void UseAbility() 
