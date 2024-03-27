@@ -30,6 +30,7 @@ abstract public class BaseEnemy : MonoBehaviour
     [Header("Sight Values")]
     public float eyeHeight = 0.6f;
     public float localMoveRadius = 10f;
+    public float maxSight;
     LayerMask layerMask;
     [HideInInspector] public Vector3 lastKnownPos;
 
