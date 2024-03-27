@@ -54,10 +54,9 @@ public class InputManager : MonoBehaviour
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
         player.Q.performed += ctx => specialQAbility.UseAbility();
+        player.Q.canceled += ctx => specialQAbility.StopAbility();
         player.E.performed += ctx => specialEAbility.UseAbility();
-        player.C.performed += ctx => ultimateAbility.UseAbility();
-
-
+        player.E.canceled += ctx => specialEAbility.StopAbility();
     }
 
     private void AddComponents()
@@ -80,20 +79,26 @@ public class InputManager : MonoBehaviour
         }
         else if (PlayerPrefs.GetString("SpecialQ") == "FireWave")
         {
-
+            Debug.Log("FireWave added to SpecialQ");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialQAbility = GetComponent<FireWave>();
         }
 
         // SpecialE Abilities
         if (PlayerPrefs.GetString("SpecialE") == "Scorch")
         {
-            Debug.Log("Scorch added to SpecialQ");
+            Debug.Log("Scorch added to SpecialE");
             playerObject.AddComponent<Scorch>();
             playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialEAbility = GetComponent<Scorch>();
         }
         else if (PlayerPrefs.GetString("SpecialE") == "FireWave")
         {
-
+            Debug.Log("FireWave added to SpecialE");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialEAbility = GetComponent<FireWave>();
         }
 
 

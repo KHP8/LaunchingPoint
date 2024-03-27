@@ -17,10 +17,10 @@ TagManager:
   - UI
   - Interactable
   - whatIsGround
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - AbilityNonBlocking
+  - AbilityBlocking
   - 
   - 
   - 

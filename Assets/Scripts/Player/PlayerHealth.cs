@@ -6,11 +6,11 @@ using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private float health;
     private float lerpTimer;
 
     [Header("Health Bar")]  // cannot be placed directly above a private variable
     public float maxHealth = 100f;
+    public float health;
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image backHealthBar;
@@ -86,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         lerpTimer = 0f;
         durationTimer = 0;
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 1);
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, .5f);
     }
 
     public void RestoreHealth(float healAmount)
