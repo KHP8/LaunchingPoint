@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class BaseNukeCollision : MonoBehaviour
 {
+    [HideInInspector] public GameObject player;
+
     public BaseNuke summon;
     private bool tickDmg = true;
     private WaitForSeconds dmgTimer = new WaitForSeconds(.1f);
@@ -25,7 +27,8 @@ public class BaseNukeCollision : MonoBehaviour
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(summon.dmg);
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(summon.dmg, player);
+                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, summon.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }

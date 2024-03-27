@@ -15,6 +15,7 @@ abstract public class BaseWave : BaseAbility
     public float speed;
     public float dmg;
     public float maxRange;
+    public float knockbackMod;
 
     // Handles cooldowns and actual shooting
     //[HideInInspector] 
@@ -68,11 +69,5 @@ abstract public class BaseWave : BaseAbility
         // Destroy the coroutine 
         if (coro != null)
             StopCoroutine(coro);
-    }
-
-    IEnumerator ResetCastCooldown()
-    {
-        yield return delay;
-        canShoot = true;
     }
 }

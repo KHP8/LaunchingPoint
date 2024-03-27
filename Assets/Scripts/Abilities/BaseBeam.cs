@@ -25,7 +25,7 @@ abstract public class BaseBeam : BaseAbility
 
     [Header("Weapon Stats")]
     public float dmg; // Per 1/10 second
-
+    public float knockbackMod;
     public WaitForSeconds abilityLength;
 
 

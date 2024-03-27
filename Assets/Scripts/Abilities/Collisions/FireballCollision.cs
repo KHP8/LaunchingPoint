@@ -20,7 +20,8 @@ public class FireballCollision : BaseProjectileCollision
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
+                other.transform.GetComponent<EnemyHealth>().TakeDamage(projectile.dmg, player);
+                other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, projectile.knockbackMod);
             }
             else
             {

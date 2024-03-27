@@ -26,6 +26,7 @@ abstract public class BaseNuke : BaseAbility
 
     [Header("Weapon Stats")]
     public float dmg; // Per 1/10 second
+    public float knockbackMod;
 
     public float maxRange;
 

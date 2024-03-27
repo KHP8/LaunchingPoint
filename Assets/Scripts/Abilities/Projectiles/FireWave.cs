@@ -25,5 +25,6 @@ public class FireWave : BaseWave
         firewaveCollision = obj.GetComponent<FirewaveCollision>();
         firewaveCollision.startpoint = projectileSource.transform.position;
         firewaveCollision.projectile = this;
+        firewaveCollision.player = gameObject;
     }
 }
