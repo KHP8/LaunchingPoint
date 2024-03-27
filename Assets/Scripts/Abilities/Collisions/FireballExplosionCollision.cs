@@ -1,19 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-/*
-
-*/
-
-
-
-public class FireballCollision : BaseProjectileCollision
+public class FireballExplosionCollision : BaseExplosionCollision
 {
-    public GameObject prefab2;
-   
-    
-    public override void OnCollisionEnter(Collision other)
+    // Start is called before the first frame update
+     public override void OnTriggerEnter(Collider other)
     {
         
         if (!other.transform.CompareTag("Player"))
@@ -30,8 +23,7 @@ public class FireballCollision : BaseProjectileCollision
 
             // Regardless of what is hit, destroy the projectile
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            Instantiate(prefab2,transform.position,transform.rotation);
-            Destroy(gameObject);
+            Destroy(gameObject, 2f);
         }
         else if (other.transform.CompareTag("Player"))
         {
@@ -42,10 +34,6 @@ public class FireballCollision : BaseProjectileCollision
 
     public override void Update()
     {
-        // If the projectile goes too far AKA off scene, destroy it
-        if (Vector3.Distance(startpoint, transform.position) > projectile.maxRange)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 }

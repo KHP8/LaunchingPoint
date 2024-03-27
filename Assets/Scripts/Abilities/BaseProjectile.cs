@@ -21,6 +21,7 @@ abstract public class BaseProjectile : BaseAbility
     public Transform projectileSource;
     public GameObject prefab;
     
+    
     // Rate of fire, speed of proj, dmg of proj, how far it can go before being destroyed
     [Header("Weapon Stats")]
     public float rpm;
