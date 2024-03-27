@@ -20,8 +20,10 @@ public class InputManager : MonoBehaviour
     private PauseMenu pause;
 
     private BaseAbility primaryAbility;
+    private BaseAbility secondaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
+    private BaseAbility ultimateAbility;
 
     // Start is called before the first frame update
     void Awake()
@@ -99,9 +101,21 @@ public class InputManager : MonoBehaviour
             specialEAbility = GetComponent<FireWave>();
         }
 
+
+        // Ultimate Abilities
+        if (PlayerPrefs.GetString("Ultimate") == "FireNuke")
+        {
+            Debug.Log("FireNuke added to Ultimate");
+            playerObject.AddComponent<FireNuke>();
+            playerObject.GetComponent<FireNuke>().parent = playerObject.transform.Find("PlayerBody");
+            ultimateAbility = GetComponent<FireNuke>();
+        }
+
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
+        Debug.Log("Secondary: " + PlayerPrefs.GetString("Secondary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
         Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
+        Debug.Log("Ultimate: " + PlayerPrefs.GetString("Ultimate"));
     }
 
     // To be implemented later
