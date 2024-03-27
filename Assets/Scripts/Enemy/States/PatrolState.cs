@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PatrolState : BaseState
 {
-    //public int waypointIndex;
-    //public float waitTimer;
 
     public override void Enter()
     {
@@ -54,7 +52,7 @@ public class PatrolState : BaseState
         }
 
         // If the target would not be seen by the new destination, make a new destination
-        if (!enemy.WouldSee(enemy.target, enemy.agent.destination))
+        if (enemy.agent.enabled && !enemy.WouldSee(enemy.target, enemy.agent.destination))
         {
             enemy.SetDestination();
         }

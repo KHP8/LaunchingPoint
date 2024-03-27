@@ -13,6 +13,7 @@ abstract public class BaseProjectileCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
     [HideInInspector] public Vector3 startpoint;
+    [HideInInspector] public GameObject player;
 
     public Animator animator;
     public float timeBeforeDestroy;

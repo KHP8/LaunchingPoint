@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class BaseBeamCollision : MonoBehaviour
 {
+    [HideInInspector] public GameObject player;
+
     public BaseBeam beam;
     private bool tickDmg = true;
     private WaitForSeconds dmgTimer = new WaitForSeconds(.1f);
@@ -25,7 +27,8 @@ public class BaseBeamCollision : MonoBehaviour
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg);
+                    other.transform.GetComponent<EnemyHealth>().TakeDamage(beam.dmg, player);
+                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }
