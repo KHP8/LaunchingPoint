@@ -104,6 +104,10 @@ public class Hotbar : MonoBehaviour
             hotbarButtons[3].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("SpecialE")];
         else
             hotbarButtons[3].GetComponent<Image>().sprite = null;
+        if (PlayerPrefs.HasKey("Ultimate"))
+            hotbarButtons[4].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Ultimate")];
+        else
+            hotbarButtons[4].GetComponent<Image>().sprite = null;
 
         for (int i = 0; i < defaultNames.Length; i++)
         {
@@ -173,6 +177,7 @@ public class Hotbar : MonoBehaviour
     public void OnUltimateButton(GameObject selectedButton)
     {
         DisableButtons();
+        FilterButtons(UabilNames, uAbilImage, ultimateDesc, "Ultimate");
         activeButton = selectedButton;
     }
 
