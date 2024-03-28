@@ -20,8 +20,10 @@ public class InputManager : MonoBehaviour
     private PauseMenu pause;
 
     private BaseAbility primaryAbility;
+    private BaseAbility secondaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
+    private BaseAbility ultimateAbility;
 
     // Start is called before the first frame update
     void Awake()
@@ -52,6 +54,10 @@ public class InputManager : MonoBehaviour
         player.RightClick.performed += ctx => primaryAbility.UseAbility();
         player.RightClick.canceled += ctx => primaryAbility.StopAbility();
         player.Q.performed += ctx => specialQAbility.UseAbility();
+        player.Q.canceled += ctx => specialQAbility.StopAbility();
+        player.E.performed += ctx => specialEAbility.UseAbility();
+        player.E.canceled += ctx => specialEAbility.StopAbility();
+        player.C.performed += ctx => ultimateAbility.UseAbility();
     }
 
     private void AddComponents()
@@ -74,25 +80,43 @@ public class InputManager : MonoBehaviour
         }
         else if (PlayerPrefs.GetString("SpecialQ") == "FireWave")
         {
-
+            Debug.Log("FireWave added to SpecialQ");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialQAbility = GetComponent<FireWave>();
         }
 
         // SpecialE Abilities
         if (PlayerPrefs.GetString("SpecialE") == "Scorch")
         {
-            Debug.Log("Scorch added to SpecialQ");
+            Debug.Log("Scorch added to SpecialE");
             playerObject.AddComponent<Scorch>();
             playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialEAbility = GetComponent<Scorch>();
         }
         else if (PlayerPrefs.GetString("SpecialE") == "FireWave")
         {
+            Debug.Log("FireWave added to SpecialE");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialEAbility = GetComponent<FireWave>();
+        }
 
+
+        // Ultimate Abilities
+        if (PlayerPrefs.GetString("Ultimate") == "FireNuke")
+        {
+            Debug.Log("FireNuke added to Ultimate");
+            playerObject.AddComponent<FireNuke>();
+            playerObject.GetComponent<FireNuke>().parent = playerObject.transform.Find("PlayerBody");
+            ultimateAbility = GetComponent<FireNuke>();
         }
 
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
+        Debug.Log("Secondary: " + PlayerPrefs.GetString("Secondary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
         Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
+        Debug.Log("Ultimate: " + PlayerPrefs.GetString("Ultimate"));
     }
 
     // To be implemented later

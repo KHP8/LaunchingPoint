@@ -27,6 +27,7 @@ abstract public class BaseProjectile : BaseAbility
     public float speed;
     public float dmg;
     public float maxRange;
+    public float knockbackMod;
 
     public Coroutine coro; 
 

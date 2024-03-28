@@ -23,5 +23,6 @@ public class Fireball : BaseProjectile
         fireballCollision = obj.GetComponent<FireballCollision>();
         fireballCollision.startpoint = projectileSource.transform.position;
         fireballCollision.projectile = this;
+        fireballCollision.player = gameObject;
     }
 }

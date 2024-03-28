@@ -2,18 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-
-*/
-
-public class FireballCollision : BaseProjectileCollision
+public class FirewaveCollision : BaseWaveCollision
 {
     public void Awake()
     {
-        timeBeforeDestroy = .5f;
+        timeBeforeDestroy = .9f;
     }
 
-    public override void OnCollisionEnter(Collision other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (!other.transform.CompareTag("Player"))
         {
@@ -28,9 +24,6 @@ public class FireballCollision : BaseProjectileCollision
                 Debug.Log("Not an Enemy Hit");
             }
 
-            AnimationCollisionStart();
-            // Regardless of what is hit, destroy the projectile
-            Destroy(gameObject, timeBeforeDestroy);
         }
         else if (other.transform.CompareTag("Player"))
         {
@@ -38,19 +31,10 @@ public class FireballCollision : BaseProjectileCollision
         }
     }
 
-    public override void AnimationCollisionStart()
-    {
-        
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        animator.SetTrigger("CollisionDetected");
-    }
 
     public override void Update()
     {
         // If the projectile goes too far AKA off scene, destroy it
-        if (Vector3.Distance(startpoint, transform.position) > projectile.maxRange)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, timeBeforeDestroy);
     }
 }

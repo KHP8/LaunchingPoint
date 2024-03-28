@@ -10,11 +10,11 @@ using UnityEngine;
     OnTriggerStay handles when the prefab hits anything and deals damage when needed.
 */
 
-public class BaseBeamCollision : MonoBehaviour
+public class BaseNukeCollision : MonoBehaviour
 {
     [HideInInspector] public GameObject player;
 
-    public BaseBeam beam;
+    public BaseNuke summon;
     private bool tickDmg = true;
     private WaitForSeconds dmgTimer = new WaitForSeconds(.1f);
 
@@ -27,8 +27,8 @@ public class BaseBeamCollision : MonoBehaviour
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponent<EnemyHealth>().TakeDamage(beam.dmg, player);
-                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(summon.dmg, player);
+                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, summon.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }

@@ -15,17 +15,21 @@ using UnityEngine;
     All children should use the Awake function to assign values.
 */
 
-abstract public class BaseBeam : BaseAbility
+abstract public class BaseNuke : BaseAbility
 {
     // References to locations
-    [HideInInspector] public Vector3 beamSource;
-    [HideInInspector] public GameObject prefab;
-    [HideInInspector] public GameObject thisBeam;
-    [HideInInspector] public Transform parent;
+    public Transform projectileSource;
+    public Vector3 beamSource;
+    public GameObject prefab;
+    public GameObject thisBeam;
+    public Transform parent;
 
     [Header("Weapon Stats")]
     public float dmg; // Per 1/10 second
     public float knockbackMod;
+
+    public float maxRange;
+
     public WaitForSeconds abilityLength;
 
 
@@ -43,19 +47,41 @@ abstract public class BaseBeam : BaseAbility
         {
             Debug.Log("CASTBEAM");
             canCast = false;
+            Camera cam = GetComponent<PlayerLook>().cam;
 
             // Create a projectile oriented towards camera direction
+            RaycastHit hit;
+            Ray summonRay = new Ray(cam.transform.position, cam.transform.forward);
+
+            // If the player was pointing at the ground
+
+            if(Physics.Raycast(summonRay, out hit, maxRange)){
+                Debug.Log(hit.point);
+            }
+            // If the player was pointing at the air
+
+            
+
             GameObject beam = Instantiate(
+                prefab,
+                hit.point,
+                Quaternion.identity
+            );
+
+            beam.transform.rotation = Quaternion.FromToRotation(
+                    Vector3.up, hit.normal
+            );
+
+            /*GameObject beam = Instantiate(
                 prefab,
                 beamSource,
                 Quaternion.Euler(
                     0,
                     transform.eulerAngles.y,
                     0
-                ),
-                parent
+                )
             );
-
+            */
             thisBeam = beam;
 
             ManageCollisionComponents(beam);
@@ -68,6 +94,7 @@ abstract public class BaseBeam : BaseAbility
         }
     }
 
+   
     public override void StopAbility()
     {
         
