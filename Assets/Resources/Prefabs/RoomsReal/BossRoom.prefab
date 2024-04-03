@@ -10115,7 +10115,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2591472643390469690}
-  - component: {fileID: 3706903502553227501}
   - component: {fileID: 7178763500714353334}
   m_Layer: 0
   m_Name: Box Volume
@@ -10139,27 +10138,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8984242936573500250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3706903502553227501
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495695945342432734}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7178763500714353334
 MonoBehaviour:
   m_ObjectHideFlags: 0

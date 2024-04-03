@@ -20,15 +20,17 @@ public class BaseBeamCollision : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(other.name);
         if (!other.transform.CompareTag("Player"))
         {
+
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponent<EnemyHealth>().TakeDamage(beam.dmg, player);
-                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg, player);
+                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }
