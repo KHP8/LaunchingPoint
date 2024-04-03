@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
         rooms[2].GetComponentInChildren<LevelExit>().nextRoom = rooms[3];
         rooms[3].GetComponentInChildren<LevelExit>().nextRoom = rooms[0];
 
-        //rooms[0].GetComponent<RoomHandler>().SpawnEnemies();
+        rooms[0].GetComponent<RoomHandler>().SpawnEnemies();
 
         virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
         player.transform.position = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.position;
         player.transform.rotation = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.rotation;
         Debug.Log("TEST");
-        Debug.Log(player.transform.position);
+        Debug.Log(player.transform.position);   
         virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>()
