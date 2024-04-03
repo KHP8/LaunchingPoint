@@ -11,7 +11,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private GameObject virtualCamera;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         roomList = Resources.LoadAll("Prefabs/RoomsReal").Cast<GameObject>().ToList();
 
@@ -29,25 +29,24 @@ public class LevelGenerator : MonoBehaviour
             room.GetComponent<RoomHandler>().virtualCamera = virtualCamera;
             rooms[i] = Instantiate(room, position, rotation);
         }
-            rooms[2].GetComponentInChildren<LevelExit>().nextRoom = rooms[3];
-            rooms[3].GetComponentInChildren<LevelExit>().nextRoom = rooms[0];
 
+        rooms[2].GetComponentInChildren<LevelExit>().nextRoom = rooms[3];
+        rooms[3].GetComponentInChildren<LevelExit>().nextRoom = rooms[0];
+
+        //rooms[0].GetComponent<RoomHandler>().SpawnEnemies();
 
         virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>()
             .DampingFromCollision = 0;
-        Vector3 offset = new Vector3(0, 0, 250);
-        player.transform.position = roomList[0].GetComponent<RoomHandler>().spawnPoint.transform.position + offset;
+        //Debug.Log(rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.position);
+        player.transform.position = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.position;
+        player.transform.rotation = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.rotation;
+        Debug.Log("TEST");
+        Debug.Log(player.transform.position);
         virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>()
             .DampingFromCollision = 2;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
