@@ -26,9 +26,9 @@ public class BaseNukeCollision : MonoBehaviour
             {
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
-                {
+                {   
                     other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(summon.dmg, player);
-                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, summon.knockbackMod);
+                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, summon.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }

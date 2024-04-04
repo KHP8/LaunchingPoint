@@ -20,10 +20,8 @@ public class BaseBeamCollision : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
         if (!other.transform.CompareTag("Player"))
         {
-
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");

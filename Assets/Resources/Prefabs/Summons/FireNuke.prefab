@@ -2680,6 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f06d932483943e49affdc5b5faf6031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   summon: {fileID: 0}
 --- !u!95 &1576288134580018123
 Animator:
