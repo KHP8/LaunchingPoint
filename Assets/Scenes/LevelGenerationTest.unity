@@ -10135,7 +10135,7 @@ MonoBehaviour:
   jumpCooldown: 0.2
   sprintSpeedPercent: 0.5
   acceleration: 10
-  airSpeed: 7
+  airSpeed: 15
   airDrag: 1
   airMultiplier: 0.8
   jumpHeight: 1.1
