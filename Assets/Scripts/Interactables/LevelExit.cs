@@ -7,18 +7,22 @@ using UnityEngine;
 public class LevelExit : Interactable
 {
     public GameObject nextRoom;
+    public bool canExit = false;
     private RoomHandler roomHandler;
     private WaitForSeconds cameraDelay = new WaitForSeconds(1f);
 
     void Start()
     {
-        promptMessage = "Exit Level";
+        promptMessage = "";
         roomHandler = nextRoom.GetComponent<RoomHandler>();
     }
 
     public override void Interact()
     {
-        //roomHandler.SpawnEnemies();
+        if (!canExit)
+            return;
+
+        roomHandler.SpawnEnemies();
         roomHandler.virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>()

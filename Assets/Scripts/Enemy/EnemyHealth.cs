@@ -38,6 +38,7 @@ public class EnemyHealth : MonoBehaviour
         if (health <= 0) 
         {
             Destroy(gameObject); // do death animation
+            this.GetComponentInParent<RoomHandler>().enemies.Remove(this.gameObject);
             return;
         }
         

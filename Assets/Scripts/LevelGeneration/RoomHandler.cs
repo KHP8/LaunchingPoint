@@ -6,17 +6,34 @@ using UnityEngine.InputSystem.Controls;
 
 public class RoomHandler : MonoBehaviour
 {
+    public int numEnemies;
+
     public GameObject spawnPoint;
     public GameObject player;
     public GameObject virtualCamera;
+    public GameObject levelExiter;
     public List<GameObject> enemies = new();
     public List<GameObject> spawners = new();
-    public int numEnemies = 2;
+
 
     public void Start()
     {
         player = GameObject.Find("Player");
         virtualCamera = GameObject.Find("Virtual Camera");
+    }
+
+    public void Update()
+    {
+        EnemyClearCheck();
+    }
+
+    public void EnemyClearCheck()
+    {
+        if (enemies.Count == 0)
+        {
+            levelExiter.GetComponent<LevelExit>().canExit = true;
+            levelExiter.GetComponent<LevelExit>().promptMessage = "Exit Level";
+        }
     }
 
     public void SpawnEnemies()

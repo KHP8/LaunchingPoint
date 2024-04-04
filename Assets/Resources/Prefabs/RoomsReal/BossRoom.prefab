@@ -11701,16 +11701,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19014df18900c7e478d668a5a74a2632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numEnemies: 3
   spawnPoint: {fileID: 1624719379083453516}
   player: {fileID: 0}
   virtualCamera: {fileID: 0}
+  levelExiter: {fileID: 7237221724630572593}
   enemies: []
   spawners:
   - {fileID: 8692552006968716299}
   - {fileID: 9052008176783540275}
   - {fileID: 7164404641322353304}
   - {fileID: 5468119987183112549}
-  numEnemies: 2
 --- !u!114 &4520089130199218501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28380,5 +28381,10 @@ PrefabInstance:
 --- !u!4 &1097764632350726978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 970432581841606501, guid: 908ebe32c5c5c08438e044fe39aabbb5, type: 3}
+  m_PrefabInstance: {fileID: 165402108082965543}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7237221724630572593 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7360120421577560598, guid: 908ebe32c5c5c08438e044fe39aabbb5, type: 3}
   m_PrefabInstance: {fileID: 165402108082965543}
   m_PrefabAsset: {fileID: 0}
