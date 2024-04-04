@@ -18,7 +18,6 @@ public class Scorch : BaseBeam
     {
         ScorchCollision scorchCollision;
         scorchCollision = obj.GetComponentInChildren<ScorchCollision>();
-        scorchCollision.beam = this;
-        scorchCollision.player = gameObject;
+        scorchCollision.beam = obj.GetComponentInChildren<Scorch>();
     }
 }   

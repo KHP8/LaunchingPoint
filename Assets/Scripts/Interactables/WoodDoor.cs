@@ -5,11 +5,9 @@ using UnityEngine;
 public class WoodDoor : Interactable
 {
     private Animator animator;
-
     // Start is called before the first frame update
     void Start()
     {
-        promptMessage = "Open Door";
         animator = GetComponent<Animator>();
     }
 
@@ -23,7 +21,7 @@ public class WoodDoor : Interactable
         }
     }
 
-    public override void Interact() 
+    protected override void Interact() 
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Default"))
         {

@@ -31,33 +31,33 @@ public class MainMenu : MonoBehaviour
         abilityButtons = hotbar.GetComponent<Hotbar>().abilityButtons;
     }
 
-    private void ToggleBanner(bool toggle)
-    {
-        for (int i = 0; i < bannerButtons.Length; i++)
-            bannerButtons[i].GetComponent<Button>().enabled = toggle;
-    }
-
     public void OnNewsButton()
     {
         newsMenu.SetActive(true);
         //newsMenuOpen = true;
-        ToggleBanner(false);
+        for (int i = 0; i < bannerButtons.Length; i++)
+        {
+            bannerButtons[i].GetComponent<Button>().enabled = false;
+        }
     }
 
     public void OnCloseNewsButton()
     {
         newsMenu.SetActive(false);
         //newsMenuOpen = false;
-        ToggleBanner(true);
+        for (int i = 0; i < bannerButtons.Length; i++)
+        {
+            bannerButtons[i].GetComponent<Button>().enabled = true;
+        }
     }
     public void OnPlayButton()
     {
-        abilityMenu.SetActive(true);
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void OnLoadButton()
     {
-
+        abilityMenu.SetActive(true);
     }
 
     public void OnCloseAbilityButton()
@@ -80,13 +80,19 @@ public class MainMenu : MonoBehaviour
     public void OnSettingsButton()
     {
         settingsMenu.SetActive(true);
-        ToggleBanner(false);
+        for (int i = 0; i < bannerButtons.Length; i++)
+        {
+            bannerButtons[i].GetComponent<Button>().enabled = false;
+        }
     }
 
     public void OnCloseSettingsButton()
     {
         settingsMenu.SetActive(false);
-        ToggleBanner(true);
+        for (int i = 0; i < bannerButtons.Length; i++)
+        {
+            bannerButtons[i].GetComponent<Button>().enabled = true;
+        }
     }
 
     public void OnCreditsButton()

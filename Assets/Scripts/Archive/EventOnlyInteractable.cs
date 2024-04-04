@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EventOnlyInteractable : MonoBehaviour
+public class EventOnlyInteractable : Interactable
 {
 
 }

@@ -1,16 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 
 public class SearchState : BaseState
 {
     private float searchTimer;
     private float moveTimer;
-    private float waitBeforeMove;
     
 
     public override void Enter()
     {
         enemy.SetDestination(enemy.lastKnownPos);
-        waitBeforeMove = Random.Range(3, 5);
     }
 
     public override void Exit()
@@ -35,16 +36,16 @@ public class SearchState : BaseState
 
         searchTimer += Time.deltaTime;
 
-        if (enemy.agent.enabled && enemy.agent.velocity.magnitude < 1)
+        if (enemy.agent.velocity.magnitude < 1)
         {
+            Debug.Log("Stopped");
             moveTimer += Time.deltaTime;
         }
 
-        if (moveTimer > waitBeforeMove)
+        if (moveTimer > Random.Range(3,5))
         {
             enemy.SetDestination(enemy.transform.position + (Random.insideUnitSphere * enemy.localMoveRadius));
             moveTimer = 0;
-            waitBeforeMove = Random.Range(3,5);
         }
 
         if (searchTimer > 10)

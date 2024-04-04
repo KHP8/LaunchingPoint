@@ -1,10 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackState : BaseState
 {
 
     private float moveTimer; 
-    private float waitToMove; // how long enemy stays in one place, set to between 5 and 10
+    private float waitToMove; // how long enemy stays in one place
     private float losePlayerTimer; 
     private readonly float waitBeforeSearchTime = 3f; //how long enemy remains in attack state before they search
     
@@ -14,7 +16,7 @@ public class AttackState : BaseState
         enemy.UseAbility();
         //enemy.agent.SetDestination(enemy.agent.transform.position); // stop moving
         waitToMove = Random.Range(5, 10);
-        if (enemy.agent.enabled && !enemy.WouldSee(enemy.target, enemy.agent.destination)) // if they can't see the target from their current destination
+        if (!enemy.WouldSee(enemy.target, enemy.agent.destination)) // if they can't see the target from their current destination
         {
             enemy.SetDestination();
         }
@@ -41,7 +43,7 @@ public class AttackState : BaseState
             enemy.transform.LookAt(enemy.target.transform);
 
             // move the enemy to a random position after a random time
-            if (moveTimer > waitToMove && enemy.agent.enabled)
+            if (moveTimer > waitToMove)
             {
                 enemy.agent.SetDestination(enemy.GetDestination(enemy.target, enemy.transform.position));
                 moveTimer = 0;

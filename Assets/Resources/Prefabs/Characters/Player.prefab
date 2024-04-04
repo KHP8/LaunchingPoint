@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 996028821597646953}
   serializedVersion: 2
   m_LocalRotation: {x: 0.021398146, y: 0.017131383, z: -0.00036671764, w: 0.9996242}
-  m_LocalPosition: {x: 1.6061853, y: -1.2397671, z: -4.856971}
+  m_LocalPosition: {x: 1.6061852, y: -1.2397671, z: -4.8569703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -627,8 +627,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6155405403084511423}
   - component: {fileID: 8752271105988107326}
-  - component: {fileID: 8504163094138381388}
   - component: {fileID: 5885534651017920760}
+  - component: {fileID: 8504163094138381388}
   - component: {fileID: 1519826155541202468}
   - component: {fileID: 1445237995971270337}
   - component: {fileID: 6127111640411570326}
@@ -687,45 +687,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &8504163094138381388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346642888391454335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de55edb5369e5f47852bfc570eacff2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: {fileID: 6155405403084511423}
-  state: 0
-  playerHeight: 2
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  isGrounded: 1
-  maxSlopeAngle: 40
-  walkspeed: 7
-  sprintSpeed: 10
-  groundDrag: 5
-  jumpCooldown: 0.2
-  sprintSpeedPercent: 0.5
-  acceleration: 10
-  airSpeed: 7
-  airDrag: 1
-  airMultiplier: 0.8
-  jumpHeight: 1.1
-  gravity: -13
-  airAccel: 10
-  crouchSpeed: 3.5
-  crouchYScale: 0.5
-  speedDisplay: 0
-  readyToJump: 0
-  sprinting: 0
-  crouching: 0
-  exitingSlope: 0
 --- !u!114 &5885534651017920760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,6 +701,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1346642888391454335}
   playerTransform: {fileID: 6155405403084511423}
+--- !u!114 &8504163094138381388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346642888391454335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de55edb5369e5f47852bfc570eacff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCapsule: {fileID: 3402489401593286244}
+  orientation: {fileID: 6155405403084511423}
+  playerHeight: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 128
+  isGrounded: 1
+  speed: 7
+  groundDrag: 5
+  jumpCooldown: 0.2
+  sprintSpeedPercent: 0.5
+  acceleration: 10
+  airSpeed: 7
+  airDrag: 1
+  airMultiplier: 0.8
+  jumpHeight: 1.1
+  gravity: -13
+  airAccel: 10
+  speedDisplay: 0
+  readyToJump: 0
+  sprinting: 0
 --- !u!114 &1519826155541202468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,7 +794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  health: 0
   chipSpeed: 2
   frontHealthBar: {fileID: 7832887649268824280}
   backHealthBar: {fileID: 4388232419353843931}
@@ -2465,7 +2458,7 @@ Transform:
   m_GameObject: {fileID: 6960523136843724688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6061853, y: -1.2397671, z: -4.856971}
+  m_LocalPosition: {x: 1.6061852, y: -1.2397671, z: -4.8569703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
