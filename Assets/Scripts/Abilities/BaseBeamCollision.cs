@@ -27,8 +27,8 @@ public class BaseBeamCollision : MonoBehaviour
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponent<EnemyHealth>().TakeDamage(beam.dmg, player);
-                    other.transform.GetComponent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg, player);
+                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, beam.knockbackMod);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }

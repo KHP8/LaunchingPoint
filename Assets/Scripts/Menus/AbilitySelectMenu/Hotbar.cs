@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -181,8 +182,8 @@ public class Hotbar : MonoBehaviour
         activeButton = selectedButton;
     }
 
-    public void OnReadyButton(GameObject selectedButton)
+    public void OnReadyButton()
     {
-
+        SceneManager.LoadScene("LevelGenerationTest");
     }
 }

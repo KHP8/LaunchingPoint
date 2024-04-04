@@ -19,7 +19,7 @@ public class FireNuke : BaseNuke
     {
         FireNukeCollision fireNukeCollision;
         fireNukeCollision = obj.GetComponentInChildren<FireNukeCollision>();
-        fireNukeCollision.summon = obj.GetComponentInChildren<FireNuke>();
+        fireNukeCollision.summon = this;
         fireNukeCollision.player = gameObject;
     }
 }   
