@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
     public void OnResumeButton()
     {
         UnPause();
+        Debug.Log("Unpaused");
     }
 
     public void OnSettingsButton()
