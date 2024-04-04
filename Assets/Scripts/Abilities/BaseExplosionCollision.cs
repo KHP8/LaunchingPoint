@@ -9,13 +9,13 @@ using UnityEngine;
     OnCollisionEnter handles when the prefab hits anything and deals damage when needed.
 */
 
-abstract public class BaseProjectileCollision : MonoBehaviour
+abstract public class BaseExplosionCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
     [HideInInspector] public Vector3 startpoint;
     
 
-    abstract public void OnCollisionEnter(Collision other);
+    abstract public void OnTriggerEnter(Collider other);
 
     abstract public void Update();
 }
