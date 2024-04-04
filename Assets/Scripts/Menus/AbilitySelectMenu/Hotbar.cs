@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -105,10 +104,6 @@ public class Hotbar : MonoBehaviour
             hotbarButtons[3].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("SpecialE")];
         else
             hotbarButtons[3].GetComponent<Image>().sprite = null;
-        if (PlayerPrefs.HasKey("Ultimate"))
-            hotbarButtons[4].GetComponent<Image>().sprite = abilityImageMap[PlayerPrefs.GetString("Ultimate")];
-        else
-            hotbarButtons[4].GetComponent<Image>().sprite = null;
 
         for (int i = 0; i < defaultNames.Length; i++)
         {
@@ -178,12 +173,11 @@ public class Hotbar : MonoBehaviour
     public void OnUltimateButton(GameObject selectedButton)
     {
         DisableButtons();
-        FilterButtons(UabilNames, uAbilImage, ultimateDesc, "Ultimate");
         activeButton = selectedButton;
     }
 
-    public void OnReadyButton()
+    public void OnReadyButton(GameObject selectedButton)
     {
-        SceneManager.LoadScene("LevelGenerationTest");
+
     }
 }

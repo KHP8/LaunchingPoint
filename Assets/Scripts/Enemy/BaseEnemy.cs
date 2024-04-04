@@ -6,31 +6,35 @@ using UnityEngine.AI;
 /// <summary>
 /// This code serves as the base for all enemies
 /// 
-/// The references to be made in the inspector are prefab and projectileSource
-/// 
-/// Default FOV is 180
-/// 
-/// 
 /// </summary>
 
+/*
+    Todos
+        LastKnownPos - All files
+        SearchState - See sticky note
+        AttackState - See sticky note
+        AttackState - Look at
+        PatrolState - Pathing?
+        CanSee - Avoid projectiles (do more than just 1 raycast) (spherecast?) (layermask)
+*/
 
 abstract public class BaseEnemy : MonoBehaviour
 {
     private StateMachine stateMachine;
 
     [Header("References")]
-    [HideInInspector] public NavMeshAgent agent;
+    public NavMeshAgent agent;
     public List<GameObject> players = new();
     public Transform projectileSource;
     public GameObject prefab;
-    [HideInInspector] public Rigidbody enemyRigidBody;
+    public List<Transform> waypoints = new();
     [HideInInspector] public GameObject target; 
-    //public List<Transform> waypoints = new();
-
+    
     [Header("Sight Values")]
+    //public Path path;
+    //public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
     public float localMoveRadius = 10f;
-    public float maxSight;
     LayerMask layerMask;
     [HideInInspector] public Vector3 lastKnownPos;
 
@@ -40,21 +44,14 @@ abstract public class BaseEnemy : MonoBehaviour
     public float vel;
     public float maxRange;
     public float accuracyRadius;
-
-    [Header("Physics")]
-    bool isGrounded;
-    public LayerMask whatIsGround;
-
     [HideInInspector] public bool canCast = true;
     public WaitForSeconds cooldown;
     public Coroutine coro;
 
-    int enemyLayer;
-    // or use this, and set in inspector:
-    // public List<int> ignoreLayers;
+    private int enemyLayer;
 
     //just for debugging purposes, so we can see what state it is in
-    [SerializeField] string currentState;
+    [SerializeField] private string currentState;
 
     /// <summary>
     /// Handles the detailed usage of the enemy ability. May instantiate projectiles, create beams, etc.
@@ -79,7 +76,6 @@ abstract public class BaseEnemy : MonoBehaviour
     {
         stateMachine = GetComponent<StateMachine>();
         agent = GetComponent<NavMeshAgent>();
-        enemyRigidBody = GetComponent<Rigidbody>();
 
         players.Add(GameObject.Find("Player")); // Should be some (empty maybe) game object at the center of the player
         //for (int i = 1; i < 4; i++)
@@ -104,39 +100,6 @@ abstract public class BaseEnemy : MonoBehaviour
         currentState = stateMachine.activeState.ToString(); 
     }
 
-    void FixedUpdate() 
-    {
-        if (agent.enabled == false)
-        {
-            isGrounded = Physics.Raycast(transform.position, Vector3.down, agent.height * 0.5f + 0.4f, whatIsGround);
-            // if close enough to zero, toggle NavMesh back on
-            if (isGrounded && enemyRigidBody.velocity.magnitude < 1f && enemyRigidBody.velocity.magnitude != 0)
-            {
-                agent.enabled = true;
-                enemyRigidBody.isKinematic = true;
-                enemyRigidBody.useGravity = false;
-            }
-        }
-    }
-
-    /// <summary>
-    /// Applies knockback to the enemy. Disables the NavMesh to apply it
-    /// </summary>
-    /// <param name="pos">Transform.position of the colliding object</param>
-    /// <param name="mod">Modifier of how strong the knockback should be</param>
-    public void Knockback(Vector3 pos, float mod)
-    {
-        agent.enabled = false;
-        enemyRigidBody.isKinematic = false;
-        enemyRigidBody.useGravity = true;
-
-        Vector3 dist = transform.position - pos;
-
-        dist = new(1/dist.x, 1/dist.y, 1/dist.z);
-
-        enemyRigidBody.AddForce(dist * mod, ForceMode.Force);
-    }
-
     public void UseAbility() 
     {
         coro = StartCoroutine(Shoot());
@@ -147,7 +110,6 @@ abstract public class BaseEnemy : MonoBehaviour
         yield return cooldown;
         canCast = true;
     }
-
 
     /// <summary>
     /// Returns the Vector3 position that the NavMeshAgent should move to.
@@ -235,6 +197,7 @@ abstract public class BaseEnemy : MonoBehaviour
             {
                 if (hitInfo.transform.gameObject == target)
                 {
+                    Debug.DrawRay(ray.origin, ray.direction);
                     return true;
                 }
             }
@@ -259,6 +222,7 @@ abstract public class BaseEnemy : MonoBehaviour
         {
             if (hitInfo.transform.gameObject == target)
             {
+                Debug.DrawRay(ray.origin, ray.direction);
                 return true;
             }
         }

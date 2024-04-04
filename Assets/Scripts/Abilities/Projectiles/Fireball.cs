@@ -15,6 +15,8 @@ public class Fireball : BaseProjectile
         maxRange = 50;
         cooldown = new WaitForSeconds(60 / rpm);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall") as GameObject;
+        
+        
     }
 
     public override void ManageCollisionComponents(GameObject obj)
@@ -23,6 +25,5 @@ public class Fireball : BaseProjectile
         fireballCollision = obj.GetComponent<FireballCollision>();
         fireballCollision.startpoint = projectileSource.transform.position;
         fireballCollision.projectile = this;
-        fireballCollision.player = gameObject;
     }
 }
