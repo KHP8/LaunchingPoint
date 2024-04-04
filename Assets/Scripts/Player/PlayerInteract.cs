@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
     private Camera cam;
-    [SerializeField] private float distance = 3f;
+    [SerializeField] private float distance;
     [SerializeField] private LayerMask mask;
     private PlayerUI playerUI;
     private InputManager inputManager;
@@ -26,12 +26,15 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo; // var to store collision info
         if (Physics.Raycast(ray, out hitInfo, distance, mask))
         {
+            //Debug.Log("1");
             if (hitInfo.collider.GetComponent<Interactable>() != null) // if object to interact with
             {
+                //Debug.Log("2");
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>(); // obj to interact with
                 playerUI.UpdateText(interactable.promptMessage); // update on screen text
                 if (inputManager.player.Interact.triggered)
                 {
+                    //Debug.Log("3");
                     interactable.BaseInteract();   
                 }
             }

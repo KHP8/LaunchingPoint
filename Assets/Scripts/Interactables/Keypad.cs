@@ -19,7 +19,7 @@ public class Keypad : Interactable
     }
 
     // Where we design our interaction
-    protected override void Interact()
+    public override void Interact()
     {
         doorOpen = !doorOpen;
         door.GetComponent<Animator>().SetBool("IsOpen", doorOpen);
