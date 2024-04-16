@@ -13,7 +13,8 @@ public class Fireball : BaseProjectile
         rpm = 50;
         speed = 40;
         maxRange = 50;
-        cooldown = new WaitForSeconds(60 / rpm);
+        cooldownFloat = 1.2f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall") as GameObject;
     }
 

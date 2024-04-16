@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +8,9 @@ abstract public class BaseAbility : MonoBehaviour
     public string abilityName;
     public Image image;
 
-    [HideInInspector] public bool canCast = true;
+    public bool canCast = true;
     [HideInInspector] public WaitForSeconds cooldown;
+    [HideInInspector] public float cooldownFloat;
 
     abstract public void Awake();
 

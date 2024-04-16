@@ -11,7 +11,8 @@ public class FireNuke : BaseNuke
         // BaseBeam fields
         dmg = 1;
         maxRange = 20;
-        cooldown = new WaitForSeconds(2);
+        cooldownFloat = 2f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(1);
         prefab = Resources.Load("Prefabs/Summons/FireNuke") as GameObject;
     }

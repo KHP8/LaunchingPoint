@@ -15,6 +15,8 @@ public class FireWave : BaseWave
         rpm = 40;
         speed = 10;
         maxRange = 50;
+        cooldownFloat = 8f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         delay = new WaitForSeconds(60 / rpm);
         prefab = Resources.Load("Prefabs/Projectiles/FireWave") as GameObject;
     }

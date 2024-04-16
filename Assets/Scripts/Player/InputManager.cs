@@ -26,7 +26,9 @@ public class InputManager : MonoBehaviour
     private BaseAbility ultimateAbility;
 
     // UI Icons
-    public CooldownButtons ultimateIcon;
+    public CooldownIcon qIcon;
+    public CooldownIcon eIcon;
+    public CooldownIcon ultimateIcon;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,16 +56,27 @@ public class InputManager : MonoBehaviour
         player.Sprint.performed += ctx => motor.Sprint();
         player.Melee.performed += ctx => melee.Melee();
 
-        player.RightClick.performed += ctx => primaryAbility.UseAbility();
-        player.RightClick.canceled += ctx => primaryAbility.StopAbility();
-        player.Q.performed += ctx => specialQAbility.UseAbility();
-        player.Q.canceled += ctx => specialQAbility.StopAbility();
-        player.E.performed += ctx => specialEAbility.UseAbility();
-        player.E.canceled += ctx => specialEAbility.StopAbility();
-        player.C.performed += ctx =>
+        player.LeftClick.performed += ctx =>
+        {
+            primaryAbility.UseAbility();
+            primaryAbility.StopAbility();
+        };
+        player.Q.performed += ctx =>
+        {
+            specialQAbility.UseAbility();
+            specialQAbility.StopAbility();
+            qIcon.CooldownSelector(specialQAbility.cooldownFloat);
+        };
+        player.E.performed += ctx =>
+        {
+            specialEAbility.UseAbility();
+            specialEAbility.StopAbility();
+            eIcon.CooldownSelector(specialEAbility.cooldownFloat);
+        };
+        player.X.performed += ctx =>
         {
             ultimateAbility.UseAbility();
-            ultimateIcon.CooldownSelector("Ultimate");
+            ultimateIcon.CooldownSelector(ultimateAbility.cooldownFloat);
         };
     }
 

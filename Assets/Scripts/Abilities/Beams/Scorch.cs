@@ -10,7 +10,8 @@ public class Scorch : BaseBeam
 
         // BaseBeam fields
         dmg = 1;
-        cooldown = new WaitForSeconds(8);
+        cooldownFloat = 5f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(3);
         prefab = Resources.Load("Prefabs/Beams/ScorchBeam") as GameObject;
     }
