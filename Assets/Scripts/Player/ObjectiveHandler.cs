@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -12,9 +13,9 @@ public class ObjectiveHandler : MonoBehaviour
 
     public TMP_StyleSheet style;
 
-    public void Awake()
+    public void LoadStyles()
     {
-        style = (TMP_StyleSheet)AssetDatabase.LoadAssetAtPath("Assets/TextMesh Pro/Resources/Style Sheets/ObjectiveTextStyles.asset", typeof(TMP_StyleSheet));
+        style = Resources.Load<TMP_StyleSheet>("StyleSheets/ObjectiveTextStyles");
         text.GetComponent<TextMeshProUGUI>().styleSheet = style;
     }
 
