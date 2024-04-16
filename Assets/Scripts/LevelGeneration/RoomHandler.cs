@@ -43,17 +43,21 @@ public class RoomHandler : MonoBehaviour
                 .SpawnEnemy(enemyTypes[selectedEnemy], enemies, this.gameObject);
         }
 
+        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Incomplete");
         UpdateObjective();
     }
 
     public void UpdateObjective()
     {
         string objectiveText = "Defeat Enemies " + (maxEnemies - numEnemies) + " / " + maxEnemies;
+        Debug.Log("max enemies" + maxEnemies);
+        Debug.Log("num enemies" + numEnemies);
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveText(objectiveText);
         if (numEnemies == 0)
         {
             GetComponentInChildren<LevelExit>().canExit = true;
             GetComponentInChildren<LevelExit>().promptMessage = "Exit Level";
+            GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Complete");
         }
 
     }

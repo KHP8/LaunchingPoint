@@ -42,7 +42,7 @@ public class LevelGenerator : MonoBehaviour
         //Debug.Log(rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.position);
         player.transform.position = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.position;
         player.transform.rotation = rooms[0].GetComponent<RoomHandler>().spawnPoint.transform.rotation;
-        Debug.Log("TEST");
+        //Debug.Log("TEST");
         Debug.Log(player.transform.position);   
         virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
