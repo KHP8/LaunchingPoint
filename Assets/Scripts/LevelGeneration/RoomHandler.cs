@@ -11,7 +11,8 @@ public class RoomHandler : MonoBehaviour
     public GameObject virtualCamera;
     public List<GameObject> enemies = new();
     public List<GameObject> spawners = new();
-    public int numEnemies = 2;
+    public int numEnemies;
+    public int maxEnemies = 2;
 
     public void Start()
     {
@@ -26,7 +27,7 @@ public class RoomHandler : MonoBehaviour
         int selectedSpawner;
         int selectedEnemy;
 
-        for (int i = 0; i < numEnemies; i++)
+        for (int i = 0; i < maxEnemies; i++)
         {
             selectedEnemy = Random.Range(0, enemyTypes.Count);
             selectedSpawner = Random.Range(0, spawners.Count);
@@ -39,7 +40,15 @@ public class RoomHandler : MonoBehaviour
             Debug.Log("enemyTypes: " + selectedEnemy);
             Debug.Log("selectedSpawner: " + selectedSpawner);
             spawners[selectedSpawner].GetComponent<EnemySpawner>()
-                .SpawnEnemy(enemyTypes[selectedEnemy], enemies);
+                .SpawnEnemy(enemyTypes[selectedEnemy], enemies, this.gameObject);
         }
+
+        UpdateObjective();
+    }
+
+    public void UpdateObjective()
+    {
+        string objectiveText = "Defeat Enemies " + (maxEnemies - numEnemies) + " / " + maxEnemies;
+        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveText(objectiveText);
     }
 }
