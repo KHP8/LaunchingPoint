@@ -19,7 +19,6 @@ abstract public class BaseWave : BaseAbility
 
     // Handles cooldowns and actual shooting
     //[HideInInspector] 
-    public bool canShoot = true;
     public WaitForSeconds delay;
     public Coroutine coro;
 
@@ -36,10 +35,10 @@ abstract public class BaseWave : BaseAbility
         // Creates a projectile 
         while (true)
         {
-            if (canShoot) // If timer is done
+            if (canCast) // If timer is done
             {
                 Debug.Log("CASTFIREWAVE");
-                canShoot = false;
+                canCast = false;
                 Camera cam = GetComponent<PlayerLook>().cam;
 
                 // Create a projectile oriented towards camera direction
