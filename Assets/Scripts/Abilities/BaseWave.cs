@@ -19,6 +19,7 @@ abstract public class BaseWave : BaseAbility
 
     // Handles cooldowns and actual shooting
     //[HideInInspector] 
+
     public Coroutine coro;
 
     // All children should also use the Awake() method to assign values
@@ -36,7 +37,7 @@ abstract public class BaseWave : BaseAbility
         // Creates a projectile 
         while (true)
         {
-            Debug.Log("FireWave?");
+
             if (canCast) // If timer is done
             {
                 Debug.Log("CASTFIREWAVE");
