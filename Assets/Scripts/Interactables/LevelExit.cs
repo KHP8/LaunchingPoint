@@ -9,15 +9,18 @@ public class LevelExit : Interactable
     public GameObject nextRoom;
     private RoomHandler roomHandler;
     private WaitForSeconds cameraDelay = new WaitForSeconds(1f);
+    public bool canExit = false;
 
     void Start()
     {
-        promptMessage = "Exit Level";
         roomHandler = nextRoom.GetComponent<RoomHandler>();
     }
 
     public override void Interact()
     {
+        if (!canExit)
+            return;
+
         //roomHandler.SpawnEnemies();
         roomHandler.virtualCamera
             .GetComponent<CinemachineVirtualCamera>()

@@ -50,5 +50,11 @@ public class RoomHandler : MonoBehaviour
     {
         string objectiveText = "Defeat Enemies " + (maxEnemies - numEnemies) + " / " + maxEnemies;
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveText(objectiveText);
+        if (numEnemies == 0)
+        {
+            GetComponentInChildren<LevelExit>().canExit = true;
+            GetComponentInChildren<LevelExit>().promptMessage = "Exit Level";
+        }
+
     }
 }
