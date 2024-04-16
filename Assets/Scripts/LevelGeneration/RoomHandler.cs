@@ -19,7 +19,7 @@ public class RoomHandler : MonoBehaviour
         virtualCamera = GameObject.Find("Virtual Camera");
     }
 
-    public void SpawnEnemies()
+    public void ActivateSpawners()
     {
         List<GameObject> enemyTypes = Resources.LoadAll("Prefabs/Enemies").Cast<GameObject>().ToList();
         int[] dirtySpawners = new int[spawners.Count];
@@ -36,7 +36,10 @@ public class RoomHandler : MonoBehaviour
 
             dirtySpawners[selectedSpawner] = 1;
 
-            enemies.Add(Instantiate(enemyTypes[selectedEnemy], spawners[selectedSpawner].transform));
+            Debug.Log("enemyTypes: " + selectedEnemy);
+            Debug.Log("selectedSpawner: " + selectedSpawner);
+            spawners[selectedSpawner].GetComponent<EnemySpawner>()
+                .SpawnEnemy(enemyTypes[selectedEnemy], enemies);
         }
     }
 }
