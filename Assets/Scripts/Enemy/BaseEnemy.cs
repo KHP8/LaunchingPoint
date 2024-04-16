@@ -227,7 +227,7 @@ abstract public class BaseEnemy : MonoBehaviour
     {   
         Vector3 v1 = transform.TransformDirection(Vector3.forward);
         Vector3 v2 = target.transform.position - transform.position;
-        if (Vector3.Dot(v1, v2) > 0) // if player in front of the enemy
+        if (Vector3.Dot(v1, v2) > 0 && v2.magnitude < maxSight) // if player in front of the enemy AND in sight
         {
             Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), v2 - (Vector3.up * eyeHeight));
             RaycastHit hitInfo = new RaycastHit();
@@ -241,6 +241,7 @@ abstract public class BaseEnemy : MonoBehaviour
         }
         return false;
     }
+    
 
     /// <summary>
     /// Returns a bool if the target can be seen from the pos. 
