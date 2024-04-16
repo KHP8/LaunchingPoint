@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     float spawnRadius = 12.5f;
 
-    public void SpawnEnemy(GameObject enemyType, List<GameObject> enemies)
+    public void SpawnEnemy(GameObject enemyType, List<GameObject> enemies, GameObject room)
     {
         Vector3 spawnPoint = new Vector3(0, 0, 0);
         bool canSpawn = false;
@@ -21,6 +21,6 @@ public class EnemySpawner : MonoBehaviour
                 canSpawn = true;
         }
 
-        enemies.Add(Instantiate(enemyType, spawnPoint, Quaternion.identity));
+        enemies.Add(Instantiate(enemyType, spawnPoint, Quaternion.identity, room.transform));
     }
 }
