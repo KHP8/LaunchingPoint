@@ -12,4 +12,10 @@ public class ObjectiveHandler : MonoBehaviour
     {
         text.GetComponent<TextMeshProUGUI>().text = objectiveText;
     }
+
+    public void CompleteObjective()
+    {
+        text.GetComponent<TextMeshProUGUI>().color = Color.green;
+        text.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+    }
 }
