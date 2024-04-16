@@ -25,6 +25,9 @@ public class InputManager : MonoBehaviour
     private BaseAbility specialEAbility;
     private BaseAbility ultimateAbility;
 
+    // UI Icons
+    public CooldownButtons ultimateIcon;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -39,10 +42,10 @@ public class InputManager : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
         melee = GetComponent<PlayerMelee>();
-        pause  = GetComponent<PauseMenu>();
+        pause = GetComponent<PauseMenu>();
 
         AddComponents();
-        
+
         player.Pause.performed += ctx => pause.PauseManager();
         ui.Pause.performed += ctx => pause.PauseManager();
 
@@ -57,7 +60,11 @@ public class InputManager : MonoBehaviour
         player.Q.canceled += ctx => specialQAbility.StopAbility();
         player.E.performed += ctx => specialEAbility.UseAbility();
         player.E.canceled += ctx => specialEAbility.StopAbility();
-        player.C.performed += ctx => ultimateAbility.UseAbility();
+        player.C.performed += ctx =>
+        {
+            ultimateAbility.UseAbility();
+            ultimateIcon.CooldownSelector("Ultimate");
+        };
     }
 
     private void AddComponents()
