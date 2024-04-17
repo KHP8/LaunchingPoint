@@ -24,46 +24,43 @@ abstract public class BaseWave : BaseAbility
 
     // All children should also use the Awake() method to assign values
 
-    public override void UseAbility()
+    public override bool UseAbility()
     {
-        // Start a coroutine which performs shooting
-        Debug.Log("FireWave???");
-        coro = StartCoroutine(ShootSpell());
+        return ShootSpell();
     }
 
-    IEnumerator ShootSpell()
+    /// <summary>
+    /// Internal which handles creating and managing projectiles
+    /// </summary>
+    private bool ShootSpell()
     {
-        Debug.Log("FireWave??");
-        // Creates a projectile 
-        while (true)
+        if (canCast) // If timer is done
         {
+            Debug.Log("CASTFIREWAVE");
+            canCast = false;
+            Camera cam = GetComponent<PlayerLook>().cam;
 
-            if (canCast) // If timer is done
-            {
-                Debug.Log("CASTFIREWAVE");
-                canCast = false;
-                Camera cam = GetComponent<PlayerLook>().cam;
+            // Create a projectile oriented towards camera direction
+            GameObject proj = Instantiate(
+                prefab,
+                projectileSource.position,
+                Quaternion.Euler(
+                    0, //transform.eulerAngles.x + 90,
+                    transform.eulerAngles.y,
+                    0
+                )
+            );
 
-                // Create a projectile oriented towards camera direction
-                GameObject proj = Instantiate(
-                    prefab,
-                    projectileSource.position,
-                    Quaternion.Euler(
-                        0, //transform.eulerAngles.x + 90,
-                        transform.eulerAngles.y,
-                        0
-                    )
-                );
+            // Give bullet physics and movement. Then manage collision script - unique data
+            proj.GetComponent<Rigidbody>();
+            ManageCollisionComponents(proj);
 
-                // Give bullet physics and movement. Then manage collision script - unique data
-                proj.GetComponent<Rigidbody>();
-                ManageCollisionComponents(proj);
-
-                // Begin cooldown between shots
-                StartCoroutine(ResetCastCooldown());
-            }
-            yield return null;
+            // Begin cooldown between shots
+            StartCoroutine(ResetCastCooldown());
+            return true;
         }
+
+        return false;
     }
 
     public override void StopAbility()

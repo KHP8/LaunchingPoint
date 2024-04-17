@@ -34,15 +34,15 @@ abstract public class BaseNuke : BaseAbility
     public WaitForSeconds abilityLength;
 
 
-    public override void UseAbility()
+    public override bool UseAbility()
     {
-        ShootSpell();
+        return ShootSpell();
     }
 
     /// <summary>
     /// Internal which handles creating and managing beams
     /// </summary>
-    private void ShootSpell()
+    private bool ShootSpell()
     {
         if (canCast) // If ability is not on cooldown
         {
@@ -77,18 +77,15 @@ abstract public class BaseNuke : BaseAbility
 
                 ManageCollisionComponents(beam);
 
-                // Begin ability length timer
-                StartCoroutine(DeleteAbiltiyAfterTime());
+            // Begin ability length timer
+            StartCoroutine(DeleteAbiltiyAfterTime());
 
-
-                // Begin cooldown between ability uses
-                StartCoroutine(ResetCastCooldown());
-            }
-
-            
-            // If the player was pointing at the air
-            
+            // Begin cooldown between ability uses
+            StartCoroutine(ResetCastCooldown());
+            return true;
         }
+
+        return false;
     }
 
    

@@ -59,24 +59,21 @@ public class InputManager : MonoBehaviour
         player.LeftClick.performed += ctx =>
         {
             primaryAbility.UseAbility();
-            primaryAbility.StopAbility();
         };
         player.Q.performed += ctx =>
         {
-            specialQAbility.UseAbility();
-            specialQAbility.StopAbility();
+            if (specialQAbility.UseAbility())
             qIcon.CooldownSelector(specialQAbility.cooldownFloat);
         };
         player.E.performed += ctx =>
         {
-            specialEAbility.UseAbility();
-            specialEAbility.StopAbility();
-            eIcon.CooldownSelector(specialEAbility.cooldownFloat);
+            if (specialEAbility.UseAbility())
+                eIcon.CooldownSelector(specialEAbility.cooldownFloat);
         };
         player.X.performed += ctx =>
-        {
-            ultimateAbility.UseAbility();
-            ultimateIcon.CooldownSelector(ultimateAbility.cooldownFloat);
+        {   
+            if (ultimateAbility.UseAbility())
+                ultimateIcon.CooldownSelector(ultimateAbility.cooldownFloat);
         };
     }
 
