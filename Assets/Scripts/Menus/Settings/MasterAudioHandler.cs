@@ -19,7 +19,7 @@ public class MasterAudioHandler : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
-        audioMixer.SetFloat("MasterVolume", slider.value);
+        audioMixer.SetFloat("Master", slider.value);
         PlayerPrefs.SetFloat("MasterAudio", slider.value);
     }
 }
