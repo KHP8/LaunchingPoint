@@ -20,7 +20,7 @@ public class FirewaveCollision : BaseWaveCollision
                 {
                     Debug.Log("Hit Enemy");
                     other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
-                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, projectile.knockbackMod);
+                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position - Vector3.up * transform.localScale.y, projectile.knockbackMod);
                     hitList.Add(other.gameObject);
                 }
             }

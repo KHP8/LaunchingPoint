@@ -17,6 +17,7 @@ public class FireWave : BaseWave
         maxRange = 50;
         cooldownFloat = 8f;
         cooldown = new WaitForSeconds(cooldownFloat);
+        knockbackMod = 200;
         prefab = Resources.Load("Prefabs/Projectiles/FireWave") as GameObject;
     }
 

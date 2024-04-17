@@ -31,7 +31,10 @@ public class FireballCollision : BaseProjectileCollision
             // Regardless of what is hit, destroy the projectile
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             GameObject explosion = Instantiate(prefab2,transform.position,transform.rotation);
-            explosion.GetComponent<FireballExplosionCollision>().player = player;
+            FireballExplosionCollision fec = explosion.GetComponent<FireballExplosionCollision>();
+            fec.player = player;
+            fec.projectile = projectile;
+
             Destroy(gameObject);
         }
         else if (other.transform.CompareTag("Player"))
