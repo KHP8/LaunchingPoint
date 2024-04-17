@@ -14,7 +14,7 @@ public class FireballExplosionCollision : BaseExplosionCollision
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
+                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
             }
             else
             {

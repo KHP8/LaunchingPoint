@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FirewaveCollision : BaseWaveCollision
@@ -15,10 +16,13 @@ public class FirewaveCollision : BaseWaveCollision
         {
             if (other.transform.CompareTag("Enemy"))
             {
-                Debug.Log("Hit Enemy");
-                //other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
-                other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, projectile.knockbackMod);
+                if (hitList.Contains(other.gameObject) == false)
+                {
+                    Debug.Log("Hit Enemy");
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
+                    other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, projectile.knockbackMod);
+                    hitList.Add(other.gameObject);
+                }
             }
             else
             {

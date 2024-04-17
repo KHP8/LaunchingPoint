@@ -21,7 +21,7 @@ public class FireballCollision : BaseProjectileCollision
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
+                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
             }
             else
             {
@@ -30,7 +30,8 @@ public class FireballCollision : BaseProjectileCollision
 
             // Regardless of what is hit, destroy the projectile
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            Instantiate(prefab2,transform.position,transform.rotation);
+            GameObject explosion = Instantiate(prefab2,transform.position,transform.rotation);
+            explosion.GetComponent<FireballExplosionCollision>().player = player;
             Destroy(gameObject);
         }
         else if (other.transform.CompareTag("Player"))

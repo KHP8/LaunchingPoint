@@ -15,6 +15,7 @@ public class BaseBeamCollision : MonoBehaviour
     public BaseBeam beam;
     private bool tickDmg = true;
     private WaitForSeconds dmgTimer = new WaitForSeconds(.1f);
+    [HideInInspector] public GameObject player;
 
     private void OnTriggerStay(Collider other)
     {
@@ -25,7 +26,7 @@ public class BaseBeamCollision : MonoBehaviour
                 Debug.Log("Hit Enemy");
                 if (tickDmg)
                 {
-                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg);
+                    other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(beam.dmg, player);
                     tickDmg = false;
                     StartCoroutine(DamageTimer());
                 }

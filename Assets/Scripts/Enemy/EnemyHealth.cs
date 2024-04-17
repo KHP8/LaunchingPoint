@@ -24,12 +24,13 @@ public class EnemyHealth : MonoBehaviour
 
     /// <summary>
     /// Deals damage to the enemy. 
+    /// Also determines if the enemy should switch targets.
     /// </summary>
     /// <remarks>
-    /// hitter should usually be <c>gameObject</c>
+    /// hitter should usually be <c>player</c>
     /// </remarks>
     /// <param name="damage">Damage to deal to enemy</param>
-    /// <param name="hitter">The player doing damage. Usually should be <c>gameObject</c>.</param>
+    /// <param name="hitter">The player doing damage. Usually should be <c>player</c>.</param>
     public void TakeDamage(float damage, GameObject hitter)
     {
         health -= damage;
@@ -37,6 +38,9 @@ public class EnemyHealth : MonoBehaviour
         // If dead, die and end here
         if (health <= 0) 
         {
+            GetComponentInParent<RoomHandler>().enemies.Remove(gameObject);
+            GetComponentInParent<RoomHandler>().numEnemies--;
+            GetComponentInParent<RoomHandler>().UpdateObjective();
             Destroy(gameObject); // do death animation
             return;
         }
@@ -57,34 +61,6 @@ public class EnemyHealth : MonoBehaviour
             {
                 enemy.target = hitter;
             }
-        }
-    }
-
-    /// <summary>
-    /// Old, to be replaced.
-    /// Updating to the new one will require an additional field in all collisions 
-    /// and will therefore need to change all ManageCollisionComponents. 
-    /// <para>
-    /// Add a reference to the player gameObject in each collision:
-    /// <c>CollisionScriptNameHere.caster = gameObject;</c>
-    /// </para>
-    /// </summary>
-    /// <remarks>
-    /// See Scripts > Enemy > EnemyHealth.cs for the new usage
-    /// </remarks>
-    /// <param name="damage"></param>
-    public void TakeDamage(float damage)
-    {
-        health -= damage;
-
-        // If dead, die and end here
-        if (health <= 0) 
-        {
-            GetComponentInParent<RoomHandler>().enemies.Remove(this.gameObject);
-            GetComponentInParent<RoomHandler>().numEnemies--;
-            GetComponentInParent<RoomHandler>().UpdateObjective();
-            Destroy(gameObject); // do death animation
-            return;
         }
     }
 }

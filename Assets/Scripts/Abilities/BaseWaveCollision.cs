@@ -7,6 +7,7 @@ abstract public class BaseWaveCollision : MonoBehaviour
     [HideInInspector] public BaseWave projectile;
     [HideInInspector] public Vector3 startpoint;
     [HideInInspector] public GameObject player;
+    public List<GameObject> hitList = new List<GameObject>();
 
     public float timeBeforeDestroy;
 

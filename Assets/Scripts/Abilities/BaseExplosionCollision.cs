@@ -13,7 +13,7 @@ abstract public class BaseExplosionCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
     [HideInInspector] public Vector3 startpoint;
-    
+    [HideInInspector] public GameObject player;
 
     abstract public void OnTriggerEnter(Collider other);
 
