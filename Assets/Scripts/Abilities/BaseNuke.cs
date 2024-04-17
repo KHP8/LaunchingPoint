@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -45,52 +46,48 @@ abstract public class BaseNuke : BaseAbility
     {
         if (canCast) // If ability is not on cooldown
         {
-            Debug.Log("CASTBEAM");
-            canCast = false;
+            
             Camera cam = GetComponent<PlayerLook>().cam;
 
             // Create a projectile oriented towards camera direction
             RaycastHit hit;
+            LayerMask mask = LayerMask.GetMask("Enemy");
             Ray summonRay = new Ray(cam.transform.position, cam.transform.forward);
+
 
             // If the player was pointing at the ground
 
-            if(Physics.Raycast(summonRay, out hit, maxRange)){
+            if(Physics.Raycast(summonRay, out hit, maxRange,~mask)){
                 Debug.Log(hit.point);
+                Debug.Log("CASTBEAM");
+                canCast = false;
+
+                GameObject beam = Instantiate(
+                    prefab,
+                    hit.point,
+                    Quaternion.identity
+                );
+
+                beam.transform.rotation = Quaternion.FromToRotation(
+                        Vector3.up, hit.normal
+                );
+
+
+                thisBeam = beam;
+
+                ManageCollisionComponents(beam);
+
+                // Begin ability length timer
+                StartCoroutine(DeleteAbiltiyAfterTime());
+
+
+                // Begin cooldown between ability uses
+                StartCoroutine(ResetCastCooldown());
             }
-            // If the player was pointing at the air
 
             
-
-            GameObject beam = Instantiate(
-                prefab,
-                hit.point,
-                Quaternion.identity
-            );
-
-            beam.transform.rotation = Quaternion.FromToRotation(
-                    Vector3.up, hit.normal
-            );
-
-            /*GameObject beam = Instantiate(
-                prefab,
-                beamSource,
-                Quaternion.Euler(
-                    0,
-                    transform.eulerAngles.y,
-                    0
-                )
-            );
-            */
-            thisBeam = beam;
-
-            ManageCollisionComponents(beam);
-
-            // Begin ability length timer
-            StartCoroutine(DeleteAbiltiyAfterTime());
-
-            // Begin cooldown between ability uses
-            StartCoroutine(ResetCastCooldown());
+            // If the player was pointing at the air
+            
         }
     }
 

@@ -14,7 +14,7 @@ public class FireNuke : BaseNuke
         cooldownFloat = 2f;
         cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(1);
-        prefab = Resources.Load("Prefabs/Summons/FireNuke") as GameObject;
+        prefab = Resources.Load("Prefabs/Summons/FireNukeReference") as GameObject;
     }
     public override void ManageCollisionComponents(GameObject obj)
     {
