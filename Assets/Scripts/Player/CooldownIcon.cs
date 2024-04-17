@@ -20,7 +20,6 @@ public class CooldownIcon : MonoBehaviour
     {
         if(canStartTimer)
         {
-            Debug.Log("I MADE IT TOJASHKL:WHJRGKLJj");
             canStartTimer = false;
             for (float i = cooldown; i > 0; i -= .1f)
             {

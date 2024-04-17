@@ -16,7 +16,8 @@ public class FirewaveCollision : BaseWaveCollision
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
+                //other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
+                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
                 other.transform.GetComponentInParent<BaseEnemy>().Knockback(transform.position, projectile.knockbackMod);
             }
             else

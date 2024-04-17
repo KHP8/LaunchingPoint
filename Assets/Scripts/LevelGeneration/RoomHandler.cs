@@ -43,6 +43,8 @@ public class RoomHandler : MonoBehaviour
                 .SpawnEnemy(enemyTypes[selectedEnemy], enemies, this.gameObject);
         }
 
+        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().LoadStyles();
+        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Incomplete");
         UpdateObjective();
     }
 
@@ -54,7 +56,7 @@ public class RoomHandler : MonoBehaviour
         {
             GetComponentInChildren<LevelExit>().canExit = true;
             GetComponentInChildren<LevelExit>().promptMessage = "Exit Level";
+            GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Complete");
         }
-
     }
 }
