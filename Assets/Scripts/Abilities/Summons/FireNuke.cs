@@ -10,11 +10,11 @@ public class FireNuke : BaseNuke
 
         // BaseBeam fields
         dmg = 1;
-        maxRange = 20;
+        maxRange = 80;
         cooldownFloat = 2f;
         cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(1);
-        prefab = Resources.Load("Prefabs/Summons/FireNuke") as GameObject;
+        prefab = Resources.Load("Prefabs/Summons/FireNukeReference") as GameObject;
     }
     public override void ManageCollisionComponents(GameObject obj)
     {
