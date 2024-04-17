@@ -20,7 +20,7 @@ abstract public class BaseAbility : MonoBehaviour
     /// <remarks>
     /// This method should only be called from the input manager.
     /// </remarks>
-    abstract public void UseAbility();
+    abstract public bool UseAbility();
 
     /// <summary>
     /// Ends the ability. Useful for full auto or holding down. Handled in internals of Base scripts.

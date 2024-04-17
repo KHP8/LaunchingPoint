@@ -31,59 +31,56 @@ abstract public class BaseProjectile : BaseAbility
 
     public Coroutine coro; 
 
-    public override void UseAbility()
+    public override bool UseAbility()
     {
-        // Start a coroutine which performs shooting
-        coro = StartCoroutine(ShootSpell());
+        return ShootSpell();
     }
 
     /// <summary>
     /// Internal which handles creating and managing projectiles
     /// </summary>
-    IEnumerator ShootSpell()
+    private bool ShootSpell()
     {
-        // Creates a projectile 
-        while (true)
+        if (canCast) // If timer is done
         {
-            if (canCast) // If timer is done
+            Debug.Log("CASTFIRE");
+            canCast = false;
+            Camera cam = GetComponent<PlayerLook>().cam;
+
+            // Create a projectile oriented towards camera direction
+            GameObject proj = Instantiate(
+                prefab,
+                projectileSource.position,
+                Quaternion.Euler(
+                    cam.transform.eulerAngles.x + 90,
+                    transform.eulerAngles.y,
+                    0
+                )
+            );
+
+            // Raycast to find where the reticle is aiming, then set proper velocity
+            RaycastHit hitInfo;
+            Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+            Debug.DrawRay(ray.origin, ray.direction); // For debugging purposes
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
             {
-                Debug.Log("CASTFIRE");
-                canCast = false;
-                Camera cam = GetComponent<PlayerLook>().cam;
-
-                // Create a projectile oriented towards camera direction
-                GameObject proj = Instantiate(
-                    prefab,
-                    projectileSource.position,
-                    Quaternion.Euler(
-                        cam.transform.eulerAngles.x + 90,
-                        transform.eulerAngles.y,
-                        0
-                    )
-                );
-
-                // Raycast to find where the reticle is aiming, then set proper velocity
-                RaycastHit hitInfo;
-                Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-                Debug.DrawRay(ray.origin, ray.direction); // For debugging purposes
-                if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
-                {
-                    Debug.Log(hitInfo.transform.name);
-                    proj.GetComponent<Rigidbody>().velocity = (hitInfo.point - projectileSource.position).normalized * speed;
-                }
-                else
-                {
-                    proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * speed;
-                }
-
-                // Give bullet physics and movement. Then manage collision script - unique data
-                ManageCollisionComponents(proj);
-
-                // Begin cooldown between shots
-                StartCoroutine(ResetCastCooldown());
+                Debug.Log(hitInfo.transform.name);
+                proj.GetComponent<Rigidbody>().velocity = (hitInfo.point - projectileSource.position).normalized * speed;
             }
-            yield return null;
+            else
+            {
+                proj.GetComponent<Rigidbody>().velocity = cam.transform.forward * speed;
+            }
+
+            // Give bullet physics and movement. Then manage collision script - unique data
+            ManageCollisionComponents(proj);
+
+            // Begin cooldown between shots
+            StartCoroutine(ResetCastCooldown());
+            return true;
         }
+
+        return false;
     }
 
     public override void StopAbility()

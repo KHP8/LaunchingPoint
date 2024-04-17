@@ -29,15 +29,15 @@ abstract public class BaseBeam : BaseAbility
     public WaitForSeconds abilityLength;
 
 
-    public override void UseAbility()
+    public override bool UseAbility()
     {
-        ShootSpell();
+        return ShootSpell();
     }
 
     /// <summary>
     /// Internal which handles creating and managing beams
     /// </summary>
-    private void ShootSpell()
+    private bool ShootSpell()
     {
         if (canCast) // If ability is not on cooldown
         {
@@ -65,7 +65,10 @@ abstract public class BaseBeam : BaseAbility
 
             // Begin cooldown between ability uses
             StartCoroutine(ResetCastCooldown());
+            return true;
         }
+
+        return false;
     }
 
     public override void StopAbility()
