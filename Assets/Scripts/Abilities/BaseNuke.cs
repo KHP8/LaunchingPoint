@@ -83,8 +83,10 @@ abstract public class BaseNuke : BaseAbility
             // Begin cooldown between ability uses
             StartCoroutine(ResetCastCooldown());
             return true;
-        }
+            }
 
+        return false;
+        }
         return false;
     }
 

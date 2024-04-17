@@ -10,7 +10,7 @@ public class FireNuke : BaseNuke
 
         // BaseBeam fields
         dmg = 1;
-        maxRange = 20;
+        maxRange = 80;
         cooldownFloat = 2f;
         cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(1);
