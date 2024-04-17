@@ -501,7 +501,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.8
-  m_Speed: 10
+  m_Speed: 12
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
@@ -590,7 +590,7 @@ MonoBehaviour:
   lastKnownPos: {x: 0, y: 0, z: 0}
   rpm: 20
   dmg: 2
-  vel: 40
+  vel: 70
   maxRange: 75
   accuracyRadius: 1
   whatIsGround:

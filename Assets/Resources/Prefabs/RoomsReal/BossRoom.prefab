@@ -11724,6 +11724,7 @@ MonoBehaviour:
   - {fileID: 7164404641322353304}
   - {fileID: 5468119987183112549}
   numEnemies: 2
+  maxEnemies: 2
 --- !u!114 &4520089130199218501
 MonoBehaviour:
   m_ObjectHideFlags: 0
