@@ -51,7 +51,7 @@ abstract public class BaseNuke : BaseAbility
 
             // Create a projectile oriented towards camera direction
             RaycastHit hit;
-            LayerMask mask = LayerMask.GetMask("Enemy");
+            LayerMask mask = LayerMask.GetMask("Enemy","Default");
             Ray summonRay = new Ray(cam.transform.position, cam.transform.forward);
 
 
