@@ -34,14 +34,14 @@ public class CooldownIcon : MonoBehaviour
 
     public IEnumerator UpdateAbilityTimerImage()
     {
-        float percent = 0;
+        float percent = 1;
         icon.GetComponent<Image>().fillAmount = percent;
         if (canStartTimer)
         {
             canStartTimer = false;
-            for (float i = 0; i < cooldown; i += .1f)
+            for (float i = cooldown; i >= 0; i -= .1f)
             {
-                percent += (1 / (cooldown * 10));
+                percent -= (1 / (cooldown * 10));
                 icon.GetComponent<Image>().fillAmount = percent;
                 yield return new WaitForSeconds(.1f);
             }
