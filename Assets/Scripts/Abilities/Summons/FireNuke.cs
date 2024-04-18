@@ -6,7 +6,7 @@ public class FireNuke : BaseNuke
     {
         // BaseAbility fields
         abilityName = "FireNuke";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireNukeCast");
 
         // BaseBeam fields
         dmg = 1;

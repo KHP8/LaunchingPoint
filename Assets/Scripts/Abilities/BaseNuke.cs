@@ -57,7 +57,8 @@ abstract public class BaseNuke : BaseAbility
 
             // If the player was pointing at the ground
 
-            if(Physics.Raycast(summonRay, out hit, maxRange,~mask)){
+            if(Physics.Raycast(summonRay, out hit, maxRange,~mask))
+            {
                 Debug.Log(hit.point);
                 Debug.Log("CASTBEAM");
                 canCast = false;
@@ -77,16 +78,20 @@ abstract public class BaseNuke : BaseAbility
 
                 ManageCollisionComponents(beam);
 
-            // Begin ability length timer
-            StartCoroutine(DeleteAbiltiyAfterTime());
+                // Play cast SFX
+                GameObject.Find("AbilityCastSFXList").GetComponent<AbilityCastSFX>().PlayAbilityAudio(castSFX);
 
-            // Begin cooldown between ability uses
-            StartCoroutine(ResetCastCooldown());
-            return true;
+                // Begin ability length timer
+                StartCoroutine(DeleteAbiltiyAfterTime());
+
+                // Begin cooldown between ability uses
+                StartCoroutine(ResetCastCooldown());
+                return true;
             }
 
-        return false;
+            return false;
         }
+
         return false;
     }
 

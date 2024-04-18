@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class MasterAudioHandler : MonoBehaviour
+public class SFXAudioHandler : MonoBehaviour
 {
     public Slider slider;
     public AudioMixer audioMixer;
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("MasterVolume"))
-            slider.value = PlayerPrefs.GetFloat("MasterVolume");
+        if (PlayerPrefs.HasKey("SFXVolume"))
+            slider.value = PlayerPrefs.GetFloat("SFXVolume");
         else
             slider.value = slider.maxValue;
     }
@@ -20,12 +20,10 @@ public class MasterAudioHandler : MonoBehaviour
     public void OnSliderValueChanged()
     {
         if (slider.value == -51)
-            audioMixer.SetFloat("Master", -80);
+            audioMixer.SetFloat("SFX", -80);
         else
-            audioMixer.SetFloat("Master", slider.value);
+            audioMixer.SetFloat("SFX", slider.value);
 
-        PlayerPrefs.SetFloat("MasterVolume", slider.value);
+        PlayerPrefs.SetFloat("SFXVolume", slider.value);
     }
-
-    
 }

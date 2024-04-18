@@ -19,7 +19,11 @@ public class MusicAudioHandler : MonoBehaviour
 
     public void OnSliderValueChanged()
     {
-        audioMixer.SetFloat("Music", slider.value);
+        if (slider.value == -51)
+            audioMixer.SetFloat("Music", -80);
+        else
+            audioMixer.SetFloat("Music", slider.value);
+
         PlayerPrefs.SetFloat("MusicVolume", slider.value);
     }
 }

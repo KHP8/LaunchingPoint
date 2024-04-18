@@ -11,6 +11,7 @@ abstract public class BaseAbility : MonoBehaviour
     public bool canCast = true;
     [HideInInspector] public WaitForSeconds cooldown;
     [HideInInspector] public float cooldownFloat;
+    public AudioClip castSFX;
 
     abstract public void Awake();
 

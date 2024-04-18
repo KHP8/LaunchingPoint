@@ -8,11 +8,10 @@ public class FireWave : BaseWave
     {
         // BaseAbility fields
         abilityName = "FireWave";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireWaveCast");
 
         // BaseProjectile fields
         dmg = 10;
-        rpm = 40;
         speed = 10;
         maxRange = 50;
         cooldownFloat = 8f;
