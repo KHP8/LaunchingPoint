@@ -1427,7 +1427,7 @@ PrefabInstance:
     - target: {fileID: 1497701099021976666, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 1926512855}
+      objectReference: {fileID: 1726777762}
     - target: {fileID: 1855280653804842028, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 700
