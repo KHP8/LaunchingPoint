@@ -44,19 +44,19 @@ public class RoomHandler : MonoBehaviour
         }
 
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().LoadStyles();
-        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Incomplete");
+        GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveIncomplete();
         UpdateObjective();
     }
 
     public void UpdateObjective()
     {
-        string objectiveText = "Defeat Enemies " + (maxEnemies - numEnemies) + " / " + maxEnemies;
+        string objectiveText = "Defeat Enemies\n" + (maxEnemies - numEnemies) + " / " + maxEnemies;
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveText(objectiveText);
         if (numEnemies == 0)
         {
             GetComponentInChildren<LevelExit>().canExit = true;
             GetComponentInChildren<LevelExit>().promptMessage = "Exit Level";
-            GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveStyle("Complete");
+            GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveComplete();
         }
     }
 }
