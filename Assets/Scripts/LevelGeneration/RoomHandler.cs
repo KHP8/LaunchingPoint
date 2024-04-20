@@ -52,7 +52,7 @@ public class RoomHandler : MonoBehaviour
 
     public void UpdateObjective()
     {
-        string objectiveText = "Defeat Enemies\n" + (maxEnemies - numEnemies) + " / " + maxEnemies;
+        string objectiveText = "Defeat Enemies\n" + (maxEnemies - enemies.Count) + " / " + maxEnemies;
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().SetObjectiveText(objectiveText);
         if (numEnemies == 0)
         {
