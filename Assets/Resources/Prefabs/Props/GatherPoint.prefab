@@ -9220,7 +9220,7 @@ GameObject:
   - component: {fileID: 5847382621496730312}
   - component: {fileID: 2593747183236118763}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9253,7 +9253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099ca8bdf38a96940a971cc054c0a4f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRadius: 7
+  spawnRadius: 9
+  maxEnemyCount: 3
+  currentEnemyCount: 0
 --- !u!1 &9115807705349197999
 GameObject:
   m_ObjectHideFlags: 0

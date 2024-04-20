@@ -12,7 +12,7 @@ public class RoomHandler : MonoBehaviour
     public List<GameObject> enemies = new();
     public List<GameObject> spawners = new();
     public int numEnemies;
-    public int maxEnemies = 2;
+    public int maxEnemies;
 
     public void Start()
     {
@@ -32,11 +32,11 @@ public class RoomHandler : MonoBehaviour
             selectedEnemy = Random.Range(0, enemyTypes.Count);
             selectedSpawner = Random.Range(0, spawners.Count);
 
-            while (dirtySpawners[selectedSpawner] == 1)
-                selectedSpawner = Random.Range(0, spawners.Count - 1);
-
             if (spawners[selectedSpawner].GetComponent<EnemySpawner>().currentEnemyCount >= spawners[selectedSpawner].GetComponent<EnemySpawner>().maxEnemyCount)
                 dirtySpawners[selectedSpawner] = 1;
+
+            while (dirtySpawners[selectedSpawner] == 1)
+                selectedSpawner = Random.Range(0, spawners.Count - 1);
 
             Debug.Log("enemyTypes: " + selectedEnemy);
             Debug.Log("selectedSpawner: " + selectedSpawner);
