@@ -123,6 +123,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &359674959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8848685119183281418, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &434495565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5001107122217190784, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &454128255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7250561304193404530, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &528161324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4677411468038803301, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &625190173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2901558725158597668, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
@@ -857,11 +877,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1726777762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5440015453097540419, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
-  m_PrefabInstance: {fileID: 6973148416785316182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1802589946 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6128260179256553461, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
@@ -873,6 +888,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cf8e3855e0154419002372d9a9292b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1814682342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558410188276169456, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1843015757
 GameObject:
   m_ObjectHideFlags: 0
@@ -919,11 +939,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1346642887483203934}
   virtualCamera: {fileID: 996028821494710088}
---- !u!1 &1843453245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9007809850598279710, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
-  m_PrefabInstance: {fileID: 6973148416785316182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2073919478
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,6 +1046,10 @@ PrefabInstance:
     - target: {fileID: 93753813276062427, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: icon
       value: 
+      objectReference: {fileID: 359674959}
+    - target: {fileID: 93753813276062427, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: runes
+      value: 
       objectReference: {fileID: 625190173}
     - target: {fileID: 236617640079337061, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1064,6 +1083,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1415472322170034138, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415472322170034138, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1451193654984829656, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1481248584361338072, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 125
@@ -1075,7 +1106,15 @@ PrefabInstance:
     - target: {fileID: 1497701099021976666, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 1726777762}
+      objectReference: {fileID: 528161324}
+    - target: {fileID: 1497701099021976666, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: runes
+      value: 
+      objectReference: {fileID: 1814682342}
+    - target: {fileID: 1827767079276036227, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1855280653804842028, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 700
@@ -1092,9 +1131,29 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 125
       objectReference: {fileID: 0}
+    - target: {fileID: 1893625498123351982, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893625498123351982, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893625498123351982, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2219059718075131134, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576584983147159630, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576584983147159630, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2921815448746878038, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_Sprite
@@ -1216,6 +1275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Icon
       objectReference: {fileID: 0}
+    - target: {fileID: 4703535474979056155, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5402273598152054589, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_text
       value: 'Defeat Enemies
@@ -1266,6 +1329,14 @@ PrefabInstance:
       propertyPath: qIcon
       value: 
       objectReference: {fileID: 1802589946}
+    - target: {fileID: 5900564428975762834, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900564428975762834, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6042971182624510492, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -1277,7 +1348,11 @@ PrefabInstance:
     - target: {fileID: 6128260179256553461, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 1843453245}
+      objectReference: {fileID: 454128255}
+    - target: {fileID: 6128260179256553461, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: runes
+      value: 
+      objectReference: {fileID: 434495565}
     - target: {fileID: 6155405403084511423, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1350,6 +1425,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -150
       objectReference: {fileID: 0}
+    - target: {fileID: 7474814268721562409, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474814268721562409, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503578146056823209, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503578146056823209, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7503578146056823209, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_FillMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7830361095602106131, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1361,6 +1456,10 @@ PrefabInstance:
     - target: {fileID: 8144588328155751603, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848685119183281418, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+      propertyPath: m_Name
+      value: iconGlowing
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

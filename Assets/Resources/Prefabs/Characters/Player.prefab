@@ -1136,7 +1136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   textBox: {fileID: 4199458250310376701}
-  icon: {fileID: 2901558725158597668}
+  runes: {fileID: 2901558725158597668}
+  icon: {fileID: 8848685119183281418}
 --- !u!1 &1042770615109082518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,7 +2110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   textBox: {fileID: 8414996953074595588}
-  icon: {fileID: 0}
+  runes: {fileID: 5558410188276169456}
+  icon: {fileID: 4677411468038803301}
 --- !u!1 &2305116818317950853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2391,7 +2393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   textBox: {fileID: 7344247652235953248}
-  icon: {fileID: 0}
+  runes: {fileID: 5001107122217190784}
+  icon: {fileID: 7250561304193404530}
 --- !u!1 &2921115163539778373
 GameObject:
   m_ObjectHideFlags: 0
@@ -7149,7 +7152,7 @@ GameObject:
   - component: {fileID: 4747866862855325434}
   - component: {fileID: 1415472322170034138}
   m_Layer: 5
-  m_Name: glowingIcon
+  m_Name: iconGlowing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
