@@ -35,7 +35,8 @@ public class RoomHandler : MonoBehaviour
             while (dirtySpawners[selectedSpawner] == 1)
                 selectedSpawner = Random.Range(0, spawners.Count - 1);
 
-            dirtySpawners[selectedSpawner] = 1;
+            if (spawners[selectedSpawner].GetComponent<EnemySpawner>().currentEnemyCount >= spawners[selectedSpawner].GetComponent<EnemySpawner>().maxEnemyCount)
+                dirtySpawners[selectedSpawner] = 1;
 
             Debug.Log("enemyTypes: " + selectedEnemy);
             Debug.Log("selectedSpawner: " + selectedSpawner);
