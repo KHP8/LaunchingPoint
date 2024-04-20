@@ -8,6 +8,7 @@ public class CooldownIcon : MonoBehaviour
 {
     public float cooldown;
     public GameObject textBox;
+    public GameObject runes;
     public GameObject icon;
     private bool canStartTimer = true;
 
@@ -42,9 +43,10 @@ public class CooldownIcon : MonoBehaviour
             for (float i = cooldown; i >= 0; i -= .1f)
             {
                 percent -= (1 / (cooldown * 10));
-                icon.GetComponent<Image>().fillAmount = percent;
+                runes.GetComponent<Image>().fillAmount = percent;
                 yield return new WaitForSeconds(.1f);
             }
+            UpdateAbilityIcon();
             canStartTimer = true;
         }
     }
@@ -59,10 +61,16 @@ public class CooldownIcon : MonoBehaviour
             for (float i = 0; i < cooldown; i += .1f)
             {
                 percent += (1 / (cooldown * 10));
-                icon.GetComponent<Image>().fillAmount = percent;
+                runes.GetComponent<Image>().fillAmount = percent;
                 yield return new WaitForSeconds(.1f);
             }
+            UpdateAbilityIcon();
             canStartTimer = true;
         }
+    }
+
+    public void UpdateAbilityIcon()
+    {
+        icon.GetComponent<Image>().fillAmount = 1;
     }
 }
