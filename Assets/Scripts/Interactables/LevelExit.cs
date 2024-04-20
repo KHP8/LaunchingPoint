@@ -21,7 +21,7 @@ public class LevelExit : Interactable
         if (!canExit)
             return;
 
-        //roomHandler.SpawnEnemies();
+        roomHandler.ActivateSpawners();
         roomHandler.virtualCamera
             .GetComponent<CinemachineVirtualCamera>()
             .GetCinemachineComponent<Cinemachine3rdPersonFollow>()

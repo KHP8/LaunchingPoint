@@ -862,6 +862,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5440015453097540419, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
   m_PrefabInstance: {fileID: 6973148416785316182}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1802589946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6128260179256553461, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
+  m_PrefabInstance: {fileID: 6973148416785316182}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cf8e3855e0154419002372d9a9292b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1843015757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,7 +1265,7 @@ PrefabInstance:
     - target: {fileID: 5885534651017920760, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: qIcon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1802589946}
     - target: {fileID: 6042971182624510492, guid: db1016aeec2ff9a409ba652de552e8c2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
