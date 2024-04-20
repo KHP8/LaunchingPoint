@@ -6,11 +6,12 @@ public class Scorch : BaseBeam
     {
         // BaseAbility fields
         abilityName = "Scorch";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/ScorchCast");
 
         // BaseBeam fields
         dmg = 1;
-        cooldown = new WaitForSeconds(8);
+        cooldownFloat = 5f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(3);
         prefab = Resources.Load("Prefabs/Beams/ScorchBeam") as GameObject;
     }
@@ -19,5 +20,6 @@ public class Scorch : BaseBeam
         ScorchCollision scorchCollision;
         scorchCollision = obj.GetComponentInChildren<ScorchCollision>();
         scorchCollision.beam = obj.GetComponentInChildren<Scorch>();
+        scorchCollision.player = gameObject;
     }
 }   

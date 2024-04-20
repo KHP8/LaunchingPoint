@@ -1018,7 +1018,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f343cfe87f8eaf499bdbfe0523be01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   beam: {fileID: 0}
 --- !u!114 &2928477500755305967
 MonoBehaviour:
@@ -1084,9 +1085,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: 
   image: {fileID: 0}
+  canCast: 1
   beamSource: {x: 0, y: 0, z: 0}
   prefab: {fileID: 0}
   thisBeam: {fileID: 0}
   parent: {fileID: 0}
   dmg: 0
-  canBeam: 1
+  knockbackMod: 0

@@ -20,8 +20,15 @@ public class InputManager : MonoBehaviour
     private PauseMenu pause;
 
     private BaseAbility primaryAbility;
+    private BaseAbility secondaryAbility;
     private BaseAbility specialQAbility;
     private BaseAbility specialEAbility;
+    private BaseAbility ultimateAbility;
+
+    // UI Icons
+    public CooldownIcon qIcon;
+    public CooldownIcon eIcon;
+    public CooldownIcon ultimateIcon;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,10 +44,10 @@ public class InputManager : MonoBehaviour
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
         melee = GetComponent<PlayerMelee>();
-        pause  = GetComponent<PauseMenu>();
+        pause = GetComponent<PauseMenu>();
 
         AddComponents();
-        
+
         player.Pause.performed += ctx => pause.PauseManager();
         ui.Pause.performed += ctx => pause.PauseManager();
 
@@ -49,9 +56,25 @@ public class InputManager : MonoBehaviour
         player.Sprint.performed += ctx => motor.Sprint();
         player.Melee.performed += ctx => melee.Melee();
 
-        player.RightClick.performed += ctx => primaryAbility.UseAbility();
-        player.RightClick.canceled += ctx => primaryAbility.StopAbility();
-        player.Q.performed += ctx => specialQAbility.UseAbility();
+        player.LeftClick.performed += ctx =>
+        {
+            primaryAbility.UseAbility();
+        };
+        player.Q.performed += ctx =>
+        {
+            if (specialQAbility.UseAbility())
+            qIcon.CooldownSelector(specialQAbility.cooldownFloat);
+        };
+        player.E.performed += ctx =>
+        {
+            if (specialEAbility.UseAbility())
+                eIcon.CooldownSelector(specialEAbility.cooldownFloat);
+        };
+        player.X.performed += ctx =>
+        {   
+            if (ultimateAbility.UseAbility())
+                ultimateIcon.CooldownSelector(ultimateAbility.cooldownFloat);
+        };
     }
 
     private void AddComponents()
@@ -74,25 +97,43 @@ public class InputManager : MonoBehaviour
         }
         else if (PlayerPrefs.GetString("SpecialQ") == "FireWave")
         {
-
+            Debug.Log("FireWave added to SpecialQ");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialQAbility = GetComponent<FireWave>();
         }
 
         // SpecialE Abilities
         if (PlayerPrefs.GetString("SpecialE") == "Scorch")
         {
-            Debug.Log("Scorch added to SpecialQ");
+            Debug.Log("Scorch added to SpecialE");
             playerObject.AddComponent<Scorch>();
             playerObject.GetComponent<Scorch>().parent = playerObject.transform.Find("PlayerBody");
             specialEAbility = GetComponent<Scorch>();
         }
         else if (PlayerPrefs.GetString("SpecialE") == "FireWave")
         {
+            Debug.Log("FireWave added to SpecialE");
+            playerObject.AddComponent<FireWave>();
+            playerObject.GetComponent<FireWave>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            specialEAbility = GetComponent<FireWave>();
+        }
 
+
+        // Ultimate Abilities
+        if (PlayerPrefs.GetString("Ultimate") == "FireNuke")
+        {
+            Debug.Log("FireNuke added to Ultimate");
+            playerObject.AddComponent<FireNuke>();
+            playerObject.GetComponent<FireNuke>().parent = playerObject.transform.Find("PlayerBody");
+            ultimateAbility = GetComponent<FireNuke>();
         }
 
         Debug.Log("Primary: " + PlayerPrefs.GetString("Primary"));
+        Debug.Log("Secondary: " + PlayerPrefs.GetString("Secondary"));
         Debug.Log("SpecialQ: " + PlayerPrefs.GetString("SpecialQ"));
         Debug.Log("SpecialE: " + PlayerPrefs.GetString("SpecialE"));
+        Debug.Log("Ultimate: " + PlayerPrefs.GetString("Ultimate"));
     }
 
     // To be implemented later

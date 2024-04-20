@@ -6,42 +6,42 @@ using UnityEngine;
 
 */
 
+
+
 public class FireballCollision : BaseProjectileCollision
 {
-    public void Awake()
-    {
-        timeBeforeDestroy = .5f;
-    }
-
+    public GameObject prefab2;
+   
+    
     public override void OnCollisionEnter(Collision other)
     {
+        
         if (!other.transform.CompareTag("Player"))
         {
             if (other.transform.CompareTag("Enemy"))
             {
                 Debug.Log("Hit Enemy");
-                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg);
+                other.transform.GetComponentInParent<EnemyHealth>().TakeDamage(projectile.dmg, player);
             }
             else
             {
                 Debug.Log("Not an Enemy Hit");
             }
 
-            AnimationCollisionStart();
             // Regardless of what is hit, destroy the projectile
-            Destroy(gameObject, timeBeforeDestroy);
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            GameObject explosion = Instantiate(prefab2,transform.position,transform.rotation);
+            FireballExplosionCollision fec = explosion.GetComponent<FireballExplosionCollision>();
+            fec.player = player;
+            fec.projectile = projectile;
+
+            Destroy(gameObject);
         }
         else if (other.transform.CompareTag("Player"))
         {
             Debug.Log("Hit Player");
         }
-    }
-
-    public override void AnimationCollisionStart()
-    {
-        
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
-        animator.SetTrigger("CollisionDetected");
+       
     }
 
     public override void Update()

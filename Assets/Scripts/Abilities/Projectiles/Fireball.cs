@@ -6,14 +6,15 @@ public class Fireball : BaseProjectile
     {
         // BaseAbility fields
         abilityName = "Fireball";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireballCast");
+
 
         // BaseProjectile fields
         dmg = 10;
-        rpm = 50;
         speed = 40;
         maxRange = 50;
-        cooldown = new WaitForSeconds(60 / rpm);
+        cooldownFloat = 1.2f;
+        cooldown = new WaitForSeconds(cooldownFloat);
         prefab = Resources.Load("Prefabs/Projectiles/FireBall") as GameObject;
     }
 
@@ -23,5 +24,6 @@ public class Fireball : BaseProjectile
         fireballCollision = obj.GetComponent<FireballCollision>();
         fireballCollision.startpoint = projectileSource.transform.position;
         fireballCollision.projectile = this;
+        fireballCollision.player = gameObject;
     }
 }

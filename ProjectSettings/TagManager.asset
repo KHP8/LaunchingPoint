@@ -21,8 +21,8 @@ TagManager:
   - Enemy
   - AbilityNonBlocking
   - AbilityBlocking
-  - 
-  - 
+  - EnemyNonBlocking
+  - EnemyBlocking
   - 
   - 
   - 

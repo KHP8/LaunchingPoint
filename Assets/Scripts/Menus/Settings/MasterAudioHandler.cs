@@ -11,15 +11,21 @@ public class MasterAudioHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("MasterAudio"))
-            slider.value = PlayerPrefs.GetFloat("MasterAudio");
+        if (PlayerPrefs.HasKey("MasterVolume"))
+            slider.value = PlayerPrefs.GetFloat("MasterVolume");
         else
             slider.value = slider.maxValue;
     }
 
     public void OnSliderValueChanged()
     {
-        audioMixer.SetFloat("MasterVolume", slider.value);
-        PlayerPrefs.SetFloat("MasterAudio", slider.value);
+        if (slider.value == -51)
+            audioMixer.SetFloat("Master", -80);
+        else
+            audioMixer.SetFloat("Master", slider.value);
+
+        PlayerPrefs.SetFloat("MasterVolume", slider.value);
     }
+
+    
 }

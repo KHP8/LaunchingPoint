@@ -13,14 +13,9 @@ abstract public class BaseProjectileCollision : MonoBehaviour
 {
     [HideInInspector] public BaseProjectile projectile;
     [HideInInspector] public Vector3 startpoint;
-
-    public Animator animator;
-    public float timeBeforeDestroy;
-    public float timeBeforeAnimation;
+    [HideInInspector] public GameObject player;    
 
     abstract public void OnCollisionEnter(Collision other);
-
-    abstract public void AnimationCollisionStart();
 
     abstract public void Update();
 }

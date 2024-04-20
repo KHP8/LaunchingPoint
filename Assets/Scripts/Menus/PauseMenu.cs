@@ -19,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        GameObject.Find("MusicPlayer").transform.localScale = new Vector3(0, 0);
     }
 
     public void PauseManager()
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
+        GameObject.Find("MusicPlayer").transform.localScale = Vector3.one;
     }
 
     public void UnPause()
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        GameObject.Find("MusicPlayer").transform.localScale = new Vector3(0, 0);
+
         settingsOpen = false;
         settingsMenu.SetActive(false);
     }
@@ -50,6 +54,7 @@ public class PauseMenu : MonoBehaviour
     public void OnResumeButton()
     {
         UnPause();
+        Debug.Log("Unpaused");
     }
 
     public void OnSettingsButton()
