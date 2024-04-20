@@ -36,6 +36,7 @@ public class CooldownIcon : MonoBehaviour
     public IEnumerator UpdateAbilityTimerImageDown()
     {
         float percent = 1;
+        EmptyAbilityIcon();
         icon.GetComponent<Image>().fillAmount = percent;
         if (canStartTimer)
         {
@@ -46,7 +47,7 @@ public class CooldownIcon : MonoBehaviour
                 runes.GetComponent<Image>().fillAmount = percent;
                 yield return new WaitForSeconds(.1f);
             }
-            UpdateAbilityIcon();
+            FillAbilityIcon();
             canStartTimer = true;
         }
     }
@@ -54,6 +55,7 @@ public class CooldownIcon : MonoBehaviour
     public IEnumerator UpdateAbilityTimerImageUp()
     {
         float percent = 0;
+        EmptyAbilityIcon();
         icon.GetComponent<Image>().fillAmount = percent;
         if (canStartTimer)
         {
@@ -64,13 +66,18 @@ public class CooldownIcon : MonoBehaviour
                 runes.GetComponent<Image>().fillAmount = percent;
                 yield return new WaitForSeconds(.1f);
             }
-            UpdateAbilityIcon();
+            FillAbilityIcon();
             canStartTimer = true;
         }
     }
 
-    public void UpdateAbilityIcon()
+    public void FillAbilityIcon()
     {
         icon.GetComponent<Image>().fillAmount = 1;
+    }
+
+    public void EmptyAbilityIcon()
+    {
+        icon.GetComponent<Image>().fillAmount = 0;
     }
 }
