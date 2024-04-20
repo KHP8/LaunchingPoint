@@ -14373,7 +14373,8 @@ MonoBehaviour:
   player: {fileID: 0}
   virtualCamera: {fileID: 0}
   enemies: []
-  spawners: []
+  spawners:
+  - {fileID: 7289082848972395977}
   numEnemies: 0
   maxEnemies: 2
 --- !u!114 &7108413080755333430
