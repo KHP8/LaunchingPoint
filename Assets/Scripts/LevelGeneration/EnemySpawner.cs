@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector2 v2 = Random.insideUnitCircle;
             Vector3 mod = new Vector3(v2.x, 0, v2.y);
-            spawnPoint = this.transform.position + (mod * spawnRadius);
+            spawnPoint = transform.position + (mod * spawnRadius);
             Debug.Log(spawnPoint);
             Ray ray = new Ray(spawnPoint, Vector3.up);
             if (!Physics.Raycast(ray, 5))

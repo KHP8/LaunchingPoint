@@ -54,8 +54,8 @@ public class AttackState : BaseState
             losePlayerTimer += Time.deltaTime;
             if (losePlayerTimer > waitBeforeSearchTime)
             {
-                //Change to search state
-                stateMachine.ChangeState(new SearchState());
+                // Was previously SearchState()
+                stateMachine.ChangeState(new PatrolState()); 
             }
         }
 

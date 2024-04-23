@@ -41,8 +41,13 @@ public class RoomHandler : MonoBehaviour
             Debug.Log("enemyTypes: " + selectedEnemy);
             Debug.Log("selectedSpawner: " + selectedSpawner);
             spawners[selectedSpawner].GetComponent<EnemySpawner>()
-                .SpawnEnemy(enemyTypes[selectedEnemy], enemies, this.gameObject);
+                .SpawnEnemy(enemyTypes[selectedEnemy], enemies, gameObject);
             numEnemies++;
+        }
+
+        foreach (GameObject spawner in spawners)
+        {
+            spawner.GetComponent<EnemySpawner>().currentEnemyCount = 0;
         }
 
         GameObject.Find("Objective").GetComponent<ObjectiveHandler>().LoadStyles();

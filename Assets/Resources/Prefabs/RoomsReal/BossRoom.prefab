@@ -11446,7 +11446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 12.5
-  maxEnemyCount: 1
+  maxEnemyCount: 2
   currentEnemyCount: 0
 --- !u!1 &5528417883279950060
 GameObject:
@@ -11727,7 +11727,7 @@ MonoBehaviour:
   - {fileID: 7164404641322353304}
   - {fileID: 5468119987183112549}
   numEnemies: 0
-  maxEnemies: 2
+  maxEnemies: 6
 --- !u!114 &4520089130199218501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19012,7 +19012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 12.5
-  maxEnemyCount: 1
+  maxEnemyCount: 2
   currentEnemyCount: 0
 --- !u!1 &7290889126208028757
 GameObject:
@@ -27596,7 +27596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 12.5
-  maxEnemyCount: 1
+  maxEnemyCount: 2
   currentEnemyCount: 0
 --- !u!1 &9052008176783540275
 GameObject:
@@ -27643,7 +27643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRadius: 12.5
-  maxEnemyCount: 1
+  maxEnemyCount: 2
   currentEnemyCount: 0
 --- !u!1 &9119310257743379941
 GameObject:

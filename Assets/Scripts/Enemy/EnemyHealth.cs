@@ -38,9 +38,10 @@ public class EnemyHealth : MonoBehaviour
         // If dead, die and end here
         if (health <= 0) 
         {
-            GetComponentInParent<RoomHandler>().enemies.Remove(gameObject);
-            GetComponentInParent<RoomHandler>().numEnemies--;
-            GetComponentInParent<RoomHandler>().UpdateObjective();
+            RoomHandler roomHandler = GetComponentInParent<RoomHandler>();
+            roomHandler.enemies.Remove(gameObject);
+            roomHandler.numEnemies--;
+            roomHandler.UpdateObjective();
             Destroy(gameObject); // do death animation
             return;
         }
