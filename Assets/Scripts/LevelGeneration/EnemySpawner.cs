@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    float spawnRadius = 12.5f;
+    public float spawnRadius = 12.5f;
+    public int maxEnemyCount;
+    public int currentEnemyCount = 0;
 
     public void SpawnEnemy(GameObject enemyType, List<GameObject> enemies, GameObject room)
     {
@@ -22,5 +24,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         enemies.Add(Instantiate(enemyType, spawnPoint, Quaternion.identity, room.transform));
+        currentEnemyCount++;
     }
 }

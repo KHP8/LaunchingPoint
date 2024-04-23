@@ -13,8 +13,9 @@ public class PlayerHealth : MonoBehaviour
     public float health;
     public float chipSpeed = 2f;
     public Image frontHealthBar;
-    public Image backHealthBar;
-    public Image xpBar;
+    public Image runesGlowing;
+    //public Image backHealthBar;
+    //public Image xpBar;
     private PlayerUI playerUI;
 
     [Header("Damage Overlay")]
@@ -27,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-        xpBar.fillAmount = 0f;
+        //xpBar.fillAmount = 0f;
         playerUI = GetComponent<PlayerUI>();
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
     }
@@ -58,26 +59,28 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateHealthUI()
     {
         float fillF = frontHealthBar.fillAmount;
-        float fillB = backHealthBar.fillAmount;
+        float fillB = frontHealthBar.fillAmount;
         float hFraction = health / maxHealth;
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
-            backHealthBar.color = Color.red;
+            //backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
-            backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+            //backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
         }
         if (fillF < hFraction)
         {
-            backHealthBar.fillAmount = hFraction;
-            backHealthBar.color = Color.green;
+            //backHealthBar.fillAmount = hFraction;
+            //backHealthBar.color = Color.green;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, hFraction, percentComplete);
         }
+        if(frontHealthBar.fillAmount <= 0)
+            runesGlowing.fillAmount = 0;
         playerUI.UpdateHP(health);
     }
 

@@ -6,7 +6,7 @@ public class Scorch : BaseBeam
     {
         // BaseAbility fields
         abilityName = "Scorch";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/ScorchCast");
 
         // BaseBeam fields
         dmg = 1;

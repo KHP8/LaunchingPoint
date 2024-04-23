@@ -24,8 +24,18 @@ public class ObjectiveHandler : MonoBehaviour
         text.GetComponent<TextMeshProUGUI>().text = objectiveText;
     }
 
-    public void SetObjectiveStyle(string styleType)
+    //public void SetObjectiveStyle(string styleType)
+    //{
+    //    text.GetComponent<TextMeshProUGUI>().textStyle = style.GetStyle(styleType);
+    //}
+
+    public void SetObjectiveIncomplete()
     {
-        text.GetComponent<TextMeshProUGUI>().textStyle = style.GetStyle(styleType);
+        text.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Fonts/ObjectiveTextIncomplete");
+    }
+
+    public void SetObjectiveComplete()
+    {
+        text.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Fonts/ObjectiveTextComplete");
     }
 }

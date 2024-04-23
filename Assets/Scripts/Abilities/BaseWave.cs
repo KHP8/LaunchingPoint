@@ -55,6 +55,9 @@ abstract public class BaseWave : BaseAbility
             proj.GetComponent<Rigidbody>();
             ManageCollisionComponents(proj);
 
+            // Play cast SFX
+            GameObject.Find("AbilityCastSFXList").GetComponent<AbilityCastSFX>().PlayAbilityAudio(castSFX);
+
             // Begin cooldown between shots
             StartCoroutine(ResetCastCooldown());
             return true;

@@ -63,7 +63,7 @@ public class InputManager : MonoBehaviour
         player.Q.performed += ctx =>
         {
             if (specialQAbility.UseAbility())
-            qIcon.CooldownSelector(specialQAbility.cooldownFloat);
+                qIcon.CooldownSelector(specialQAbility.cooldownFloat);
         };
         player.E.performed += ctx =>
         {

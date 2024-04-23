@@ -10,6 +10,7 @@ public class MusicHandler : MonoBehaviour
     public int currentTrackIndex = 0;
     public AudioSource source;
     public MusicPlayerHandler musicPlayer;
+    public bool isPaused = true;
 
     public void Start()
     {
@@ -21,17 +22,16 @@ public class MusicHandler : MonoBehaviour
         //musicPlayer = GameObject.Find("MusicControlButtons").GetComponent<MusicPlayerHandler>();
     }
 
+    public void Update()
+    {
+        if (!isPaused && !source.isPlaying)
+            NextTrack();
+    }
+
     public void UpdateCurrentTrack()
     {
         source.clip = currentTrack;
         PlayTrack();
-    }
-
-
-    // For testing purposes. Do not use.
-    public void UpdateCurrentTrack(AudioClip track)
-    {
-
     }
 
     private void UpdateMusicPlayer()
@@ -39,12 +39,6 @@ public class MusicHandler : MonoBehaviour
         musicPlayer.ChangePlayPauseSprite();
         musicPlayer.UpdateMusicProgress();
         musicPlayer.SetTitle(currentTrack.name);
-    }
-
-    public void AutoNextTrack()
-    {
-        if (!source.isPlaying)
-            NextTrack();
     }
 
     public void NextTrack()
@@ -85,10 +79,12 @@ public class MusicHandler : MonoBehaviour
     private void PlayTrack()
     {
         source.Play();
+        isPaused = false;
     }
 
     private void PauseTrack()
     {
         source.Pause();
+        isPaused = true;
     }
 }

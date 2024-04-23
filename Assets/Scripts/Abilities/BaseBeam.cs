@@ -60,6 +60,9 @@ abstract public class BaseBeam : BaseAbility
 
             ManageCollisionComponents(beam);
 
+            // Play cast SFX
+            GameObject.Find("AbilityCastSFXList").GetComponent<AbilityCastSFX>().PlayAbilityAudio(castSFX);
+
             // Begin ability length timer
             StartCoroutine(DeleteAbiltiyAfterTime());
 

@@ -6,11 +6,11 @@ public class Fireball : BaseProjectile
     {
         // BaseAbility fields
         abilityName = "Fireball";
-        //image.sprite = Resources.Load("AbilityIcons/KHP8Logo1") as Sprite;
+        castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireballCast");
+
 
         // BaseProjectile fields
         dmg = 10;
-        rpm = 50;
         speed = 40;
         maxRange = 50;
         cooldownFloat = 1.2f;

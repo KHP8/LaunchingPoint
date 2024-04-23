@@ -75,6 +75,9 @@ abstract public class BaseProjectile : BaseAbility
             // Give bullet physics and movement. Then manage collision script - unique data
             ManageCollisionComponents(proj);
 
+            // Play cast SFX
+            GameObject.Find("AbilityCastSFXList").GetComponent<AbilityCastSFX>().PlayAbilityAudio(castSFX);
+
             // Begin cooldown between shots
             StartCoroutine(ResetCastCooldown());
             return true;
