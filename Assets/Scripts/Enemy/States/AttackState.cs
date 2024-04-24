@@ -27,26 +27,34 @@ public class AttackState : BaseState
 
     public override void Perform()
     {
-
+        // Check if target is dead
         if (enemy.target.GetComponent<PlayerHealth>().health <= 0)
         {
             stateMachine.ChangeState(new PatrolState());
+            return;
         }
 
-        if (enemy.CanSee(enemy.target)) // player can be seen
+        // Perform movement checks
+        float dist = Vector3.Distance(enemy.target.transform.position, enemy.transform.position);
+
+        if (enemy.CanSee(enemy.target)) // Can see target
         {
-            // lock the lose player timer and increment the move and shot timers
+            // lock the lose player timer and increment the move timer
             losePlayerTimer = 0;
             moveTimer += Time.deltaTime;
             enemy.transform.LookAt(enemy.target.transform);
 
             // move the enemy to a random position after a random time
-            if (moveTimer > waitToMove && enemy.agent.enabled)
+            if ((moveTimer > waitToMove && enemy.agent.enabled) 
+                || (dist > .85f * enemy.maxSight && dist < enemy.maxSight) // IF player getting far
+                || (dist < .2f * enemy.maxSight && enemy.agent.enabled && enemy.agent.isStopped) // IF player too close
+            )
             {
-                enemy.agent.SetDestination(enemy.GetDestination(enemy.target, enemy.transform.position));
+                enemy.SetDestination(); // used to be the other GetDestination/SetDestination combo
                 moveTimer = 0;
                 waitToMove = Random.Range(5, 10);
             }
+
             enemy.lastKnownPos = enemy.target.transform.position;
         }
         else // no LOS on player
@@ -59,6 +67,7 @@ public class AttackState : BaseState
             }
         }
 
+        // Look at the target
         if (enemy.lastKnownPos != null)
         {
             enemy.transform.LookAt(enemy.lastKnownPos + Vector3.up * enemy.eyeHeight);

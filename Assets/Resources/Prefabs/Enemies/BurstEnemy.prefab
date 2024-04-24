@@ -591,8 +591,8 @@ MonoBehaviour:
   rpm: 20
   dmg: 2
   vel: 70
-  maxRange: 75
-  accuracyRadius: 1
+  maxRange: 100
+  accuracyRadius: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
