@@ -13,7 +13,7 @@ public class AttackState : BaseState
     {
         enemy.UseAbility();
         //enemy.agent.SetDestination(enemy.agent.transform.position); // stop moving
-        waitToMove = Random.Range(5, 10);
+        waitToMove = Random.Range(7, 10);
         if (enemy.agent.enabled && !enemy.WouldSee(enemy.target, enemy.agent.destination)) // if they can't see the target from their current destination
         {
             enemy.SetDestination();
@@ -39,10 +39,11 @@ public class AttackState : BaseState
 
         if (enemy.CanSee(enemy.target)) // Can see target
         {
-            // lock the lose player timer and increment the move timer
             losePlayerTimer = 0;
-            moveTimer += Time.deltaTime;
             enemy.transform.LookAt(enemy.target.transform);
+
+            if (enemy.agent.enabled && enemy.agent.isStopped)
+                moveTimer += Time.deltaTime;
 
             // move the enemy to a random position after a random time
             if ((moveTimer > waitToMove && enemy.agent.enabled) 
@@ -52,7 +53,7 @@ public class AttackState : BaseState
             {
                 enemy.SetDestination(); // used to be the other GetDestination/SetDestination combo
                 moveTimer = 0;
-                waitToMove = Random.Range(5, 10);
+                waitToMove = Random.Range(7, 10);
             }
 
             enemy.lastKnownPos = enemy.target.transform.position;
