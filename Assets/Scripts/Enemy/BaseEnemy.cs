@@ -156,22 +156,6 @@ abstract public class BaseEnemy : MonoBehaviour
         canCast = true;
     }
 
-
-    public Vector3 Bad_GetDestination(GameObject target)
-    {
-        Vector3 destination;
-        int runs = 4;
-        while (runs > 0) 
-        {
-            destination = Random.insideUnitSphere * localMoveRadius;
-            if (WouldSee(target, target.transform.position + destination))
-                return target.transform.position + destination;
-            runs--;
-        }
-
-        return target.transform.position;
-    }
-
     /// <summary>
     /// Returns the Vector3 position that the NavMeshAgent should move to.
     /// Performs 4 runs to see if some area around the target is a good fit
