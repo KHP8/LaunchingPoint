@@ -49,6 +49,8 @@ abstract public class BaseEnemy : MonoBehaviour
     public WaitForSeconds cooldown;
     public Coroutine coro;
 
+    Vector3 storedDestination = Vector3.zero; // For use if NavMesh is disabled due to knockback
+
     int enemyLayer;
     // or use this, and set in inspector:
     // public List<int> ignoreLayers;
@@ -115,6 +117,11 @@ abstract public class BaseEnemy : MonoBehaviour
                 agent.enabled = true;
                 enemyRigidBody.isKinematic = true;
                 enemyRigidBody.useGravity = false;
+                if (!storedDestination.Equals(Vector3.zero))
+                {
+                    SetDestination(storedDestination);
+                    storedDestination = Vector3.zero;
+                }
             }
         }
     }
@@ -126,6 +133,7 @@ abstract public class BaseEnemy : MonoBehaviour
     /// <param name="mod">Modifier of how strong the knockback should be</param>
     public void Knockback(Vector3 pos, float mod)
     {
+        storedDestination = agent.destination;
         agent.enabled = false;
         enemyRigidBody.isKinematic = false;
         enemyRigidBody.useGravity = true;
@@ -148,7 +156,6 @@ abstract public class BaseEnemy : MonoBehaviour
         canCast = true;
     }
 
-
     /// <summary>
     /// Returns the Vector3 position that the NavMeshAgent should move to.
     /// Performs 4 runs to see if some area around the target is a good fit
@@ -160,12 +167,22 @@ abstract public class BaseEnemy : MonoBehaviour
     {
         Vector3 destination;
         int runs = 4;
+
+        float outerRadius = (maxSight / 2) + (0.2f * maxSight);
+        float innerRadius = (maxSight / 2) - (0.2f * maxSight);
+
         while (runs > 0) 
         {
-            destination = Random.insideUnitSphere * localMoveRadius;
-            if (WouldSee(target, target.transform.position + destination))
-                return target.transform.position + destination;
-            runs--;
+            destination = Random.insideUnitSphere * outerRadius;
+            if (new Vector2(destination.x, destination.z).magnitude > innerRadius) 
+            {
+                if (WouldSee(target, target.transform.position + destination))
+                {
+                    return target.transform.position + destination;
+                }
+                runs--;
+            }
+            
         }
 
         return target.transform.position;
@@ -181,13 +198,22 @@ abstract public class BaseEnemy : MonoBehaviour
     public Vector3 GetDestination(GameObject target, Vector3 pos)
     {
         Vector3 destination;
+
+        float outerRadius = 0.7f * maxSight;
+        float innerRadius = 0.3f * maxSight;
+
         int runs = 4;
         while (runs > 0) 
         {
-            destination = Random.insideUnitSphere * localMoveRadius;
-            if (WouldSee(target, pos + destination))
-                return pos + destination;
-            runs--;
+            destination = Random.insideUnitSphere * outerRadius;
+            if (new Vector2(destination.x, destination.z).magnitude > innerRadius)
+            {
+                if (WouldSee(target, pos + destination))
+                {
+                    return pos + destination;
+                }
+                runs--;
+            }
         }
 
         return pos;
@@ -198,7 +224,16 @@ abstract public class BaseEnemy : MonoBehaviour
     /// </summary>
     public void SetDestination()
     {
-        agent.SetDestination(GetDestination(target));
+        Vector3 dest = GetDestination(target);
+        if (agent.enabled)
+        {
+            agent.SetDestination(dest);
+        }
+        else
+        {
+            if (storedDestination.Equals(Vector3.zero))
+                storedDestination = dest;
+        }
     }
 
     /// <summary>
@@ -207,7 +242,16 @@ abstract public class BaseEnemy : MonoBehaviour
     /// <param name="pos">Vector3 position to move to</param>
     public void SetDestination(Vector3 pos)
     {
-        agent.SetDestination(pos);
+        if (agent.enabled)
+        {
+            agent.SetDestination(pos);
+        }
+        else
+        {
+            if (storedDestination.Equals(Vector3.zero))
+                storedDestination = pos;
+        }
+        
     }
 
     /// <summary>
@@ -219,7 +263,7 @@ abstract public class BaseEnemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines if the enemy can see the passed target
+    /// Determines if the enemy can see the passed target. Checks if in the maxSight as well.
     /// </summary>
     /// <param name="target">Object that you want to see</param>
     /// <returns>True if in LOS, otherwise False</returns>

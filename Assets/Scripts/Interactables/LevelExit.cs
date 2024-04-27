@@ -28,6 +28,7 @@ public class LevelExit : Interactable
             .DampingFromCollision = 0;
         roomHandler.player.transform.position = roomHandler.spawnPoint.transform.position;
         roomHandler.player.transform.rotation = roomHandler.spawnPoint.transform.rotation;
+        roomHandler.player.GetComponent<PlayerHealth>().RestoreHealth(100);
         StartCoroutine(teleportCamera());
     }
 
