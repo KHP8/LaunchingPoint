@@ -60,6 +60,10 @@ public class InputManager : MonoBehaviour
         {
             primaryAbility.UseAbility();
         };
+        player.RightClick.performed += ctx =>
+        {
+            secondaryAbility.UseAbility();
+        };
         player.Q.performed += ctx =>
         {
             if (specialQAbility.UseAbility())
@@ -79,12 +83,22 @@ public class InputManager : MonoBehaviour
 
     private void AddComponents()
     {
+        // Primary Abilities
         if (PlayerPrefs.GetString("Primary") == "Fireball")
         {
             Debug.Log("Fireball added to Primary");
             playerObject.AddComponent<Fireball>();
             playerObject.GetComponent<Fireball>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
             primaryAbility = GetComponent<Fireball>();
+        }
+
+        // Secondary Abilities
+        if (PlayerPrefs.GetString("Secondary") == "FirePellet")
+        {
+            Debug.Log("FirePellet added to Secondary");
+            playerObject.AddComponent<FirePellet>();
+            playerObject.GetComponent<FirePellet>().projectileSource = playerObject.transform.Find("PlayerBody").Find("ProjectileSource");
+            secondaryAbility = GetComponent<FirePellet>();
         }
 
         // SpecialQ Abilities
