@@ -9,7 +9,7 @@ public class Scorch : BaseBeam
         castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/ScorchCast");
 
         // BaseBeam fields
-        dmg = 1;
+        dmg = 2;
         cooldownFloat = 5f;
         cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(3);

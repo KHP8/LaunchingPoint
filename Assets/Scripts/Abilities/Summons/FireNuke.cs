@@ -9,9 +9,9 @@ public class FireNuke : BaseNuke
         castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireNukeCast");
 
         // BaseBeam fields
-        dmg = 1;
+        dmg = 7;
         maxRange = 80;
-        cooldownFloat = 2f;
+        cooldownFloat = 8f;
         cooldown = new WaitForSeconds(cooldownFloat);
         abilityLength = new WaitForSeconds(1);
         prefab = Resources.Load("Prefabs/Summons/FireNukeReference") as GameObject;

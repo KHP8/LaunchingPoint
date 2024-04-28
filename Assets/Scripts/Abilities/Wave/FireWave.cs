@@ -11,10 +11,10 @@ public class FireWave : BaseWave
         castSFX = Resources.Load<AudioClip>("Audio/AbilitySFX/FireWaveCast");
 
         // BaseProjectile fields
-        dmg = 10;
+        dmg = 20;
         speed = 10;
         maxRange = 50;
-        cooldownFloat = 8f;
+        cooldownFloat = 4f;
         cooldown = new WaitForSeconds(cooldownFloat);
         knockbackMod = 200;
         prefab = Resources.Load("Prefabs/Projectiles/FireWave") as GameObject;
