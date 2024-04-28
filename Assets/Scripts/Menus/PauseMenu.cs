@@ -15,6 +15,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject settingsMenu;
     public bool settingsOpen = false;
 
+    public bool canPause = true;
+
     public void Start()
     {
         pauseMenu.SetActive(false);
@@ -24,10 +26,15 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseManager()
     {
-        if (isPaused)
-            UnPause();
-        else
-            Pause();
+        if (canPause)
+        {
+            if (isPaused)
+                UnPause();
+            else
+                Pause();
+        }
+
+
     }
 
     public void Pause()

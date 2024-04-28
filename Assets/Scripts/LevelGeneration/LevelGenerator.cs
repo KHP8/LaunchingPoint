@@ -31,7 +31,7 @@ public class LevelGenerator : MonoBehaviour
         }
 
         rooms[2].GetComponentInChildren<LevelExit>().nextRoom = rooms[3];
-        rooms[3].GetComponentInChildren<LevelExit>().nextRoom = rooms[0];
+        rooms[3].GetComponentInChildren<LevelExit>().nextRoom = null;
 
         rooms[0].GetComponent<RoomHandler>().ActivateSpawners();
 

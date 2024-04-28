@@ -24,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
     public float fadeSpeed; //how quickly the image fades
     private float durationTimer; //timer to check against duration
 
+    public GameObject deathScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,14 @@ public class PlayerHealth : MonoBehaviour
     {
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
+
+        if (health <= 0)
+        {
+            deathScreen.transform.localScale = Vector3.one;
+            gameObject.GetComponent<PauseMenu>().canPause = false;
+            gameObject.GetComponent<PauseMenu>().isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         if (overlay.color.a > 0) 
         {

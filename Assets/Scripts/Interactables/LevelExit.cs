@@ -11,15 +11,32 @@ public class LevelExit : Interactable
     private WaitForSeconds cameraDelay = new WaitForSeconds(1f);
     public bool canExit = false;
 
+    public GameObject winScreen;
+
     void Start()
     {
-        roomHandler = nextRoom.GetComponent<RoomHandler>();
+        if (nextRoom != null)
+            roomHandler = nextRoom.GetComponent<RoomHandler>();
+        else
+        {
+            roomHandler = null;
+            winScreen = GameObject.Find("WinScreen");
+        }
+
     }
 
     public override void Interact()
     {
         if (!canExit)
             return;
+
+        if (roomHandler == null)
+        {
+            winScreen.transform.localScale = Vector3.one;
+            gameObject.GetComponent<PauseMenu>().canPause = false;
+            gameObject.GetComponent<PauseMenu>().isPaused = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         roomHandler.ActivateSpawners();
         roomHandler.virtualCamera
