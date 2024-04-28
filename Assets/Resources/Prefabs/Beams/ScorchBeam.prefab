@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1412438021652820946}
   - component: {fileID: 370149172283409786}
   - component: {fileID: 2928477500755305967}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ScorchBeamOld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,6 +1088,7 @@ MonoBehaviour:
   image: {fileID: 0}
   canCast: 1
   cooldownFloat: 0
+  castSFX: {fileID: 0}
   beamSource: {x: 0, y: 0, z: 0}
   prefab: {fileID: 0}
   thisBeam: {fileID: 0}

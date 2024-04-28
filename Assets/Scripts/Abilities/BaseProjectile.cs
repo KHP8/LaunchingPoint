@@ -29,6 +29,8 @@ abstract public class BaseProjectile : BaseAbility
     public float dmg;
     public float maxRange;
 
+    LayerMask layerMask = ~(1 << 10);
+
     public Coroutine coro; 
 
     public override bool UseAbility()
@@ -62,7 +64,7 @@ abstract public class BaseProjectile : BaseAbility
             RaycastHit hitInfo;
             Ray ray = new Ray(cam.transform.position, cam.transform.forward);
             Debug.DrawRay(ray.origin, ray.direction); // For debugging purposes
-            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layerMask))
             {
                 Debug.Log(hitInfo.transform.name);
                 proj.GetComponent<Rigidbody>().velocity = (hitInfo.point - projectileSource.position).normalized * speed;
