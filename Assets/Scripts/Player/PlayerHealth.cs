@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     public float chipSpeed = 2f;
     public Image frontHealthBar;
     public Image runesGlowing;
+    public GameObject healthText;
+    public GameObject healthTextBurnt;
     //public Image backHealthBar;
     //public Image xpBar;
     private PlayerUI playerUI;
@@ -74,6 +76,8 @@ public class PlayerHealth : MonoBehaviour
         if (fillB > hFraction)
         {
             frontHealthBar.fillAmount = hFraction;
+            healthText.GetComponent<TextMeshProUGUI>().text = health.ToString();
+            healthTextBurnt.GetComponent<TextMeshProUGUI>().text = health.ToString();
             //backHealthBar.color = Color.red;
             lerpTimer += Time.deltaTime;
             float percentComplete = lerpTimer / chipSpeed;
@@ -88,9 +92,14 @@ public class PlayerHealth : MonoBehaviour
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete *= percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillF, hFraction, percentComplete);
+            healthText.GetComponent<TextMeshProUGUI>().text = health.ToString();
+            healthTextBurnt.GetComponent<TextMeshProUGUI>().text = health.ToString();
         }
         if(frontHealthBar.fillAmount <= 0)
+        {
             runesGlowing.fillAmount = 0;
+            healthText.GetComponent<TextMeshProUGUI>().text = "";
+        }
         playerUI.UpdateHP(health);
     }
 
