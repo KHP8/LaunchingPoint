@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
     public GameObject newsMenu;
     public GameObject settingsMenu;
     public GameObject abilityMenu;
+    public GameObject creditsMenu;
 
     // private bool newsMenuOpen;
     public GameObject[] bannerButtons = new GameObject[7];
@@ -91,7 +92,14 @@ public class MainMenu : MonoBehaviour
 
     public void OnCreditsButton()
     {
-        
+        creditsMenu.SetActive(true);
+        ToggleBanner(true);
+    }
+
+    public void OnCloseCreditsButton()
+    {
+        creditsMenu.SetActive(false);
+        ToggleBanner(true);
     }
 
     public void OnQuitButton()
