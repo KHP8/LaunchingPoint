@@ -19,6 +19,9 @@ Abilities make use of colliders for impact to determine if they should deal dama
 
 
 ### UI
+Our user interface implements a combination of TextMeshPro and Unity's native UI tools.
+The players prefferred settings and equipped abilities are stored in a global JSON dicitonary that updates the visuals.
+The settings screen allows for players to edit different audio mixers for game and music volume, as well as change the resolution of the window.
 
 
 ### Physics-based Interactions
